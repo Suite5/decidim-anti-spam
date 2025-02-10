@@ -27,7 +27,6 @@ module Decidim
         Decidim.menu :admin_menu do |menu|
           menu.item I18n.t("menu.spam_signal", scope: "decidim.admin", default: "Spam Filter"),
                     decidim_admin_spam_signal.spam_filter_reports_path,
-                    icon_name: "shield",
                     position: 9,
                     active: is_active_link?(decidim_admin_spam_signal.spam_filter_reports_path, :inclusive),
                     if: defined?(current_user) && current_user&.read_attribute("admin")
