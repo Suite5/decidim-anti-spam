@@ -42,7 +42,7 @@ module Decidim
         end
 
         def attributes
-          form.attributes.filter { |_i, v| v.present? }.stringify_keys!
+          form.attributes.compact_blank.stringify_keys!
         end
       end
     end

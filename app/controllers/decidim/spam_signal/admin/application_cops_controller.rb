@@ -10,43 +10,6 @@ module Decidim
         helper_method :cop_type, :available_cops, :current_config, :current_cop, :new_cop?
         def index; end
 
-        def destroy
-          raise "Missing id" unless cop_type
-
-          cop_to_delete = resource_config.cop(cop_type)
-          cop_name = t("decidim.spam_signal.cops.#{cop_to_delete["handler_name"]}.name")
-
-          RemoveCopCommand.call(
-            current_config,
-            resource_config,
-            cop_type
-          ) do |_on|
-            on(:invalid) { flash[:alert] = t("decidim.spam_signal.admin.cops.notices.bad_destroy", resource: cop_name) }
-            on(:ok) { flash[:notice] = t("decidim.spam_signal.admin.cops.notices.destroy_ok", resource: cop_name) }
-            redirect_to spam_filter_reports_path
-          end
-        end
-
-        def update
-          raise t("decidim.spam_signal.admin.cops.notices.not_found") unless current_cop
-
-          cop_name = t("decidim.spam_signal.cops.#{current_cop.handler_name}.name")
-
-          form = current_cop.form.from_params(params.require(cop_key.to_s)).with_context(
-            handler_name: current_cop.handler_name,
-            type: cop_type
-          )
-          UpdateCopCommand.call(
-            current_config,
-            resource_config,
-            form
-          ) do |_on|
-            on(:invalid) { flash[:alert] = t("decidim.spam_signal.admin.cops.notices.bad_update", resource: cop_name) }
-            on(:ok) { flash[:notice] = t("decidim.spam_signal.admin.cops.notices.update_ok", resource: cop_name) }
-            redirect_to spam_filter_reports_path
-          end
-        end
-
         def edit
           @form = nil
           if current_cop && current_cop.form
@@ -80,8 +43,45 @@ module Decidim
             resource_config,
             form
           ) do |_on|
-            on(:invalid) { flash[:alert] = t("decidim.spam_signal.admin.cops.notices.bad_create", resource: cop_name) }
-            on(:ok) { flash[:notice] = t("decidim.spam_signal.admin.cops.notices.create_ok", resource: cop_name) }
+            on(:invalid) { flash.now[:alert] = t("decidim.spam_signal.admin.cops.notices.bad_create", resource: cop_name) }
+            on(:ok) { flash.now[:notice] = t("decidim.spam_signal.admin.cops.notices.create_ok", resource: cop_name) }
+            redirect_to spam_filter_reports_path
+          end
+        end
+
+        def update
+          raise t("decidim.spam_signal.admin.cops.notices.not_found") unless current_cop
+
+          cop_name = t("decidim.spam_signal.cops.#{current_cop.handler_name}.name")
+
+          form = current_cop.form.from_params(params.require(cop_key.to_s)).with_context(
+            handler_name: current_cop.handler_name,
+            type: cop_type
+          )
+          UpdateCopCommand.call(
+            current_config,
+            resource_config,
+            form
+          ) do |_on|
+            on(:invalid) { flash.now[:alert] = t("decidim.spam_signal.admin.cops.notices.bad_update", resource: cop_name) }
+            on(:ok) { flash.now[:notice] = t("decidim.spam_signal.admin.cops.notices.update_ok", resource: cop_name) }
+            redirect_to spam_filter_reports_path
+          end
+        end
+
+        def destroy
+          raise "Missing id" unless cop_type
+
+          cop_to_delete = resource_config.cop(cop_type)
+          cop_name = t("decidim.spam_signal.cops.#{cop_to_delete["handler_name"]}.name")
+
+          RemoveCopCommand.call(
+            current_config,
+            resource_config,
+            cop_type
+          ) do |_on|
+            on(:invalid) { flash.now[:alert] = t("decidim.spam_signal.admin.cops.notices.bad_destroy", resource: cop_name) }
+            on(:ok) { flash.now[:notice] = t("decidim.spam_signal.admin.cops.notices.destroy_ok", resource: cop_name) }
             redirect_to spam_filter_reports_path
           end
         end

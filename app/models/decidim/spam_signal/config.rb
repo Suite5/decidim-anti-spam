@@ -7,7 +7,7 @@ module Decidim
       belongs_to :organization, foreign_key: :decidim_organization_id, class_name: "Decidim::Organization"
       before_save :compute_settings
       def self.get_config(organization)
-        Config.find_or_create_by!(organization: organization) do |conf|
+        Config.find_or_create_by!(organization:) do |conf|
           conf.comment_settings = {}
           conf.profile_settings = {}
         end

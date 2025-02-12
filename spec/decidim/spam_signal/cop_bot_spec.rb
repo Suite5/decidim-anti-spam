@@ -4,7 +4,7 @@ require "spec_helper"
 
 describe Decidim::SpamSignal::CopBot do
   let(:organization) { create(:organization) }
-  let(:spam_cop) { create(:user, :admin, locale: organization.default_locale, organization: organization) }
+  let(:spam_cop) { create(:user, :admin, locale: organization.default_locale, organization:) }
 
   describe "#get" do
     it "create a bot user from USER_BOT_EMAIL" do

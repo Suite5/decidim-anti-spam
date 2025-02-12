@@ -12,7 +12,7 @@
   <% if @form %>
 <div class="grid-x grid-margin-y callout">
   <div class="cell small-10">
-    <strong><%= t("name", scope: current_scanner.i18n_key).upcase %></strong><br />
+    <strong><%= t("name", scope: current_scanner.i18n_key).upcase %></strong><br>
     <em><%= t("description", scope: current_scanner.i18n_key) %></em>
   </div>
 </div>
@@ -20,7 +20,7 @@
       <div class="form-fields">
         <em><%= t("#{current_scanner.i18n_key}.description", default: "") %></em>
         <%= f.all_fields %>
-        <input type="hidden" name="id" value="<%= current_scanner.handler_name %>" />
+        <input type="hidden" name="id" value="<%= current_scanner.handler_name %>">
         <div class="actions">
           <%= f.submit t("decidim.spam_signal.admin.actions.save") %>
         </div>
@@ -32,7 +32,7 @@
       <div class="stacked button-group">
         <% available_scanners.each do |scan| %>
           <%= link_to(routes.send(new_path, config_id: current_config.id, id: scan.handler_name), class: "button") do %>
-            <strong><%= t("#{scan.i18n_key}.name").upcase %></strong><br />
+            <strong><%= t("#{scan.i18n_key}.name").upcase %></strong><br>
             <em><%= t("#{scan.i18n_key}.description", default: "") %></em>
           <% end %>
         <% end %>

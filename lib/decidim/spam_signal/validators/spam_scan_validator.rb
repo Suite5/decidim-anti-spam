@@ -21,7 +21,7 @@ module Decidim
           if fire_cop?(spam_rules, fired_symboles) && obvious_spam_cop
             before_cop_fire("spam")
             obvious_spam_cop.call(
-              errors: errors,
+              errors:,
               suspicious_user: author,
               reportable: spam_reportable_user,
               config: obvious_spam_cop_options,
@@ -31,7 +31,7 @@ module Decidim
           elsif fire_cop?(suspicious_rules, fired_symboles) && suspicious_spam_cop
             before_cop_fire("suspicious")
             suspicious_spam_cop.call(
-              errors: errors,
+              errors:,
               suspicious_user: author,
               reportable: spam_reportable_user,
               config: suspicious_spam_cop_options,

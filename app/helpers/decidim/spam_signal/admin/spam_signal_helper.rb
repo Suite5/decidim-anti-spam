@@ -11,7 +11,7 @@ module Decidim::SpamSignal::Admin
         [t("#{value.i18n_key}.name"), key]
       end
       selected = options.find { |_value, key| key.to_s == selected_value }.last || nil
-      options_for_select(options, selected: selected)
+      options_for_select(options, selected:)
     end
   end
 end

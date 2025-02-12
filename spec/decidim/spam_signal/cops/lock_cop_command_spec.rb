@@ -5,11 +5,11 @@ module Decidim::SpamSignal::Cops
   describe LockCopCommand.class do
     let(:organization) { create :organization }
     let(:admin_reporter) { Decidim::SpamSignal::CopBot.get(organization) }
-    let(:spammer) { create(:user, organization: organization) }
-    let(:user) { create(:user, organization: organization) }
-    let(:participatory_process) { create(:participatory_process, organization: organization) }
+    let(:spammer) { create(:user, organization:) }
+    let(:user) { create(:user, organization:) }
+    let(:participatory_process) { create(:participatory_process, organization:) }
     let(:component) { create(:component, participatory_space: participatory_process) }
-    let(:dummy_resource) { create(:dummy_resource, component: component, author: user) }
+    let(:dummy_resource) { create(:dummy_resource, component:, author: user) }
     let(:target_content) { dummy_resource }
     let!(:comment) { create(:comment, commentable: target_content, author: spammer) }
     let(:config) do
@@ -33,7 +33,7 @@ module Decidim::SpamSignal::Cops
           LockCopCommand.call(
             errors: comment.errors,
             suspicious_user: spammer,
-            config: config
+            config:
           )
         end.to change { spammer.reload.access_locked? }.from(false).to(true)
       end
@@ -43,7 +43,7 @@ module Decidim::SpamSignal::Cops
           LockCopCommand.call(
             errors: comment.errors,
             suspicious_user: spammer,
-            config: config,
+            config:,
             justification: spam_content
           )
         end.not_to(change { Decidim::UserModeration.where(user: spammer).count })
@@ -53,7 +53,7 @@ module Decidim::SpamSignal::Cops
         LockCopCommand.call(
           errors: comment.errors,
           suspicious_user: spammer,
-          config: config,
+          config:,
           justification: spam_content
         )
         expect(comment.reload).not_to be_hidden
@@ -65,7 +65,7 @@ module Decidim::SpamSignal::Cops
           errors: comment.errors,
           error_key: :whatever,
           suspicious_user: spammer,
-          config: config,
+          config:,
           justification: spam_content
         )
       end
@@ -79,7 +79,7 @@ module Decidim::SpamSignal::Cops
           LockCopCommand.call(
             errors: comment.errors,
             suspicious_user: spammer,
-            config: config,
+            config:,
             justification: spam_content
           )
         end.to change { spammer.reload.access_locked? }.from(false).to(true)
@@ -90,7 +90,7 @@ module Decidim::SpamSignal::Cops
           LockCopCommand.call(
             errors: comment.errors,
             suspicious_user: spammer,
-            config: config,
+            config:,
             justification: spam_content
           )
         end.to change { Decidim::UserModeration.where(user: spammer).count }.by(1)
@@ -100,7 +100,7 @@ module Decidim::SpamSignal::Cops
         LockCopCommand.call(
           errors: comment.errors,
           suspicious_user: spammer,
-          config: config,
+          config:,
           justification: spam_content
         )
         expect(comment.reload).not_to be_hidden
@@ -115,7 +115,7 @@ module Decidim::SpamSignal::Cops
           LockCopCommand.call(
             errors: comment.errors,
             suspicious_user: spammer,
-            config: config,
+            config:,
             justification: spam_content
           )
         end.to change { spammer.reload.access_locked? }.from(false).to(true)
@@ -126,7 +126,7 @@ module Decidim::SpamSignal::Cops
           LockCopCommand.call(
             errors: comment.errors,
             suspicious_user: spammer,
-            config: config,
+            config:,
             justification: spam_content
           )
         end.not_to(change { Decidim::UserModeration.where(user: spammer).count })
@@ -137,7 +137,7 @@ module Decidim::SpamSignal::Cops
         LockCopCommand.call(
           errors: comment.errors,
           suspicious_user: spammer,
-          config: config,
+          config:,
           justification: spam_content
         )
         expect(comment.reload).to be_hidden

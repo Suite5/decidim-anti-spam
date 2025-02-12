@@ -20,21 +20,6 @@ module Decidim
                   end
         end
 
-        def update
-          raise t("decidim.spam_signal.admin.scans.notices.not_found") unless current_scanner
-
-          form = current_scanner.form.from_params(params.require(scan_key.to_s.to_sym)).with_context(handler_name: current_scanner.handler_name)
-          UpdateScannerCommand.call(
-            current_config,
-            resource_config,
-            form
-          ) do |_on|
-            on(:invalid) { flash[:alert] = t("decidim.spam_signal.admin.scans.notices.bad_update", resource: scan_name) }
-            on(:ok) { flash[:notice] = t("decidim.spam_signal.admin.scans.notices.update_ok", resource: scan_name) }
-            redirect_to spam_filter_reports_path
-          end
-        end
-
         def edit
           raise t("decidim.spam_signal.admin.scans.notices.not_found") unless current_scanner
 
@@ -46,20 +31,6 @@ module Decidim
           )
         end
 
-        def destroy
-          raise t("decidim.spam_signal.admin.scans.notices.not_found") unless current_scanner
-
-          RemoveScannerCommand.call(
-            current_config,
-            resource_config,
-            current_scanner.handler_name
-          ) do |_on|
-            on(:invalid) { flash[:alert] = t("decidim.spam_signal.admin.scans.notices.bad_destroy", resource: scan_name) }
-            on(:ok) { flash[:notice] = t("decidim.spam_signal.admin.scans.notices.destroy_ok", resource: scan_name) }
-          end
-          redirect_to spam_filter_reports_path
-        end
-
         def create
           raise t("decidim.spam_signal.admin.scans.notices.not_found") unless current_scanner
 
@@ -69,10 +40,39 @@ module Decidim
             resource_config,
             form
           ) do |_on|
-            on(:invalid) { flash[:alert] = t("decidim.spam_signal.admin.scans.notices.bad_create", resource: scan_name) }
-            on(:ok) { flash[:notice] = t("decidim.spam_signal.admin.scans.notices.create_ok", resource: scan_name) }
+            on(:invalid) { flash.now[:alert] = t("decidim.spam_signal.admin.scans.notices.bad_create", resource: scan_name) }
+            on(:ok) { flash.now[:notice] = t("decidim.spam_signal.admin.scans.notices.create_ok", resource: scan_name) }
             redirect_to spam_filter_reports_path
           end
+        end
+
+        def update
+          raise t("decidim.spam_signal.admin.scans.notices.not_found") unless current_scanner
+
+          form = current_scanner.form.from_params(params.require(scan_key.to_s.to_sym)).with_context(handler_name: current_scanner.handler_name)
+          UpdateScannerCommand.call(
+            current_config,
+            resource_config,
+            form
+          ) do |_on|
+            on(:invalid) { flash.now[:alert] = t("decidim.spam_signal.admin.scans.notices.bad_update", resource: scan_name) }
+            on(:ok) { flash.now[:notice] = t("decidim.spam_signal.admin.scans.notices.update_ok", resource: scan_name) }
+            redirect_to spam_filter_reports_path
+          end
+        end
+
+        def destroy
+          raise t("decidim.spam_signal.admin.scans.notices.not_found") unless current_scanner
+
+          RemoveScannerCommand.call(
+            current_config,
+            resource_config,
+            current_scanner.handler_name
+          ) do |_on|
+            on(:invalid) { flash.now[:alert] = t("decidim.spam_signal.admin.scans.notices.bad_destroy", resource: scan_name) }
+            on(:ok) { flash.now[:notice] = t("decidim.spam_signal.admin.scans.notices.destroy_ok", resource: scan_name) }
+          end
+          redirect_to spam_filter_reports_path
         end
 
         def resource_config

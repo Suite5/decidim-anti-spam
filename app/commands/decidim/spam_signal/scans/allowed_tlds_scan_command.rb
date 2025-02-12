@@ -28,7 +28,7 @@ module Decidim
         end
 
         def all_allowed?
-          hosts.filter { |url| allowed_tlds_csv.none? { |tld| url.include? tld } }.empty?
+          hosts.none? { |url| allowed_tlds_csv.none? { |tld| url.include? tld } }
         end
 
         def hosts

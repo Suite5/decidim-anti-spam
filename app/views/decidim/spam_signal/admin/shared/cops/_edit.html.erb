@@ -4,11 +4,11 @@
 <% end %>
 <% if form %>
   <div class="content spam_signal__section">
-    <h1><%= t("headings.title", type: cop_type, scope: i18n_scope) %> (2/2)</h1>    
+    <h1><%= t("headings.title", type: cop_type, scope: i18n_scope) %> (2/2)</h1>
   <div>
     <div class="grid-x grid-margin-y callout">
       <div class="cell small-10">
-        <strong><%= t("#{current_cop.i18n_key}.name").upcase %></strong><br />
+        <strong><%= t("#{current_cop.i18n_key}.name").upcase %></strong><br>
         <em><%= t("#{current_cop.i18n_key}.description", default: "") %></em>
       </div>
       <% if current_cop && !new_cop? %>
@@ -24,10 +24,10 @@
       <% unless form.attributes.empty? %>
       <div class="form-fields">
         <%= decidim_form_for(form, url: routes.send(update_path, current_config.id, cop_type), builder: Decidim::SpamSignal::SpamSettingsFormBuilder, method: :patch) do |f| %>
-          <h5><%= t("form", type: t("#{current_cop.i18n_key}.name"), scope: i18n_scope) %></h5>    
+          <h5><%= t("form", type: t("#{current_cop.i18n_key}.name"), scope: i18n_scope) %></h5>
 
           <%= f.all_fields %>
-          <input type="hidden" name="cop" value="<%= current_cop.handler_name %>" />
+          <input type="hidden" name="cop" value="<%= current_cop.handler_name %>">
           <div class="actions">
             <%= f.submit t("decidim.spam_signal.admin.actions.save") %>
           </div>
@@ -39,14 +39,14 @@
     </div>
 <% else %>
   <div class="content spam_signal__section">
-    <h1><%= t("headings.title", type: cop_type, scope: i18n_scope) %> (2/2)</h1>    
+    <h1><%= t("headings.title", type: cop_type, scope: i18n_scope) %> (2/2)</h1>
   <div>
   <div class="callout">
     <h2><%= t("headings.choose_cop", type: cop_type, scope: i18n_scope) %></h2>
     <div class="stacked button-group">
       <% available_cops.each do |cop| %>
         <%= link_to(routes.send(edit_path, config_id: current_config.id, id: cop_type, cop: cop.handler_name, new_cop: true), class: "button") do %>
-          <strong><%= t("#{cop.i18n_key}.name").upcase %></strong><br />
+          <strong><%= t("#{cop.i18n_key}.name").upcase %></strong><br>
           <em><%= t("#{cop.i18n_key}.description", default: "") %></em>
         <% end %>
       <% end %>

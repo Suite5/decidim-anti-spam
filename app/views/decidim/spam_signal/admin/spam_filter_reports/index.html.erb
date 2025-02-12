@@ -106,7 +106,7 @@
       <% @comment_settings.scans.each do |scan, options| %>
         <div class="table_item">
           <%= link_to(routes.edit_config_comment_scan_path(config_id: @current_config.id, id: scan),class: "link") do %>
-            <%= t("#{@comment_settings.scan_strategy(scan).i18n_key}.name")%>
+            <%= t("#{@comment_settings.scan_strategy(scan).i18n_key}.name") %>
           <% end %>
           <div>
             <div class="button-group">
@@ -210,7 +210,7 @@
       <% @profile_settings.scans.each do |scan, options| %>
         <div class="table_item">
           <%= link_to(routes.edit_config_profile_scan_path(config_id: @current_config.id, id: scan), method: :get, class: "link") do %>
-            <%= t("#{@profile_settings.scan_strategy(scan).i18n_key}.name")%>
+            <%= t("#{@profile_settings.scan_strategy(scan).i18n_key}.name") %>
           <% end %>
           <div>
             <div class="button-group">
