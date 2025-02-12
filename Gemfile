@@ -20,9 +20,9 @@ gem "uglifier", "~> 4.1"
 gem "deface", ">= 1.8.1"
 
 group :development, :test do
+  gem "brakeman", "~> 6.1"
   gem "byebug", "~> 11.0", platform: :mri
   gem "decidim-dev", DECIDIM_VERSION
-  gem "brakeman", "~> 6.1"
   gem "parallel_tests", "~> 4.2"
 end
 
@@ -37,3 +37,5 @@ group :development do
   gem "listen", "~> 3.1"
   gem "web-console", "~> 4.2"
 end
+
+gem "concurrent-ruby", "= 1.3.4"
