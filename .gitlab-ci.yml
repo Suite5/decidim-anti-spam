@@ -115,7 +115,7 @@ crowdin::merge_request:
 ##
 # Execute rspec and expose a spec report
 ruby::rspec:
-  image: ruby:3.2.2
+  image: ruby:3.2.2 
   stage: test
   extends: .development_rules
   artifacts:
@@ -145,4 +145,3 @@ ruby::rspec:
     - bundle exec rake test_app
   script:
     - RAILS_ENV=test bundle exec rspec spec/decidim
-

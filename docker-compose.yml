@@ -9,12 +9,15 @@ services:
       - node_modules:/home/decidim/app/node_modules
     environment:
       - PORT=3000
-      - DATABASE_HOST=pg
+      - DATABASE_URL=postgresql://decidim:pleaseChangeMe@spam-signal-pg:5432/decidim
+      - DATABASE_HOST=spam-signal-pg
       - DATABASE_USERNAME=decidim
       - DATABASE_PASSWORD=pleaseChangeMe
-      - DATABASE_URL=postgresql://decidim:pleaseChangeMe@spam-signal-pg:5432/decidim
       - DEV_MODULE=decidim-spam_signal
       - RAILS_ENV=development
+      - DISABLED_DOCKER_COMPOSE = true # To run tests in docker
+    depends_on:
+      - spam-signal-pg
     ports:
       - 3000:3000
     links:
