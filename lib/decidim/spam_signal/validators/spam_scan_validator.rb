@@ -19,7 +19,7 @@ module Decidim
 
           # If it's a cop fire it, else if it's a suspicous, fire it.
           if fire_cop?(spam_rules, fired_symboles) && obvious_spam_cop
-            before_cop_fire("spam")
+            before_cop_fire("spam") if respond_to? :before_cop_fire
             obvious_spam_cop.call(
               errors:,
               suspicious_user: author,
@@ -29,7 +29,7 @@ module Decidim
               error_key: spam_error_key
             )
           elsif fire_cop?(suspicious_rules, fired_symboles) && suspicious_spam_cop
-            before_cop_fire("suspicious")
+            before_cop_fire("suspicious") if respond_to? :before_cop_fire
             suspicious_spam_cop.call(
               errors:,
               suspicious_user: author,
