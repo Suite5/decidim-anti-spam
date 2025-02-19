@@ -7,12 +7,13 @@ module Decidim
   module Comments
     # A command with all the business logic to create a new comment
     class CreateComment < Decidim::SpamSignal::Command
+      delegate :current_user, to: :form
       # Public: Initializes the command.
       #
       # form - A form object with the params.
-      def initialize(form, author)
+      def initialize(form)
         @form = form
-        @author = author
+        @author = current_user
       end
 
       # Executes the command. Broadcasts these events:
