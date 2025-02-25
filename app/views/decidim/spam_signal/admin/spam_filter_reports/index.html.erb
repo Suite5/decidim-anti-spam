@@ -184,7 +184,7 @@
             <% if @comment_settings.suspicious_cop.empty? %>
                   <%= t("decidim.spam_signal.admin.cops.no_cops") %>
             <% else %>
-              <%= t("decidim.spam_signal.cops.#{@comment_settings.spam_cop["handler_name"]}.name") %>
+              <%= t("decidim.spam_signal.cops.#{@comment_settings.suspicious_cop["handler_name"]}.name") %>
             <% end %>
           <% end %>
           <div>
@@ -287,7 +287,7 @@
             <% if @profile_settings.suspicious_cop.empty? %>
                   <%= t("decidim.spam_signal.admin.cops.no_cops") %>
             <% else %>
-              <%= t("decidim.spam_signal.cops.#{@profile_settings.spam_cop["handler_name"]}.name") %>
+              <%= t("decidim.spam_signal.cops.#{@profile_settings.suspicious_cop["handler_name"]}.name") %>
             <% end %>
           <% end %>
           <div>
