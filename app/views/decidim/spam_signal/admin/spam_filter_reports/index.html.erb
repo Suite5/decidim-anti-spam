@@ -97,7 +97,7 @@
     <h2><%= t(".headings.comment_settings.title") %></h2>
     <h3><%= t(".headings.comment_settings.description") %></h3>
   <!-- Display the configurations, and link actions -->
-  <div class="grid-x grid-margin-y spam_settings">
+  <div class="flex spam_settings">
     <div class="cell small-12 medium-4 scanners">
       <h2>
         <span><%= t(".headings.scanner_settings.title") %></span>
@@ -106,7 +106,7 @@
       <% @comment_settings.scans.each do |scan, options| %>
         <div class="table_item">
           <%= link_to(routes.edit_config_comment_scan_path(config_id: @current_config.id, id: scan),class: "link") do %>
-            <%= t("#{@comment_settings.scan_strategy(scan).i18n_key}.name")%>
+            <%= t("#{@comment_settings.scan_strategy(scan).i18n_key}.name") %>
           <% end %>
           <div>
             <div class="button-group">
@@ -184,7 +184,7 @@
             <% if @comment_settings.suspicious_cop.empty? %>
                   <%= t("decidim.spam_signal.admin.cops.no_cops") %>
             <% else %>
-              <%= t("decidim.spam_signal.cops.#{@comment_settings.spam_cop["handler_name"]}.name") %>
+              <%= t("decidim.spam_signal.cops.#{@comment_settings.suspicious_cop["handler_name"]}.name") %>
             <% end %>
           <% end %>
           <div>
@@ -201,7 +201,7 @@
   <h2><%= t(".headings.profile_settings.title") %></h2>
   <h3><%= t(".headings.profile_settings.description") %></h3>
   <!-- Display the configurations, and link actions -->
-  <div class="grid-x grid-margin-y spam_settings">
+  <div class="flex spam_settings">
     <div class="cell small-12 medium-4 scanners">
       <h2>
         <span><%= t(".headings.scanner_settings.title") %></span>
@@ -210,7 +210,7 @@
       <% @profile_settings.scans.each do |scan, options| %>
         <div class="table_item">
           <%= link_to(routes.edit_config_profile_scan_path(config_id: @current_config.id, id: scan), method: :get, class: "link") do %>
-            <%= t("#{@profile_settings.scan_strategy(scan).i18n_key}.name")%>
+            <%= t("#{@profile_settings.scan_strategy(scan).i18n_key}.name") %>
           <% end %>
           <div>
             <div class="button-group">
@@ -287,7 +287,7 @@
             <% if @profile_settings.suspicious_cop.empty? %>
                   <%= t("decidim.spam_signal.admin.cops.no_cops") %>
             <% else %>
-              <%= t("decidim.spam_signal.cops.#{@profile_settings.spam_cop["handler_name"]}.name") %>
+              <%= t("decidim.spam_signal.cops.#{@profile_settings.suspicious_cop["handler_name"]}.name") %>
             <% end %>
           <% end %>
           <div>

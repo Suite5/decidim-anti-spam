@@ -38,21 +38,21 @@ module Decidim
                            new_moderation.report_count = 0
                          end
                        else
-                         Decidim::Moderation.find_or_create_by!(reportable: reportable, participatory_space: reportable.participatory_space) do |new_moderation|
+                         Decidim::Moderation.find_or_create_by!(reportable:, participatory_space: reportable.participatory_space) do |new_moderation|
                            new_moderation.report_count = 0
                          end
                        end
           is_new = moderation.report_count.zero?
           moderation.update(report_count: moderation.report_count + 1)
           user_report = if is_user_reported
-                          Decidim::UserReport.find_or_create_by!(moderation: moderation) do |new_report|
+                          Decidim::UserReport.find_or_create_by!(moderation:) do |new_report|
                             new_report.moderation = moderation
                             new_report.user = admin_reporter
                             new_report.reason = "spam"
                             new_report.details = "#{now_tag}#{justification}"
                           end
                         else
-                          Decidim::Report.find_or_create_by!(moderation: moderation) do |new_report|
+                          Decidim::Report.find_or_create_by!(moderation:) do |new_report|
                             new_report.moderation = moderation
                             new_report.user = admin_reporter
                             new_report.reason = "spam"

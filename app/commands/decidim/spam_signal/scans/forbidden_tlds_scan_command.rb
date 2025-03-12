@@ -27,7 +27,7 @@ module Decidim
         end
 
         def any_forbidden_tlds?
-          hosts.filter { |url| forbidden_tlds_csv.any? { |tld| url.include? tld } }.present?
+          hosts.any? { |url| forbidden_tlds_csv.any? { |tld| url.include? tld } }
         end
 
         def hosts

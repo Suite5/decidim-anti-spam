@@ -14,45 +14,9 @@ module Decidim
           @form = RuleForm.new.with_context(handler_name: rule_type)
         end
 
-        def update
-          # destroy if no rules have been checked
-          return destroy unless params["rules"]
-
-          rule = params.require(:rules)
-          rule_id = rule.keys.first
-          raise "No rule_id given" unless rule_id
-
-          prev_rule = resource_config.rule(rule_id)
-          form = RuleForm.from_params(rules: rule.require(rule_id).permit!.to_h).with_context(handler_name: prev_rule["handler_name"])
-          UpdateRuleCommand.call(
-            current_config,
-            resource_config,
-            form,
-            rule_id
-          ) do |_on|
-            on(:invalid) { flash[:alert] = t("decidim.spam_signal.admin.rules.notices.bad_update") }
-            on(:ok) { flash[:notice] = t("decidim.spam_signal.admin.rules.notices.update_ok") }
-            redirect_to spam_filter_reports_path
-          end
-        end
-
         def edit
           rule = resource_config.rule(current_rule_id)
           @form = RuleForm.from_params(rules: rule["rules"]).with_context(handler_name: rule["handler_name"], id: current_rule_id)
-        end
-
-        def destroy
-          raise "No rule found" unless current_rule_id
-
-          RemoveRuleCommand.call(
-            current_config,
-            resource_config,
-            current_rule_id
-          ) do |_on|
-            on(:invalid) { flash[:alert] = t("decidim.spam_signal.admin.rules.notices.bad_destroy") }
-            on(:ok) { flash[:notice] = t("decidim.spam_signal.admin.rules.notices.destroy_ok") }
-          end
-          redirect_to spam_filter_reports_path
         end
 
         def create
@@ -69,10 +33,46 @@ module Decidim
             form,
             rule_id
           ) do |_on|
-            on(:invalid) { flash[:alert] = t("decidim.spam_signal.admin.rules.notices.bad_create") }
-            on(:ok) { flash[:notice] = t("decidim.spam_signal.admin.rules.notices.create_ok") }
+            on(:invalid) { flash.now[:alert] = t("decidim.spam_signal.admin.rules.notices.bad_create") }
+            on(:ok) { flash.now[:notice] = t("decidim.spam_signal.admin.rules.notices.create_ok") }
             redirect_to spam_filter_reports_path
           end
+        end
+
+        def update
+          # destroy if no rules have been checked
+          return destroy unless params["rules"]
+
+          rule = params.require(:rules)
+          rule_id = rule.keys.first
+          raise "No rule_id given" unless rule_id
+
+          prev_rule = resource_config.rule(rule_id)
+          form = RuleForm.from_params(rules: rule.require(rule_id).permit!.to_h).with_context(handler_name: prev_rule["handler_name"])
+          UpdateRuleCommand.call(
+            current_config,
+            resource_config,
+            form,
+            rule_id
+          ) do |_on|
+            on(:invalid) { flash.now[:alert] = t("decidim.spam_signal.admin.rules.notices.bad_update") }
+            on(:ok) { flash.now[:notice] = t("decidim.spam_signal.admin.rules.notices.update_ok") }
+            redirect_to spam_filter_reports_path
+          end
+        end
+
+        def destroy
+          raise "No rule found" unless current_rule_id
+
+          RemoveRuleCommand.call(
+            current_config,
+            resource_config,
+            current_rule_id
+          ) do |_on|
+            on(:invalid) { flash.now[:alert] = t("decidim.spam_signal.admin.rules.notices.bad_destroy") }
+            on(:ok) { flash.now[:notice] = t("decidim.spam_signal.admin.rules.notices.destroy_ok") }
+          end
+          redirect_to spam_filter_reports_path
         end
 
         def resource_config
