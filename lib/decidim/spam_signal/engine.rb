@@ -20,11 +20,31 @@ module Decidim
       end
 
       config.after_initialize do
-        Decidim::SpamSignal::Scans::ScansRepository.instance.register(:forbidden_tlds, ::Decidim::SpamSignal::Scans::ForbiddenTldsScanCommand)
-        Decidim::SpamSignal::Scans::ScansRepository.instance.register(:allowed_tlds, ::Decidim::SpamSignal::Scans::AllowedTldsScanCommand)
-        Decidim::SpamSignal::Scans::ScansRepository.instance.register(:word, ::Decidim::SpamSignal::Scans::WordScanCommand)
-        Decidim::SpamSignal::Cops::CopsRepository.instance.register(:lock, ::Decidim::SpamSignal::Cops::LockCopCommand)
-        Decidim::SpamSignal::Cops::CopsRepository.instance.register(:sinalize, ::Decidim::SpamSignal::Cops::SinalizeCopCommand)
+        Decidim::SpamSignal.config.conditions_registry.register(
+          :forbidden_tlds,
+          ::Decidim::SpamSignal::Conditions::ForbiddenTldsSettingsForm,
+          ::Decidim::SpamSignal::Conditions::ForbiddenTldsCommand
+        )
+        Decidim::SpamSignal.config.conditions_registry.register(
+          :allowed_tlds,
+          ::Decidim::SpamSignal::Conditions::AllowedTldsSettingsForm,
+          ::Decidim::SpamSignal::Conditions::AllowedTldsCommand
+        )
+        Decidim::SpamSignal.config.conditions_registry.register(
+          :word,
+          ::Decidim::SpamSignal::Conditions::WordSettingsForm,
+          ::Decidim::SpamSignal::Conditions::WordCommand
+        )
+        Decidim::SpamSignal.config.flows_registry.register(
+          :lock,
+          ::Decidim::SpamSignal::Actions::LockSettingsForm,
+          ::Decidim::SpamSignal::Actions::LockActionCommand
+        )
+        Decidim::SpamSignal.config.flows_registry.register(
+          :report_user,
+          ::Decidim::SpamSignal::Actions::ReportUserSettingsForm,
+          ::Decidim::SpamSignal::Actions::ReportUserActionCommand
+        )
       end
     end
   end

@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
-#
+# FIXME: use injections in engine.
+
 # Modified version of https://raw.githubusercontent.com/decidim/decidim/v0.24.3/decidim-comments/app/commands/decidim/comments/create_comment.rb
 # add a `with_context(author: @author)` before validation
 module Decidim
   module Comments
     # A command with all the business logic to create a new comment
-    class CreateComment < Decidim::SpamSignal::Command
+    class CreateComment < Decidim::Command
       delegate :current_user, to: :form
       # Public: Initializes the command.
       #
