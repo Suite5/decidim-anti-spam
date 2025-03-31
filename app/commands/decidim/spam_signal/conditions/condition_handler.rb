@@ -16,9 +16,6 @@ module Decidim
           "decidim.spam_signal.conditions.#{handler_name}"
         end
 
-        def self.output_symbols
-          []
-        end
       end
     end
   end

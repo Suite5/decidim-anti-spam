@@ -8,11 +8,7 @@ module Decidim
           return broadcast(:ok) if allowed_tlds_csv.empty?
           return broadcast(:ok) if all_allowed?
 
-          broadcast(:not_allowed_tlds_found)
-        end
-
-        def self.output_symbols
-          [:not_allowed_tlds_found]
+          broadcast(:invalid)
         end
 
         private
