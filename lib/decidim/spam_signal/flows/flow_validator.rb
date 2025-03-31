@@ -5,7 +5,7 @@ module Decidim
     module Flows
       ##
       # Common logics for all the validators
-      # This module is included in validators we want to trigger, 
+      # This module is included in validators we want to trigger,
       # for example, insert in User to validate the user profile update.
       module FlowValidator
         extend ActiveSupport::Concern
@@ -35,17 +35,17 @@ module Decidim
           end
 
           ##
-          # Hooks to be implemented by the validator, 
+          # Hooks to be implemented by the validator,
           # will be called if the flow is triggered.
           def before_antispam; end
 
           ##
-          # Hook to be implemented by the validator, 
+          # Hook to be implemented by the validator,
           # will be called after the flow is triggered.
           def after_antispam; end
 
           ##
-          # Class name of the trigger type. 
+          # Class name of the trigger type.
           # For example, "Decidim::SpamSignal::Flows::CommentFlow"
           # We expect this class to define available_actions and available_conditions
           def antispam_trigger_type
@@ -53,7 +53,7 @@ module Decidim
           end
 
           ##
-          # Current organization for the validator. 
+          # Current organization for the validator.
           # Exemple: the organization of the user or the organization of the comment.
           def current_organization
             raise "#{self.class}#current_organization not implemented"
@@ -64,6 +64,7 @@ module Decidim
           def suspicious_user
             raise "#{self.class}#suspicious_user not implemented"
           end
+
           ##
           # The error key to be used for the spam action.
           # Exemple: "body" for the comment body.
@@ -72,6 +73,7 @@ module Decidim
           def spam_error_key
             raise "#{self.class}#spam_error_key not implemented"
           end
+
           ##
           # Text content to be validated.
           # Exemple: the body of the comment.
@@ -79,6 +81,7 @@ module Decidim
           def content_for_antispam
             raise "#{self.class}#content_for_antispam not implemented"
           end
+
           ##
           # Model instance that can be reported.
           # Exemple: the comment.
@@ -95,7 +98,6 @@ module Decidim
             raise "#{self.class}#skip_antispam? not implemented"
           end
 
-         
           private
 
           ##
@@ -116,8 +118,8 @@ module Decidim
               result = condition.command.call(
                 tested_content,
                 condition.settings,
-                current_organization: current_organization,
-                suspicious_user: suspicious_user
+                current_organization:,
+                suspicious_user:
               )
               (result || {}).keys.filter { |s| s != :ok && s != :valid }
             end

@@ -32,7 +32,7 @@ module Decidim
 
           included do
             include ::Decidim::SpamSignal::Flows::FlowValidator
-            
+
             validate :detect_spam!
 
             def antispam_trigger_type
@@ -64,7 +64,6 @@ module Decidim
             def resource_spam_config
               @resource_spam_config ||= spam_config.comments
             end
-
           end
         end
       end

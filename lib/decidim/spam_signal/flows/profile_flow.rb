@@ -52,14 +52,14 @@ module Decidim
             def skip_antispam?
               about.blank? || blocked_at_changed?(from: nil) || blocked_changed?(from: false)
             end
-            
+
             def suspicious_user
               self
             end
 
             ##
             # A condition has been met, we restore values
-            # before doing actions. As blocking/locking will 
+            # before doing actions. As blocking/locking will
             # save the user without validation in the process.
             def before_antispam
               user.about = user.about_was

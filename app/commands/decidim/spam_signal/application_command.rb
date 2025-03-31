@@ -3,10 +3,6 @@
 module Decidim
   module SpamSignal
     class ApplicationCommand < Decidim::Command
-      def self.form
-        raise Error, "Handler need to define a form or return null"
-      end
-
       def self.handler_name
         name.demodulize.underscore.sub(/(_cop|_scan)(_form|_command)/, "")
       end
