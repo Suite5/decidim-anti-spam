@@ -3,12 +3,14 @@
 require "spec_helper"
 
 describe Decidim::SpamSignal::Condition do
-  Decidim::SpamSignal.configure do |config|
-    config.conditions_registry.register(
-      "dummy",
-      Decidim::SpamSignal::Conditions::DummyConditionSettingsForm,
-      Decidim::SpamSignal::Conditions::DummyConditionCommand
-    )
+  before do
+    Decidim::SpamSignal.configure do |config|
+      config.conditions_registry.register(
+        "dummy",
+        Decidim::SpamSignal::Conditions::DummyConditionSettingsForm,
+        Decidim::SpamSignal::Conditions::DummyConditionCommand
+      )
+    end
   end
   subject { described_class.new(organization:, name: "dummy", settings: {}, condition_type: "dummy") }
 
