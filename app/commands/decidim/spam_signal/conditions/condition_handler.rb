@@ -4,15 +4,16 @@ module Decidim
   module SpamSignal
     module Conditions
       class ConditionHandler < ApplicationCommand
-        attr_reader :suspicious_content, :config
+        attr_reader :suspicious_content, :config, :context
 
-        def initialize(suspicious_content, config)
+        def initialize(suspicious_content, config, context)
           @suspicious_content = suspicious_content
           @config = config
+          @context = context
         end
 
         def self.i18n_key
-          "decidim.spam_signal.detections.#{handler_name}"
+          "decidim.spam_signal.conditions.#{handler_name}"
         end
 
         def self.output_symbols

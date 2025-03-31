@@ -8,7 +8,8 @@ module Decidim
       # attributes like body are form attributes
       module CommentFlow
         include ActiveSupport::Configurable
-
+        ##
+        # Available conditions for the comment flow.
         config_accessor(:available_conditions) do
           [
             :forbidden_tlds,
@@ -17,6 +18,8 @@ module Decidim
           ]
         end
 
+        ##
+        # Available actions for the comment flow.
         config_accessor(:available_actions) do
           [
             :report,
@@ -29,6 +32,7 @@ module Decidim
 
           included do
             include ::Decidim::SpamSignal::Flows::FlowValidator
+            
             validate :detect_spam!
 
             def antispam_trigger_type
@@ -45,6 +49,10 @@ module Decidim
               :body
             end
 
+            def reportable_content
+              commentable
+            end
+
             def content_for_antispam
               @content_for_antispam ||= Extractors::CommentExtractor.extract(self, spam_config)
             end
@@ -57,16 +65,6 @@ module Decidim
               @resource_spam_config ||= spam_config.comments
             end
 
-            def spam_context
-              {
-                validator: commentable.commentable_type == "Decidim::Comments::Comment" ? "comment-reply" : "comment",
-                is_updating: id.present?,
-                date: id.present? ? updated_at : Time.zone.now,
-                current_organization: context.current_organization,
-                reportable_content: commentable,
-                author: context.author
-              }
-            end
           end
         end
       end

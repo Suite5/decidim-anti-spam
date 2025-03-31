@@ -46,37 +46,22 @@ module Decidim
               self
             end
 
+            ##
+            # Skip the flow if no content to test,
+            # or if the user is updated to be blocked.
             def skip_antispam?
               about.blank? || blocked_at_changed?(from: nil) || blocked_changed?(from: false)
             end
-
-            def resource_spam_config
-              @resource_spam_config ||= spam_config.profiles
-            end
-
-            def scan_context
-              {
-                validator: "profile",
-                is_updating: true,
-                date: updated_at,
-                current_organization: organization,
-                author: self
-              }
-            end
-
-            def current_user
+            
+            def suspicious_user
               self
             end
 
+            ##
+            # A condition has been met, we restore values
+            # before doing actions. As blocking/locking will 
+            # save the user without validation in the process.
             def before_antispam
-              restore_values(self)
-            end
-
-            # Case the lock cop is there,
-            # it will save the user without validation,
-            # we should then update the attributes to before
-            # state
-            def restore_values(user)
               user.about = user.about_was
               user.personal_url = user.personal_url_was
             end
