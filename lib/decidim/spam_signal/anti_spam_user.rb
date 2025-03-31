@@ -2,7 +2,7 @@
 
 module Decidim
   module SpamSignal
-    class CopBot
+    class AntiSpamUser
       def self.get(organization)
         user_bot = Decidim::User.find_or_create_by!(
           nickname: "bot"

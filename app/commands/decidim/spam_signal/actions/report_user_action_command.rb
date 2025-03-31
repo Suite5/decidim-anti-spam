@@ -4,10 +4,6 @@ module Decidim
   module SpamSignal
     module Actions
       class ReportUserActionCommand < ActionCommand
-        def self.form
-          ::Decidim::SpamSignal::Actions::ReportUserSettingsForm
-        end
-
         def call
           if config["forbid_creation_enabled"]
             errors.add(

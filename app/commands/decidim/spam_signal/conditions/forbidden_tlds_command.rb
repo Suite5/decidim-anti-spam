@@ -4,10 +4,6 @@ module Decidim
   module SpamSignal
     module Conditions
       class ForbiddenTldsCommand < ConditionHandler
-        def self.form
-          ::Decidim::SpamSignal::Conditions::ForbiddenTldsForm
-        end
-
         def call
           return broadcast(:forbidden_tlds_found) if any_forbidden_tlds?
 

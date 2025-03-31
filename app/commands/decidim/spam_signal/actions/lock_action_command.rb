@@ -4,10 +4,6 @@ module Decidim
   module SpamSignal
     module Actions
       class LockActionCommand < ActionCommand
-        def self.form
-          ::Decidim::SpamSignal::Actions::LockSettingsForm
-        end
-
         def call
           if config["forbid_creation_enabled"] && error_key
             errors.add(

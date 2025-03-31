@@ -3,9 +3,9 @@
 module Decidim
   module SpamSignal
     module Conditions
-      class DummyConditionCommand < ::Decidim::Command
-        def call(form)
-          return broadcast(:ok) if form.valid?
+      class DummyConditionCommand < ConditionHandler
+        def call
+          return broadcast(:ok) if suspicious_content == "true"
 
           broadcast(:invalid)
         end

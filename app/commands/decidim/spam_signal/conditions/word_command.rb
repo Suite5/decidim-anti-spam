@@ -4,10 +4,6 @@ module Decidim
   module SpamSignal
     module Conditions
       class WordCommand < ConditionHandler
-        def self.form
-          ::Decidim::SpamSignal::Conditions::WordSettingsForm
-        end
-
         def call
           return broadcast(:ok) if suspicious_content.empty?
           return broadcast(:word_found) if contains_stop_words?

@@ -4,10 +4,6 @@ module Decidim
   module SpamSignal
     module Conditions
       class AllowedTldsCommand < ConditionHandler
-        def self.form
-          ::Decidim::SpamSignal::Conditions::AllowedTldsForm
-        end
-
         def call
           return broadcast(:ok) if allowed_tlds_csv.empty?
           return broadcast(:ok) if all_allowed?

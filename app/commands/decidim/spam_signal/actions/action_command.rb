@@ -4,12 +4,11 @@ module Decidim
   module SpamSignal
     module Actions
       class ActionCommand < ApplicationCommand
-        attr_reader :errors, :error_key, :suspicious_user, :justification, :admin_reporter, :config, :reportable, :current_organization
+        attr_reader :errors, :error_key, :config, :suspicious_user, :justification, :admin_reporter, :reportable, :current_organization
 
         def initialize(
           errors:,
           suspicious_user:,
-          config:,
           **options
         )
           @errors = errors
@@ -18,9 +17,9 @@ module Decidim
           @suspicious_user = suspicious_user
           @current_organization = suspicious_user.organization
 
-          @config = config
           @justification = options[:justification]
-          @admin_reporter = options[:admin_reporter] || CopBot.get(suspicious_user.organization)
+          @admin_reporter = options[:admin_reporter] || AntiSpamUser.get(suspicious_user.organization)
+          @config = options
         end
 
         def self.i18n_key

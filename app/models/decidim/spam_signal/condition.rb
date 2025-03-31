@@ -10,10 +10,18 @@ module Decidim
       validates :condition_type, presence: true
       validate :in_registry
 
+      def form
+        Decidim::SpamSignal.config.conditions_registry.form_for(condition_type)
+      end
+
+      def command
+        Decidim::SpamSignal.config.conditions_registry.command_for(condition_type)
+      end
+
       private
 
       def in_registry
-        unless Decidim::SpamSignal.configuration.conditions_registry.include?(condition_type)
+        unless Decidim::SpamSignal.config.conditions_registry.include?(condition_type)
           errors.add(
             :condition_type,
             :not_registered,

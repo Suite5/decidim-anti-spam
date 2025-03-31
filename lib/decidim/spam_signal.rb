@@ -7,12 +7,12 @@ require_relative "spam_signal/admin_engine"
 require_relative "spam_signal/manifest_registry/spam_manifest_registry"
 require_relative "spam_signal/manifest_registry/spam_manifest"
 
-require_relative "spam_signal/cop_bot"
+require_relative "spam_signal/anti_spam_user"
 require_relative "spam_signal/spam_settings_form_builder"
 
-require_relative "spam_signal/validators/spam_scan_validator"
-require_relative "spam_signal/validators/profile_spam_validator"
-require_relative "spam_signal/validators/comment_spam_validator"
+require_relative "spam_signal/flows/flow_validator"
+require_relative "spam_signal/flows/comment_flow"
+require_relative "spam_signal/flows/profile_flow"
 
 require_relative "spam_signal/extractors/extractor"
 require_relative "spam_signal/extractors/comment_extractor"
