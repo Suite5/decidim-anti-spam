@@ -3,6 +3,8 @@
 require "spec_helper"
 
 describe Decidim::SpamSignal::Condition do
+  subject { described_class.new(organization:, name: "dummy", settings: {}, condition_type: "dummy") }
+
   before do
     Decidim::SpamSignal.configure do |config|
       config.conditions_registry.register(
@@ -12,7 +14,6 @@ describe Decidim::SpamSignal::Condition do
       )
     end
   end
-  subject { described_class.new(organization:, name: "dummy", settings: {}, condition_type: "dummy") }
 
   let(:organization) { create(:organization) }
 
