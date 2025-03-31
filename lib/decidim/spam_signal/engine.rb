@@ -11,8 +11,12 @@ module Decidim
       isolate_namespace Decidim::SpamSignal
 
       config.to_prepare do
-        Decidim::User.include(ProfileSpamValidator)
-        Decidim::Comments::CommentForm.include(CommentSpamValidator)
+        Decidim::User.include(
+          Decidim::SpamSignal::Flows::ProfileFlow::ProfileValidationFormOverrides
+        )
+        Decidim::Comments::CommentForm.include(
+          Decidim::SpamSignal::Flows::CommentFlow::CommentValidationFormOverrides
+        )
       end
 
       initializer "decidim_spam_signal.webpacker.assets_path" do
@@ -20,11 +24,33 @@ module Decidim
       end
 
       config.after_initialize do
-        Decidim::SpamSignal::Scans::ScansRepository.instance.register(:forbidden_tlds, ::Decidim::SpamSignal::Scans::ForbiddenTldsScanCommand)
-        Decidim::SpamSignal::Scans::ScansRepository.instance.register(:allowed_tlds, ::Decidim::SpamSignal::Scans::AllowedTldsScanCommand)
-        Decidim::SpamSignal::Scans::ScansRepository.instance.register(:word, ::Decidim::SpamSignal::Scans::WordScanCommand)
-        Decidim::SpamSignal::Cops::CopsRepository.instance.register(:lock, ::Decidim::SpamSignal::Cops::LockCopCommand)
-        Decidim::SpamSignal::Cops::CopsRepository.instance.register(:sinalize, ::Decidim::SpamSignal::Cops::SinalizeCopCommand)
+        Decidim::SpamSignal.configure do |config|
+          config.conditions_registry.register(
+            :forbidden_tlds,
+            Decidim::SpamSignal::Conditions::ForbiddenTldsSettingsForm,
+            Decidim::SpamSignal::Conditions::ForbiddenTldsCommand
+          )
+          config.conditions_registry.register(
+            :allowed_tlds,
+            Decidim::SpamSignal::Conditions::AllowedTldsSettingsForm,
+            Decidim::SpamSignal::Conditions::AllowedTldsCommand
+          )
+          config.conditions_registry.register(
+            :word,
+            Decidim::SpamSignal::Conditions::WordSettingsForm,
+            Decidim::SpamSignal::Conditions::WordCommand
+          )
+          config.actions_registry.register(
+            :lock,
+            Decidim::SpamSignal::Actions::LockSettingsForm,
+            Decidim::SpamSignal::Actions::LockActionCommand
+          )
+          config.actions_registry.register(
+            :report,
+            Decidim::SpamSignal::Actions::ReportUserSettingsForm,
+            Decidim::SpamSignal::Actions::ReportUserActionCommand
+          )
+        end
       end
     end
   end
