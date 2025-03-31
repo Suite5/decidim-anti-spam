@@ -6,6 +6,12 @@ module Decidim
       include ActiveSupport::Configurable
       config_accessor(:conditions_registry) { Decidim::SpamSignal::ManifestRegistry::SpamManifestRegistry.new }
       config_accessor(:actions_registry) { Decidim::SpamSignal::ManifestRegistry::SpamManifestRegistry.new }
+      config_accessor(:available_flows) do
+        [
+          Decidim::SpamSignal::Flows::CommentFlow,
+          Decidim::SpamSignal::Flows::ProfileFlow
+        ]
+      end
     end
   end
 end
