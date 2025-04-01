@@ -15,6 +15,7 @@ module Decidim
           resources :profile_rules
           resources :profile_cops, only: [:update, :edit, :destroy]
         end
+        resources :flows
       end
 
       initializer "decidim_spam_signal.admin_mount_routes" do

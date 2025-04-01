@@ -1,0 +1,1 @@
+require("src/decidim/spam_signal/admin/conditional_display");

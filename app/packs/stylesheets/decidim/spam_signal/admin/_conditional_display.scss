@@ -1,0 +1,8 @@
+.field--antispam {
+  &.js-antispam-display-if {
+    display: none;
+  }
+  &.js-antispam-display-if.field--antispam-visible {
+    display: block;
+  }
+}

@@ -23,7 +23,8 @@ module Decidim
         config_accessor(:available_actions) do
           [
             :report,
-            :block
+            :block,
+            :forbid_save
           ]
         end
 

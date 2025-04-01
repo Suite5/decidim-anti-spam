@@ -41,6 +41,11 @@ module Decidim
             Decidim::SpamSignal::Conditions::WordCommand
           )
           config.actions_registry.register(
+            :forbid_save,
+            Decidim::SpamSignal::Actions::ForbidSaveSettingsForm,
+            Decidim::SpamSignal::Actions::ForbidSaveActionCommand
+          )
+          config.actions_registry.register(
             :lock,
             Decidim::SpamSignal::Actions::LockSettingsForm,
             Decidim::SpamSignal::Actions::LockActionCommand

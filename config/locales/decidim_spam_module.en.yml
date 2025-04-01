@@ -20,6 +20,21 @@ en:
     account:
       locked: Your account is locked, an email has been sent with unlock instructions
     spam_signal:
+      flow:
+        comment_flow:
+          title: "Comment"
+          description: "When update a comment"
+        profile_flow:
+          title: "Profile"
+          description: "When update a profile"
+      flows:
+        create:
+          success: "Flow created successfully"
+          error: "An error occurs while creating the flow"
+        update:
+          success: "Flow updated successfully"
+          error: "An error occurs while updating the flow"
+          
       spam_signal_justification: |
         Anti-Spam: This content has been hidden. The classification process is automatic, to fill a complaint, use our support email
       errors:
@@ -31,13 +46,18 @@ en:
           allowed_tlds_csv: "Llist of allowed tlds (aka extensions, like `.ch`). Comma seperated"
         forbidden_tlds_form:
           forbidden_tlds_csv: "List of forbidden TLDs (aka extensions, like `.finance`). Comma-separated"
+        forbid_save_settings_form:
+          forbid_save_message: "Message to display when the user try to save data"
+          forbid_save_enabled: "Forbid user to save"
         lock_settings_form:
           report_user_user_enabled: "After locking the account, report it. The report won't send any email to admins"
           hide_comments_enabled: "After locking the user, hide all its comments"
           forbid_creation_enabled: "Avoid user to save this data"
         report_user_settings_form:
-          forbid_creation_enabled: "Avoid the user to save this data"
-          send_emails_enabled: "Send email to admin after reports?"
+          report_user_enabled: "Report the user?"
+          report_user_justification: "Justification for reporting the user"
+          report_user_send_emails_enabled: "Send an email?"
+          report_user_send_email_to: "Email to receive the report"
       scans:
         word:
           name: "Dictionary"
@@ -104,11 +124,9 @@ en:
               rules_settings:
                 title: Rules
                 spam_section: "SPAM"
-                suspicious_section: "SUSPICIOUS"
               cop_settings:
                 title: Agents
                 spam_section: "WHEN SPAM"
-                suspicious_section: "WHEN SUSPICIOUS"
               comment_settings:
                 title: "Comments"
                 description: "Triggered when a participant save a new comment"
