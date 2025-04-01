@@ -11,6 +11,9 @@ module Decidim
 
         attribute :report_user_send_emails_enabled, Boolean, default: true
         attribute :report_user_send_email_to, String
+
+        add_conditional_display(:report_user_justification, :report_user_enabled)
+        add_conditional_display(:report_user_send_email_to, :report_user_send_emails_enabled)
       end
     end
   end
