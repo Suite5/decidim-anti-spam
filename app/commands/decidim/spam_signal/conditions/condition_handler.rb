@@ -15,10 +15,6 @@ module Decidim
         def self.i18n_key
           "decidim.spam_signal.conditions.#{handler_name}"
         end
-
-        def self.output_symbols
-          []
-        end
       end
     end
   end

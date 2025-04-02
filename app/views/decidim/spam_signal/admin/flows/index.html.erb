@@ -1,0 +1,5 @@
+
+<h2><%= "#{flows.count} flows" %></h2>
+<%= link_to "New flow", new_flow_path, class: "button" %>
+
+<%= render partial: "flow_table", locals: { flows: flows } %>
