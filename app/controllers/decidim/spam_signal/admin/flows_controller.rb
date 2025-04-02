@@ -58,9 +58,9 @@ module Decidim
         private
 
         def flat_action_settings(action_settings_form)
-          return action_settings_form.attributes if action_settings_form.is_a?(Decidim::Form)
+          return action_settings_form.attributes || {} if action_settings_form.is_a?(Decidim::Form)
 
-          action_settings_form.flatten.first
+          action_settings_form.flatten.first || {}
         end
 
         def flow
