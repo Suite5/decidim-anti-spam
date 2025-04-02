@@ -95,26 +95,27 @@ en:
             create_ok: "The rule is now active"
             not_found: "Rule not found"
             no_content: "No rules have been checked, delelete the rule instead saving an empty rule"
-        spam_filter_reports:
-          index:
+        spam_signals:
+          show:
             headings:
               title: "ANTI-SPAM"
-              scanner_settings:
-                title: Detection
-              rules_settings:
-                title: Rules
-                spam_section: "SPAM"
-                suspicious_section: "SUSPICIOUS"
-              cop_settings:
-                title: Agents
-                spam_section: "WHEN SPAM"
-                suspicious_section: "WHEN SUSPICIOUS"
-              comment_settings:
-                title: "Comments"
-                description: "Triggered when a participant save a new comment"
-              profile_settings:
-                title: "Profiles"
-                description: "Triggered when a participant save his/her profile."
+        spam_filter_reports:
+          scanner_settings:
+            title: Detection
+          rules_settings:
+            title: Rules
+            spam_section: "SPAM"
+            suspicious_section: "SUSPICIOUS"
+          cop_settings:
+            title: Agents
+            spam_section: "WHEN SPAM"
+            suspicious_section: "WHEN SUSPICIOUS"
+          comment_settings:
+            title: "Comments"
+            description: "Triggered when a participant save a new comment"
+          profile_settings:
+            title: "Profiles"
+            description: "Triggered when a participant save his/her profile."
         comment_scans:
           new:
             headings:

@@ -23,6 +23,10 @@ module Decidim
         Decidim.register_assets_path File.expand_path("#{Decidim::SpamSignal::Engine.root}/app/packs")
       end
 
+      initializer "decidim_spam_signal.register_icons" do
+        Decidim.icons.register(name: "shield-line", icon: "shield-line", category: "system", description: "", engine: :spam_signal)
+      end
+
       config.after_initialize do
         Decidim::SpamSignal.configure do |config|
           config.conditions_registry.register(
@@ -52,6 +56,7 @@ module Decidim
           )
         end
       end
+
     end
   end
 end
