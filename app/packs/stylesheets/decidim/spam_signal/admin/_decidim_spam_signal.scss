@@ -1,28 +1,31 @@
-/* Style the tab container */
-.tabs {
+/* General tab */
+.general {
+  padding: 0;
+  margin: 0;
+  h1 {
+    font-size: 20px;
+    padding-bottom: 20px;
+    color: dimgrey;
+  }
+}
+
+.general.columns {
   display: flex;
-  cursor: pointer;
+  width: 50%;
+  h2 {
+    font-weight: bold;
+  }
 }
-/* Style each tab button */
-.tab {
-  flex: 1; /* Each tab occupies an equal fraction of the available space */
-  padding: 15px;
-  border-bottom: 1px solid #ccc;
-  text-align: center;
-  cursor: pointer;
+
+.general.column {
+  width: 50%;
+  ol {
+    list-style: decimal;
+    padding-left: 2rem;
+  }
 }
-/* Style the active tab */
-.tab.active {
-  color: blue;
-  font-weight: bold;
-  border-bottom: 2px solid blue;
-}
-/* Style the tab content */
-.content {
-  padding: 20px;
-  display: none;
-}
-/* Display the active content */
-.content.active {
-  display: block;
+
+.general.divider {
+  border-top: 1px solid #6B7280CC;
+  margin-top: 20px;
 }

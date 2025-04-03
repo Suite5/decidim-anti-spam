@@ -1,0 +1,36 @@
+<%= append_stylesheet_pack_tag "admin_decidim_spam_signal" %>
+
+<% add_secondary_root_menu(:admin_settings_menu) %>
+
+<div class="item_show__header">
+  <h1 class="item_show__header-title">
+    <%= t("title", scope: "decidim.spam_signal.general") %> 
+  </h1>
+</div>
+
+<div class="general">
+  <h1><%= t("second_title", scope: "decidim.spam_signal.general") %> </h1>
+  <div class="general columns">
+    <div class="general column">
+      <h2><%= t("new_condition", scope: "decidim.spam_signal.general") %></h2>
+      <ol>
+        <li><%= t("new_condition_item.one", scope: "decidim.spam_signal.general") %></li>
+        <li><%= t("new_condition_item.two", scope: "decidim.spam_signal.general") %></li>
+        <li><%= t("new_condition_item.three", scope: "decidim.spam_signal.general") %></li>
+        <li><%= t("new_condition_item.four", scope: "decidim.spam_signal.general") %></li>
+        <li><%= t("new_condition_item.five", scope: "decidim.spam_signal.general") %></li>
+      </ol>
+    </div>
+    <div class="general column">
+      <h2><%= t("new_flow", scope: "decidim.spam_signal.general") %></h2>
+      <ol>
+      <li><%= t("new_flow_item.one", scope: "decidim.spam_signal.general") %></li>
+      <li><%= t("new_flow_item.two", scope: "decidim.spam_signal.general") %></li>
+      <li><%= t("new_flow_item.three", scope: "decidim.spam_signal.general") %></li>
+      <li><%= t("new_flow_item.four", scope: "decidim.spam_signal.general") %></li>
+      <li><%= t("new_flow_item.five", scope: "decidim.spam_signal.general") %></li>
+      </ol>
+    </div>
+  </div>
+  <div class="general divider"></div>
+</div>

@@ -6,8 +6,6 @@ module Decidim
     class AdminEngine < ::Rails::Engine
       isolate_namespace Decidim::SpamSignal::Admin
       routes do
-        resource :spam_signal
-        resources :spam_filter_reports
         resources :config, only: [] do
           resources :comment_scans
           resources :comment_rules
@@ -16,6 +14,8 @@ module Decidim
           resources :profile_rules
           resources :profile_cops, only: [:update, :edit, :destroy]
         end
+        resources :generals, only: [:index]
+        resources :conditions, only: [:index]
         resources :flows
       end
 
@@ -29,10 +29,10 @@ module Decidim
         Decidim.menu :admin_settings_menu do |menu|
           menu.add_item :spam_signal, 
                     I18n.t("menu.spam_signal", scope: "decidim.admin", default: "Spam Signal"),
-                    decidim_admin_spam_signal.spam_signal_path,
+                    decidim_admin_spam_signal.generals_path,
                     icon_name: "shield-line",
                     position: 1.8,
-                    active: is_active_link?(decidim_admin_spam_signal.spam_signal_path, :inclusive),
+                    active: is_active_link?(decidim_admin_spam_signal.generals_path, :inclusive),
                     if: defined?(current_user) && current_user&.read_attribute("admin")
         end
       end

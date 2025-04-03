@@ -1,0 +1,52 @@
+<%= append_stylesheet_pack_tag "decidim_spam_signal" %>
+
+<% add_secondary_root_menu(:admin_settings_menu) %>
+
+<div class="item_show__header">
+  <h1 class="item_show__header-title">
+    <%= t("title", scope: "decidim.spam_signal.conditions") %> 
+    <%= link_to t("actions.add", conditon: "decidim.spam_signal.conditions"), new_condition_path, class: "button button__sm button__secondary" if allowed_to? :create, :condition %>
+  </h1>
+</div>
+
+
+<% if conditions.any? %>
+<%#
+  <div class="table-scroll">
+    <table class="table-list">
+    <thead>
+      <tr>
+        <th><%= t("models.conditon.fields.name", scope: "decidim.admin") %></th>
+        <th><%= t("models.conditon.fields.conditon_type", scope: "decidim.admin") %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% conditions.each do |condition| %>
+        <tr>
+          <td>
+            <%= link_to translated_attribute(conditon.name), conditon_conditons_path(conditon) %>
+          </td>
+          <td>
+            <%= conditon.conditon_type ? translated_attribute(conditon.conditon_type.name) : "-" %>
+          </td>
+          <td class="table-list__actions">
+            <%= icon_link_to "zoom-in-line", conditon_conditons_path(conditon), t("actions.browse", scope: "decidim.admin"), class: "action-icon--browse", method: :get, data: {} %>
+
+            <% if allowed_to? :update, :conditon, conditon: conditon %>
+              <%= icon_link_to "pencil-line", [:edit, conditon], t("actions.edit", scope: "decidim.admin"), class: "action-icon--edit", method: :get, data: {} %>
+            <% end %>
+
+            <% if allowed_to? :destroy, :conditon, conditon: conditon %>
+              <%= icon_link_to "delete-bin-line", conditon, t("actions.destroy", scope: "decidim.admin"), class: "action-icon--remove", method: :delete, data: { confirm: t("actions.confirm_destroy", conditon: "decidim.admin") } %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+    </table>
+  </div>
+%>
+<% else %>
+  <p><%= t("no_conditions", scope: "decidim.spam_signal.conditions") %></p>
+<% end %>
