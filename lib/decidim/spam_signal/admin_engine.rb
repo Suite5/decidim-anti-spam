@@ -15,7 +15,7 @@ module Decidim
           resources :profile_cops, only: [:update, :edit, :destroy]
         end
         resources :generals, only: [:index]
-        resources :conditions, only: [:index]
+        resources :conditions
         resources :flows
       end
 

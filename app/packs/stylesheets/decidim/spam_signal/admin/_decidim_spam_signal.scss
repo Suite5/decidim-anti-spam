@@ -29,3 +29,18 @@
   border-top: 1px solid #6B7280CC;
   margin-top: 20px;
 }
+
+/* Style for the button */
+.pick-buttons {
+    @apply flex w-full p-5 border mb-2;
+
+    &__title {
+      @apply m-0; 
+    }
+
+    &__description {
+      @apply m-5; 
+    }
+} 
+
+

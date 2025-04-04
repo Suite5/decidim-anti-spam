@@ -1,23 +1,17 @@
-<%= append_stylesheet_pack_tag "decidim_spam_signal" %>
-
-<% add_secondary_root_menu(:admin_settings_menu) %>
-
 <div class="item_show__header">
   <h1 class="item_show__header-title">
     <%= t("title", scope: "decidim.spam_signal.conditions") %> 
-    <%= link_to t("actions.add", conditon: "decidim.spam_signal.conditions"), new_condition_path, class: "button button__sm button__secondary" if allowed_to? :create, :condition %>
+    <%= link_to t("actions.add", scope: "decidim.spam_signal.conditions"), new_condition_path, class: "button button__sm button__secondary" %>
   </h1>
 </div>
 
-
 <% if conditions.any? %>
-<%#
   <div class="table-scroll">
     <table class="table-list">
     <thead>
       <tr>
-        <th><%= t("models.conditon.fields.name", scope: "decidim.admin") %></th>
-        <th><%= t("models.conditon.fields.conditon_type", scope: "decidim.admin") %></th>
+        <th><%= t("models.conditon.fields.name", scope: "decidim.spam_signal") %></th>
+        <th><%= t("models.conditon.fields.conditon_type", scope: "decidim.spam_signal") %></th>
         <th></th>
       </tr>
     </thead>
@@ -25,7 +19,7 @@
       <% conditions.each do |condition| %>
         <tr>
           <td>
-            <%= link_to translated_attribute(conditon.name), conditon_conditons_path(conditon) %>
+            <%= translated_attribute(conditon.name) %>
           </td>
           <td>
             <%= conditon.conditon_type ? translated_attribute(conditon.conditon_type.name) : "-" %>
@@ -46,7 +40,6 @@
     </tbody>
     </table>
   </div>
-%>
 <% else %>
   <p><%= t("no_conditions", scope: "decidim.spam_signal.conditions") %></p>
 <% end %>

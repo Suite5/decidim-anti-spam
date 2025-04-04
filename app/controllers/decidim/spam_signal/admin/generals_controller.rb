@@ -6,8 +6,10 @@ module Decidim
       class GeneralsController < Decidim::SpamSignal::Admin::ApplicationController
         include FormFactory
         include Decidim::Admin::Concerns::HasTabbedMenu
-        
+
         helper Decidim::SpamSignal::Admin::SpamSignalHelper
+
+        layout "decidim/admin/settings"
 
         add_breadcrumb_item_from_menu :admin_settings_menu
 

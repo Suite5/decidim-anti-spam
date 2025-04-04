@@ -1,0 +1,12 @@
+<%= form_with model: Decidim::SpamSignal::Condition.new, url: conditions_path, method: :post do |form| %>
+  <% available_conditions.each do |condition_name| %>
+    <button type="submit" name="condition_name.to_s" value="<%= condition_name.to_s %>" class="pick-buttons">
+      <h4 class="pick-buttons__title">
+        <%= condition_name.to_s.titleize %>
+      </h4>
+      <p class="pick-buttons__description">
+        <%= condition_name.to_s.titleize %>
+      </p>
+    </button>
+  <% end %>
+<% end %>

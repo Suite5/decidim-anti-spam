@@ -19,6 +19,11 @@ en:
     account:
       locked: Your account is locked, an email has been sent with unlock instructions
     spam_signal:
+      models:
+        conditon:
+          fields:
+            name: Name
+            condition_type: "Detection Type" 
       general:
         title: General
         second_title: "Get started with Spam Signal"
