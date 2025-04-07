@@ -32,7 +32,7 @@ module Decidim
       private
 
       def i18n_key
-        "decidim.spam_signal.flows.#{flow.trigger_type.demodulize.underscore}"
+        "decidim.spam_signal.admin.flows.#{flow.trigger_type.demodulize.underscore}"
       end
 
       def justification

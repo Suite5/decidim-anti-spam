@@ -2,10 +2,10 @@
   <% available_flows.each do |flow_name| %>
     <button type="submit" name="flow[trigger_type]" value="<%= flow_name %>" class="pick_flow__buttons">
       <h4 class="pick_flow__buttons__title">
-        <%= t("decidim.spam_signal.flow.#{flow_name.demodulize.underscore}.title") %>
+        <%= t("decidim.spam_signal.admin.flow.#{flow_name.demodulize.underscore}.title") %>
       </h4>
       <p class="pick_flow__buttons__description">
-        <%= t("decidim.spam_signal.flow.#{flow_name.demodulize.underscore}.description") %>
+        <%= t("decidim.spam_signal.admin.flow.#{flow_name.demodulize.underscore}.description") %>
       </p>
     </button>
   <% end %>

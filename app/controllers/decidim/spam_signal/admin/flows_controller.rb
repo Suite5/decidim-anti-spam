@@ -6,14 +6,14 @@ module Decidim
       class FlowsController < ApplicationController
         include Decidim::Admin::Concerns::HasTabbedMenu
 
-        helper_method :flows, :available_flows
+        helper_method :flows, :available_flows, :blank_condition
 
         layout "decidim/admin/settings"
 
         add_breadcrumb_item_from_menu :admin_settings_menu
 
         def tab_menu_name = :admin_spam_signal_menu
-
+        
         def index; end
 
         def new; end
@@ -26,17 +26,20 @@ module Decidim
           actions_form = actions_form.map do |action_name|
             Decidim::SpamSignal.config.actions_registry.form_for(action_name).new(**flat_action_settings(flow.action_settings || {}))
           end
-          @form = FlowForm.from_model(flow)
-          @form.action_settings = actions_form
+          @form ||= begin
+            form = FlowForm.from_model(flow)
+            form.action_settings = actions_form
+            form
+          end
         end
 
         def create
           trigger_type = params.require(:flow).require(:trigger_type)
-          return redirect_to new_flow_path, alert: t("decidim.spam_signal.flows.create.error") unless available_flows.include?(trigger_type)
+          return redirect_to new_flow_path, alert: t("decidim.spam_signal.admin.flows.create.error") unless available_flows.include?(trigger_type)
 
           flow = Decidim::SpamSignal::Flow.new(organization: current_organization, trigger_type:)
           flow.save(validate: false)
-          redirect_to edit_flow_path(flow), notice: t("decidim.spam_signal.flows.create.success")
+          redirect_to edit_flow_path(flow), notice: t("decidim.spam_signal.admin.flows.create.success")
         end
 
         def update
@@ -52,24 +55,38 @@ module Decidim
           @form.action_settings = actions_form
           if @form.valid?
             was_new = flow.invalid?
+            clear_conditions
             flow.update!(
               name: @form.name,
-              action_settings: flat_action_settings(@form.action_settings)
+              action_settings: flat_action_settings(@form.action_settings),
+              conditions: conditions_from_form(@form)
             )
-            return redirect_to flows_path, notice: t("decidim.spam_signal.flows.create.success") if was_new
-
-            redirect_to edit_flow_path(flow), notice: t("decidim.spam_signal.flows.update.success")
+            return redirect_to flows_path, notice: t("decidim.spam_signal.admin.flows.create.success") if was_new
+              redirect_to edit_flow_path(flow), notice: t("decidim.spam_signal.admin.flows.update.success")
           else
-            render :edit
+            render :edit, flash: { alert: t("decidim.spam_signal.admin.flows.update.error") }
           end
         end
 
         private
+        def clear_conditions
+          Decidim::SpamSignal::FlowCondition.where(anti_spam_flow_id: flow.id).destroy_all
+        end
+
+        def conditions_from_form(form)
+          @conditions_from_form ||= form.conditions.map do |condition|
+            Decidim::SpamSignal::Condition.find(condition.anti_spam_condition_id)
+          end
+        end
+
+        def blank_condition
+          Decidim::SpamSignal::Admin::FlowConditionForm.new(anti_spam_condition_id: flow.id)
+        end
 
         def flat_action_settings(action_settings_form)
           return action_settings_form.attributes || {} if action_settings_form.is_a?(Decidim::Form)
-
-          action_settings_form.flatten.first || {}
+          return action_settings_form.flatten.first || {} if action_settings_form.is_a?(Array)
+          action_settings_form || {}
         end
 
         def flow

@@ -6,7 +6,7 @@ module Decidim
       self.table_name = "anti_spam_flows"
       belongs_to :organization, foreign_key: :decidim_organization_id, class_name: "Decidim::Organization"
       has_many :flow_conditions, class_name: "Decidim::SpamSignal::FlowCondition", foreign_key: :anti_spam_flow_id, dependent: :destroy
-      has_many :conditions, through: :flow_conditions, source: :anti_spam_condition
+      has_many :conditions, through: :flow_conditions
 
       validates :trigger_type, presence: true
       validates :name, presence: true

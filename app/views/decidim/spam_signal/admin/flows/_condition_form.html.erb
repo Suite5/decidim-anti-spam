@@ -1,1 +1,23 @@
-TODO: condition table
+<%
+available_conditions = Decidim::SpamSignal::Condition.all
+available_conditions = available_conditions.select { |c| flow.available_conditions.include?(c.condition_type.to_sym) }
+%>
+<div id="spam-signal-conditions" data-conditions-max-length="<%= available_conditions.size %>" data-template="#spam-signal-condition-template">
+  <div class="spam-signal-flow-conditions-items-list">
+    <div class="spam-signal-flow-conditions-childs">
+      <% if flow.conditions.any? %>
+        <% flow.flow_conditions.each do |flow_condition| %>
+          <%= f.fields_for :conditions, flow_condition do |field_for_conditions| %>
+            <%= render "condition_fields", f: field_for_conditions, flow: flow, available_conditions: available_conditions %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <button class="button button__sm button__secondary add-condition-item"><%= t(".add_condition_item") %></button>
+  <script type="text/template" id="spam-signal-condition-template" class="decidim-template">
+    <%= f.fields_for "#{blank_condition.to_param}", blank_condition do |field_for_conditions| %>
+      <%= render "condition_fields", f: field_for_conditions, flow: flow, available_conditions: available_conditions %>
+    <% end %>
+  </script>
+</div>
