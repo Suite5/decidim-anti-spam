@@ -10,8 +10,8 @@
     <table class="table-list">
     <thead>
       <tr>
-        <th><%= t("models.conditon.fields.name", scope: "decidim.spam_signal") %></th>
-        <th><%= t("models.conditon.fields.conditon_type", scope: "decidim.spam_signal") %></th>
+        <th><%= t("models.condition.fields.name", scope: "decidim.spam_signal") %></th>
+        <th><%= t("models.condition.fields.condition_type", scope: "decidim.spam_signal") %></th>
         <th></th>
       </tr>
     </thead>
@@ -19,20 +19,18 @@
       <% conditions.each do |condition| %>
         <tr>
           <td>
-            <%= translated_attribute(conditon.name) %>
+            <%= translated_attribute(condition.name) %>
           </td>
           <td>
-            <%= conditon.conditon_type ? translated_attribute(conditon.conditon_type.name) : "-" %>
+            <%= condition.condition_type ? condition.condition_type : "-" %>
           </td>
           <td class="table-list__actions">
-            <%= icon_link_to "zoom-in-line", conditon_conditons_path(conditon), t("actions.browse", scope: "decidim.admin"), class: "action-icon--browse", method: :get, data: {} %>
+            <%= icon_link_to "zoom-in-line", edit_condition_path(condition), t("actions.browse", scope: "decidim.admin"), class: "action-icon--browse", method: :get, data: {} %>
 
-            <% if allowed_to? :update, :conditon, conditon: conditon %>
-              <%= icon_link_to "pencil-line", [:edit, conditon], t("actions.edit", scope: "decidim.admin"), class: "action-icon--edit", method: :get, data: {} %>
-            <% end %>
+            <%= icon_link_to "pencil-line", [:edit, condition], t("actions.edit", scope: "decidim.admin"), class: "action-icon--edit", method: :get, data: {} %>
 
-            <% if allowed_to? :destroy, :conditon, conditon: conditon %>
-              <%= icon_link_to "delete-bin-line", conditon, t("actions.destroy", scope: "decidim.admin"), class: "action-icon--remove", method: :delete, data: { confirm: t("actions.confirm_destroy", conditon: "decidim.admin") } %>
+            <% if allowed_to? :destroy, :condition, condition: condition %>
+              <%= icon_link_to "delete-bin-line", condition, t("actions.destroy", scope: "decidim.admin"), class: "action-icon--remove", method: :delete, data: { confirm: t("actions.confirm_destroy", condition: "decidim.admin") } %>
             <% end %>
           </td>
         </tr>

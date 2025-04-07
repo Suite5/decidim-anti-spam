@@ -1,0 +1,12 @@
+<div class="form__wrapper">
+  <div class="card pt-4">
+    <div class="row column">
+    <%= form.text_field :name %>
+    </div>
+    <%= form.fields_for :settings, @condition_form do |settings_form| %>
+    <div class="row column">
+      <%= settings_form.all_fields %>
+    </div>  
+    <% end %>
+  </div>
+</div>

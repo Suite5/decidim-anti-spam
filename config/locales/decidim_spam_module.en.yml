@@ -2,7 +2,7 @@ en:
   decidim:
     spam_signal:
       models:
-        conditon:
+        condition:
           fields:
             name: Name
             condition_type: "Detection Type" 
@@ -31,6 +31,16 @@ en:
       flow:
         title: Flows
       admin:
+        conditions:
+          create:
+            success: "Conditions created successfully"
+            error: "Error creating condition"
+          edit:
+            title: Edit Condition
+            update: Update
+          update:
+            success: "Success"
+            error: "Error"
         flow:
           profile_flow:
             title: "Update profile"

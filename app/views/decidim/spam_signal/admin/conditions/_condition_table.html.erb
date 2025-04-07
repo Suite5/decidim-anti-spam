@@ -1,8 +1,8 @@
 <ul>
-  <% flows.each do |flow| %>
-  <li><%= t("decidim.spam_signal.flow.#{flow.trigger_type.demodulize.underscore}.title") %></li>
-  <li><%= flow.name %></li>
-  <li>conditions: <%= flow.conditions.size %></li>
-  <li><%= link_to "edit", edit_flow_path(flow) %></li>
+  <% conditions.each do |condition| %>
+  <li><%= t("decidim.spam_signal.flow.#{condition.condition_type.demodulize.underscore}.title") %></li>
+  <li><%= condition.name %></li>
+  <li>conditions: <%= condition.conditions.size %></li>
+  <li><%= link_to "edit", edit_condition_path(condition) %></li>
   <% end %>
 </ul>

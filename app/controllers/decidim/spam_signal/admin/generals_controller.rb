@@ -16,7 +16,7 @@ module Decidim
         def tab_menu_name = :admin_spam_signal_menu
         
         def show
-          @conditons = Decidim::SpamSignal::Condition.all      
+          @conditions = Decidim::SpamSignal::Condition.all      
         end
         
       end
