@@ -1,0 +1,7 @@
+<div class="spam-signal-flow-conditions-child">
+  <%= f.select :anti_spam_condition_id, available_conditions.map { |c| ["#{c.name} (#{c.condition_type})", c.id] } %>
+  <%= f.hidden_field :anti_spam_flow_id, value: flow.id %>
+  <button class="button button__sm button__transparent-secondary small alert remove-condition-item-child button--title">
+    <%= icon("close-line", title: t(".remove")) %>
+  </button>
+</div>
