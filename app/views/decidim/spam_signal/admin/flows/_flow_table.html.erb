@@ -1,10 +1,10 @@
 <% flows.each do |flow| %>
   <tr>
     <td>
-      <%= t("decidim.spam_signal.admin.flow.#{flow.trigger_type.demodulize.underscore}.title") %>
+      <%= translated_attribute(flow.name) %>
     </td>
     <td>
-      <%= flow.name %>
+      <%= t("#{flow.trigger_type.demodulize.underscore}.title", scope: "decidim.spam_signal.admin.flow") %>
     </td>
     <td class="table-list__actions">
       <%= icon_link_to "pencil-line", edit_flow_path(flow), t("actions.edit", scope: "decidim.admin"), class: "action-icon--edit", method: :get, data: {} %>

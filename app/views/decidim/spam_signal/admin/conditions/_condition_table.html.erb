@@ -1,8 +1,15 @@
-<ul>
-  <% conditions.each do |condition| %>
-  <li><%= t("decidim.spam_signal.flow.#{condition.condition_type.demodulize.underscore}.title") %></li>
-  <li><%= condition.name %></li>
-  <li>conditions: <%= condition.conditions.size %></li>
-  <li><%= link_to "edit", edit_condition_path(condition) %></li>
-  <% end %>
-</ul>
+<% conditions.each do |condition| %>
+  <tr>
+    <td>
+      <%= translated_attribute(condition.name) %>
+    </td>
+    <td>
+      <%= t("#{condition.condition_type}.title", scope: "decidim.spam_signal.admin.condition") %>
+    </td>
+    <td class="table-list__actions">
+      <%= icon_link_to "pencil-line", edit_condition_path(condition), t("actions.edit", scope: "decidim.admin"), class: "action-icon--edit", method: :get %>
+
+      <%= icon_link_to "delete-bin-line", condition, t("actions.destroy", scope: "decidim.admin"), class: "action-icon--remove", method: :delete, data: { confirm: t("actions.confirm_destroy", scope: "decidim.admin") } %>
+    </td>
+  </tr>
+<% end %>

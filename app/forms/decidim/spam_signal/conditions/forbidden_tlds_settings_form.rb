@@ -7,9 +7,6 @@ module Decidim
         include Decidim::SpamSignal::SettingsForm
         attribute :forbidden_tlds_csv, String
         validates :forbidden_tlds_csv, presence: true
-        def form_attributes
-          attributes.except(:id).keys
-        end
       end
     end
   end

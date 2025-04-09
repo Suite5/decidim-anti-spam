@@ -16,21 +16,7 @@
       </tr>
     </thead>
     <tbody>
-      <% conditions.each do |condition| %>
-        <tr>
-          <td>
-            <%= translated_attribute(condition.name) %>
-          </td>
-          <td>
-            <%= t("condition_type.#{condition.condition_type}", scope: "decidim.spam_signal.admin.conditions") %>
-          </td>
-          <td class="table-list__actions">
-            <%= icon_link_to "pencil-line", [:edit, condition], t("actions.edit", scope: "decidim.admin"), class: "action-icon--edit", method: :get, data: {} %>
-
-            <%= icon_link_to "delete-bin-line", condition, t("actions.destroy", scope: "decidim.admin"), class: "action-icon--remove", method: :delete, data: { confirm: t("actions.confirm_destroy", scope: "decidim.admin") } %>
-          </td>
-        </tr>
-      <% end %>
+      <%= render partial: "condition_table", locals: { conditions: conditions } %>
     </tbody>
     </table>
   </div>
