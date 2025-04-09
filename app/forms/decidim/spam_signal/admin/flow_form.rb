@@ -21,13 +21,13 @@ module Decidim
         private
 
         def valid_actions
-          errors.add(:action_settings, "Action settings are empty") unless action_settings.any?
-          errors.add(:action_settings, "Action settings are invalid") unless action_settings.all?(&:valid?)
+          errors.add(:action_settings, t("forms.valid_actions.empty", scope: "decidim.spam_signal")) unless action_settings.any?
+          errors.add(:action_settings, t("forms.valid_actions.invalid", scope: "decidim.spam_signal")) unless action_settings.all?(&:valid?)
         end
 
         def valid_conditions
-          errors.add(:conditions, "Conditions are empty") unless conditions.any?
-          errors.add(:conditions, "Conditions are invalid") unless conditions.all?(&:valid?)
+          errors.add(:conditions, t("forms.valid_conditions.empty", scope: "decidim.spam_signal")) unless conditions.any?
+          errors.add(:conditions, t("forms.valid_conditions.invalid", scope: "decidim.spam_signal")) unless conditions.all?(&:valid?)
         end
 
       end

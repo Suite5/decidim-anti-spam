@@ -86,6 +86,12 @@ en:
             title: New Flow
             second_title: "Choose a trigger type"
       forms:
+        valid_actions: 
+          empty: "Action settings are empty"
+          invalid: "Action settings are invalid"
+        valid_conditions: 
+          empty: "Conditions are empty"
+          invalid: "Conditions are invalid"
         forbidden_tlds_settings_form:
           forbidden_tlds_csv: "List of forbidden TLDs (aka extensions like '.finance'). Comma-separated"
         forbid_save_settings_form:
