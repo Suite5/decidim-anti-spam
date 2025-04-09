@@ -1,11 +1,19 @@
 <div class="form__wrapper">
   <div class="card pt-4">
     <div class="row column">
-    <%= form.text_field :name %>
+      <div class="tabs-content">
+        <div class="tabs-panel is-active">
+          <%= form.text_field :name, class: "tabs-content" %>
+        </div>
+      </div>
     </div>
     <%= form.fields_for :settings, @condition_form do |settings_form| %>
     <div class="row column">
-      <%= settings_form.all_fields %>
+      <div class="tabs-content">
+        <div class="tabs-panel is-active">
+          <%= settings_form.all_fields %>
+        </div>
+      </div>
     </div>  
     <% end %>
   </div>

@@ -5,33 +5,44 @@ en:
         condition:
           fields:
             name: Name
-            condition_type: "Detection Type" 
-      general:
-        title: General
-        second_title: "Get started with Spam Signal"
-        new_condition: "Start by creating a new condition"
-        new_condition_item:
-          one: "Navigate to the Conditions tab" 
-          two: "Add a new condition" 
-          three: "Choose a detection type" 
-          four: "Configure your condition" 
-          five: "Save your changes" 
-        new_flow: "User your condition in a new flow"
-        new_flow_item:
-          one: "Navigate to the Flows tab" 
-          two: "Add a new flow" 
-          three: "Choose a trigger type" 
-          four: "Configure conditions and actions" 
-          five: "Save your changes" 
-      conditions:
-        title: Conditions
-        actions:
-          add: Add
-        no_conditions: "There are not conditions"
-      flow:
-        title: Flows
+            condition_type: "Detection Type"
+        flow:
+          fields:
+            name: Name
+            trigger_type: "Trigger"
       admin:
+        general:
+          title: General
+          second_title: "Get started with Spam Signal"
+          new_condition: "Start by creating a new condition"
+          new_condition_item:
+            one: "Navigate to the Conditions tab" 
+            two: "Add a new condition" 
+            three: "Choose a detection type" 
+            four: "Configure your condition" 
+            five: "Save your changes" 
+          new_flow: "User your condition in a new flow"
+          new_flow_item:
+            one: "Navigate to the Flows tab" 
+            two: "Add a new flow" 
+            three: "Choose a trigger type" 
+            four: "Configure conditions and actions" 
+            five: "Save your changes"           
         conditions:
+          title: Conditions
+          actions:
+            add: Add
+          condition_type:
+            forbidden_tlds: "Forbidden TLDs"
+            forbidden_tlds_description: "Forbid a list of domain extention, allow all the others."
+            allowed_tlds: "Allowed TLDs"
+            allowed_tlds_description: "Allow a list of domain extension, forbid all the others."
+            word: "Forbidden Words"
+            word_description: "Forbin a list of words, allow all the others."
+          no_conditions: "There are not conditions"
+          new: 
+            title: New Condition
+            second_title: "Choose a detection type"
           create:
             success: "Conditions created successfully"
             error: "Error creating condition"
@@ -42,12 +53,13 @@ en:
             success: "Success"
             error: "Error"
         flow:
+          title: Flows
           profile_flow:
             title: "Update profile"
             description: "Update profile description"
           comment_flow:
-            title: "Comment"
-            description: "Comment description"
+            title: "Creating or updating a Comment"
+            description: "Triggers when a Comment gets created or updated"
           sign_up_flow:
             title: "Sign up"
             description: "Sign up description"
@@ -61,13 +73,21 @@ en:
             up: "Up"
             down: "Down"
             remove: "Remove"
+          no_flows: "There are not flows"
+          actions:
+            add: Add
           create:
             success: "Flow created successfully"
             error: "Error creating flow"
           update:
             success: "Flow updated successfully"
             error: "Error updating flow"
+          new: 
+            title: New Flow
+            second_title: "Choose a trigger type"
       forms:
+        forbidden_tlds_settings_form:
+          forbidden_tlds_csv: "List of forbidden TLDs (aka extensions like '.finance'). Comma-separated"
         forbid_save_settings_form:
           forbid_save_enabled: "Forbid save resource"
           forbid_save_message: "If enabled, the resource will not be saved if the condition is met"
