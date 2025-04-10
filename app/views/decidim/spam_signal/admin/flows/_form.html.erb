@@ -1,25 +1,36 @@
-<%= decidim_form_for form, url: flow_path(flow), method: :put, builder: Decidim::SpamSignal::SpamSettingsFormBuilder do |f| %>
-  <h4 class="h2"><%= t("decidim.spam_signal.admin.flow.#{flow.trigger_type.demodulize.underscore}.title") %></h4>
-  <p><%= t("decidim.spam_signal.admin.flow.#{flow.trigger_type.demodulize.underscore}.description") %></p>
-  <%= f.text_field :name, required: true %>
-  <h4 class="h4"><%= t(".conditions") %></h4>
-  <%= f.fields_for :conditions, builder: Decidim::SpamSignal::SpamSettingsFormBuilder do |condition_form| %>
-    <%= render "decidim/spam_signal/admin/flows/condition_form", flow:, f: condition_form, blank_condition: %>
-    <% if f.object.errors.any? { |error| error.attribute == :conditions } %>
-      <% f.object.errors.full_messages_for(:conditions).each do |message| %>
-        <small class="form-error is-visible">
-          <%= message %>
-        </small>
+<div class="flex-start flex-col pb-4 border-b mb-4 gap-y-2">
+  <h1 class="h4 font-bold">
+    <%= I18n.t("decidim.spam_signal.admin.flow.#{flow.trigger_type.demodulize.underscore}.title") %></h4>
+  </h1>
+    <p>
+      <%= I18n.t("decidim.spam_signal.admin.flow.#{flow.trigger_type.demodulize.underscore}.description") %>
+    </p>
+</div>
+
+<div class="form__wrapper">
+  <div class="card">
+    <div class="row column">
+      <%= form.text_field :name, required: true %>
+    </div>
+    <h4 class="h4"><%= I18n.t(".conditions") %></h4>
+    <%= form.fields_for :conditions, builder: Decidim::SpamSignal::SpamSettingsFormBuilder do |condition_form| %>
+      <%= render "decidim/spam_signal/admin/flows/condition_form", flow:, f: condition_form, blank_condition: %>
+      <% if form.object.errors.any? { |error| error.attribute == :conditions } %>
+        <% form.object.errors.full_messages_for(:conditions).each do |message| %>
+          <small class="form-error is-visible">
+            <%= message %>
+          </small>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
-  <% if f.object.action_settings.any? %>
-    <h4 class="h4"><%= t(".actions") %></h4>
-    <% f.object.action_settings.each do |action_form| %>
-      <%= f.fields_for :action_settings, action_form do |field_for_actions| %>
-        <%= render "decidim/spam_signal/admin/flows/action_form", f: field_for_actions %>
+    <% if form.object.action_settings.any? %>
+      <h4 class="h4"><%= I18n.t(".actions") %></h4>
+      <% form.object.action_settings.each do |action_form| %>
+        <%= form.fields_for :action_settings, action_form do |field_for_actions| %>
+          <%= render "decidim/spam_signal/admin/flows/action_form", f: field_for_actions %>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
-  <%= f.submit %>
-<% end %>
+  </div>
+</div>
+

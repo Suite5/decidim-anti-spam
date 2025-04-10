@@ -55,6 +55,8 @@ en:
           update:
             success: "Success"
             error: "Error"
+            format: "Condition format error"
+            invalid: "Form invalid"
         flow:
           title: Flows
           profile_flow:
@@ -82,9 +84,14 @@ en:
           create:
             success: "Flow created successfully"
             error: "Error creating flow"
+          edit:
+            title: Edit Flow
+            update: Update
           update:
             success: "Flow updated successfully"
             error: "Error updating flow"
+            settings:
+              error: "Condition format error"
           new: 
             title: New Flow
             second_title: "Choose a trigger type"

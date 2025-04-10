@@ -17,6 +17,10 @@ module Decidim
         end
         
         def new
+          @form = form(ConditionForm).instance
+        end
+
+        def condition
         end
 
         def create
@@ -66,10 +70,6 @@ module Decidim
 
         def conditions
           @conditions ||= Decidim::SpamSignal::Condition.where(organization: current_organization)
-        end
-
-        def condition_type_from_form
-          byebug
         end
                 
       end

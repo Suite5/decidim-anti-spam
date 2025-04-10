@@ -22,7 +22,35 @@ module Decidim
         private
 
         def valid_condition
-          errors.add(:settings, "settings invalid") unless settings.valid?
+          errors.add(:settings, I18n.t("update.invalid", scope: "decidim.spam_signal.admin.conditions")) unless settings.valid?
+          errors.add(:settings, I18n.t("update.format", scope: "decidim.spam_signal.admin.conditions")) unless valid_format?(settings.attributes)
+        end
+
+        def valid_format?(settings_attributes)
+
+          str = settings_attributes.values.last
+
+          case settings_attributes.keys.last
+          when  "stop_list_words_csv"
+            valid_word_format?(str)
+          when "forbidden_tlds_csv"
+            valid_forbidden_tlds_format?(str)
+          when "allowed_tlds_csv"
+            valid_allowed_tlds_format?(str)
+          end
+
+        end
+
+        def valid_word_format?(str)
+          !!str.match(/\A(?:\w+\n)*\w+\z/)
+        end
+
+        def valid_forbidden_tlds_format?(str)
+          true
+        end
+
+        def valid_allowed_tlds_format?(str)
+          true
         end
       end
     end

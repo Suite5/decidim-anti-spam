@@ -35,7 +35,10 @@ module Decidim
 
         def create
           trigger_type = params.require(:flow).require(:trigger_type)
-          return redirect_to new_flow_path, alert: t("decidim.spam_signal.admin.flows.create.error") unless available_flows.include?(trigger_type)
+          return redirect_to(
+            new_flow_path, 
+            alert: t("decidim.spam_signal.admin.flows.create.error")
+            ) unless available_flows.include?(trigger_type)
 
           flow = Decidim::SpamSignal::Flow.new(organization: current_organization, trigger_type:)
           flow.save(validate: false)

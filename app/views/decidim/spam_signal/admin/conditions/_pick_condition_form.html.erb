@@ -2,10 +2,10 @@
   <% available_conditions.each do |condition_name| %>
     <button type="submit" name="condition[condition_type]" value="<%= condition_name.to_s %>" class="pick__buttons">
       <h4 class="pick__buttons-title">
-        <%= t("#{condition_name.to_s}.title", scope: "decidim.spam_signal.admin.condition") %>
+        <%= I18n.t("#{condition_name.to_s}.title", scope: "decidim.spam_signal.admin.condition") %>
       </h4>
       <p class="pick__buttons-description">
-        <%= t("#{condition_name.to_s}.description", scope: "decidim.spam_signal.admin.condition") %>
+        <%= I18n.t("#{condition_name.to_s}.description", scope: "decidim.spam_signal.admin.condition") %>
       </p>
     </button>
   <% end %>
