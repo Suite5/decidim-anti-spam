@@ -10,7 +10,7 @@
 <div class="form__wrapper pb-6">
   <div class="card pt-4">
     <div class="row column">
-      <%= form.translated :text_field, :name, required: true %>
+      <%= form.text_field :name, required: true %>
     </div>
   </div>
 </div>
@@ -28,25 +28,22 @@
 <% end %>
 
 
-  <div class="card py-2">
-    <div class="row column">
-      <% if form.object.action_settings.any? %>
-        <h4 class="h4"><%= I18n.t("actions", scope: "decidim.spam_signal.admin.flows.form") %></h4>
-    </div>
+<div class="card py-2">
+  <div class="row column">
+    <% if form.object.action_settings.any? %>
+      <h4 class="h4"><%= I18n.t("actions", scope: "decidim.spam_signal.admin.flows.form") %></h4>
   </div>
-        <div class="form__wrapper pb-6"">
-          <div class="card pt-4">
-            <div class="row column">
-        <% form.object.action_settings.each do |action_form| %>
-          <%= form.fields_for :action_settings, action_form do |field_for_actions| %>
-            <%= render "decidim/spam_signal/admin/flows/action_form", f: field_for_actions %>
-          <% end %>
+</div>
+<div class="form__wrapper pb-6"">
+  <div class="card pt-4">
+    <div class="row column">
+      <% form.object.action_settings.each do |action_form| %>
+        <%= form.fields_for :action_settings, action_form do |field_for_actions| %>
+          <%= render "decidim/spam_signal/admin/flows/action_form", f: field_for_actions %>
         <% end %>
-            </div>
-          </div>
-        </div>
-
       <% end %>
     </div>
   </div>
 </div>
+    <% end %>
+

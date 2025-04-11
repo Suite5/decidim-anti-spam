@@ -32,6 +32,7 @@ module Decidim
 
           condition = Decidim::SpamSignal::Condition.new(organization: current_organization, condition_type:)
           condition.save(validate: false)
+          byebug
           redirect_to edit_condition_path(condition), notice: t("decidim.spam_signal.admin.conditions.create.success")
         end
 
@@ -52,9 +53,10 @@ module Decidim
               name: @form.name,
               settings: @form.settings.attributes
             )
-            return redirect_to edit_condition_path(condition), notice: t("decidim.spam_signal.admin.conditions.update.success")
+            return redirect_to edit_condition_path(condition), notice: I18n.t("decidim.spam_signal.admin.conditions.update.success")
           else
-            render :edit, flash: { alert: t("decidim.spam_signal.admin.conditions.update.error") }
+            flash.now[:alert] = form.errors.messages[:settings].first
+            render :edit
           end
         end
 

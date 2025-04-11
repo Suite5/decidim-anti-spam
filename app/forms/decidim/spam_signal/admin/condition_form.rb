@@ -10,7 +10,7 @@ module Decidim
       
         mimic :condition
 
-        translatable_attribute :name, String
+        attribute :name, String
         attribute :settings, Decidim::Form
         attribute :condition_type, String
 
@@ -43,7 +43,8 @@ module Decidim
         end
 
         def valid_word_format?(str)
-          !!str.match(/\A(?:\w+\n)*\w+\z/)
+          byebug
+          !!str.match(/\A(?:[\w%.]+(?:\r\n|\r|\n))*[\w%.]+\z/)
         end
 
         def valid_forbidden_tlds_format?(str)
