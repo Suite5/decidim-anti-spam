@@ -2,6 +2,7 @@ module Decidim
   module SpamSignal
     module Admin
       class ConditionForm < Decidim::Form
+        include TranslatableAttributes
 
         def form_attributes
           attributes.except(:id).keys
@@ -9,7 +10,7 @@ module Decidim
       
         mimic :condition
 
-        attribute :name, String
+        translatable_attribute :name, String
         attribute :settings, Decidim::Form
         attribute :condition_type, String
 

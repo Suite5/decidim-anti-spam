@@ -36,6 +36,7 @@ module Decidim
             end
 
             def content_for_antispam
+              byebug
               @content_for_antispam ||= Extractors::ProfileExtractor.extract(self, spam_config)
             end
 

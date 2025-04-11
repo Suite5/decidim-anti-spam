@@ -103,6 +103,11 @@ module Decidim
         def flows
           @flows ||= Decidim::SpamSignal::Flow.where(organization: current_organization)
         end
+
+        def available_conditions
+          available_conditions = Decidim::SpamSignal::Condition.all
+          available_conditions = available_conditions.select { |c| flow.available_conditions.include?(c.condition_type.to_sym) }
+        end
       end
     end
   end

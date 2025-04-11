@@ -4,11 +4,13 @@ module Decidim
   module SpamSignal
     module Admin
       class FlowForm < Decidim::Form
+        include TranslatableAttributes
+
         def form_attributes
           attributes.except(:id).keys
         end
         mimic :flow
-        attribute :name, String
+        translatable_attribute :name, String
         attribute :conditions, [FlowConditionForm]
         attribute :action_settings, [Decidim::Form]
 

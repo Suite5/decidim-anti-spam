@@ -2,7 +2,7 @@
 <% add_decidim_page_title(t(".title")) %>
 <div class="item_show__header">
   <h1 class="item_show__header-title">
-    <%= I18n.t(".title") %>
+    <%= t(".title") %>
   </h1>
 </div>
 <div class="item__edit-form">
@@ -10,7 +10,7 @@
     <%= render partial: "form", object: f, locals: { flow: @flow, form: @form } %>
     <div class="item__edit-sticky">
       <div class="item__edit-sticky-container">
-        <%= f.submit I18n.t(".update"), class: "button button__sm button__secondary" %>
+        <%= f.submit t(".update"), class: "button button__sm button__secondary" %>
       </div>
     </div>
   <% end %>

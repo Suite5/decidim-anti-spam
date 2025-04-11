@@ -29,6 +29,7 @@ en:
             four: "Configure conditions and actions" 
             five: "Save your changes"
         condition:
+          title: Condition
           forbidden_tlds: 
             title: "Forbidden TLDs"
             description: "Forbid a list of domain extention, allow all the others."
