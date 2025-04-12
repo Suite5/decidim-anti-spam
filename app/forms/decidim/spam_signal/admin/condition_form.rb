@@ -35,24 +35,19 @@ module Decidim
           when  "stop_list_words_csv"
             valid_word_format?(str)
           when "forbidden_tlds_csv"
-            valid_forbidden_tlds_format?(str)
+            valid_tlds_format?(str)
           when "allowed_tlds_csv"
-            valid_allowed_tlds_format?(str)
+            valid_tlds_format?(str)
           end
 
         end
 
         def valid_word_format?(str)
-          byebug
           !!str.match(/\A(?:[\w%.]+(?:\r\n|\r|\n))*[\w%.]+\z/)
         end
 
-        def valid_forbidden_tlds_format?(str)
-          true
-        end
-
-        def valid_allowed_tlds_format?(str)
-          true
+        def valid_tlds_format?(str)
+          !!str.match(/\.[\w-]+/)
         end
       end
     end

@@ -32,7 +32,6 @@ module Decidim
 
           condition = Decidim::SpamSignal::Condition.new(organization: current_organization, condition_type:)
           condition.save(validate: false)
-          byebug
           redirect_to edit_condition_path(condition), notice: t("decidim.spam_signal.admin.conditions.create.success")
         end
 
