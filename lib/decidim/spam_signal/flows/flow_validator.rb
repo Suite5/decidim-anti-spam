@@ -10,7 +10,9 @@ module Decidim
       module FlowValidator
         extend ActiveSupport::Concern
         included do
+
           validate :detect_spam!
+
           def detect_spam!
             return if skip_antispam?
 

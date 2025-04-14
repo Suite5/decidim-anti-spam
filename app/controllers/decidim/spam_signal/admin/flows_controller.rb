@@ -19,6 +19,7 @@ module Decidim
         def new; end
 
         def edit
+          byebug
           trigger_type = flow.trigger_type.constantize
           actions_form = Decidim::SpamSignal.config.actions_registry.names.filter do |action_name|
             trigger_type.available_actions.include?(action_name)

@@ -17,6 +17,7 @@ module Decidim
       def call
         # Check available_actions of the flow,
         # and call them with the action_settings
+        
         flow.available_actions.each do |action_name|
           action = Decidim::SpamSignal.config.actions_registry.command_for(action_name)
           action.call(

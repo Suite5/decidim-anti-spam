@@ -66,8 +66,8 @@ module Decidim
             # before doing actions. As blocking/locking will
             # save the user without validation in the process.
             def before_antispam
-              user.about = user.about_was
-              user.personal_url = user.personal_url_was
+              self.about = self.about_was
+              self.personal_url = self.personal_url_was
             end
           end
         end
