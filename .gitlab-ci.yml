@@ -55,11 +55,11 @@ ruby::rubocop:
 # Lint crowdin.yml configuration file
 crowdin::lint:  
   extends: .development_rules
-  image: node:18.20
+  image: node:20
   stage: lint
   script:
     - npm install -g @crowdin/cli
-    - crowdin config lint --no-progress || exit 1
+    - crowdin config lint -i $CROWDIN_PROJECT_ID --no-progress || exit 1
     - crowdin status -T $CROWDIN_PERSONAL_TOKEN -i $CROWDIN_PROJECT_ID --no-progress || exit 1
 ##
 # Publish the gem un ruby gem.

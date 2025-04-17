@@ -15,7 +15,8 @@ module Decidim
 
         config_accessor(:available_actions) do
           [
-            :report
+            :report,
+            :forbid_save
           ]
         end
 
@@ -37,6 +38,9 @@ module Decidim
             def content_for_antispam
               @content_for_antispam ||= Extractors::ProfileExtractor.extract(self, spam_config)
             end
+
+            def spam_config
+            end 
 
             def spam_error_key
               :about
@@ -62,8 +66,8 @@ module Decidim
             # before doing actions. As blocking/locking will
             # save the user without validation in the process.
             def before_antispam
-              user.about = user.about_was
-              user.personal_url = user.personal_url_was
+              self.about = self.about_was
+              self.personal_url = self.personal_url_was
             end
           end
         end

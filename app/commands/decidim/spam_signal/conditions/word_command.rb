@@ -5,14 +5,10 @@ module Decidim
     module Conditions
       class WordCommand < ConditionHandler
         def call
-          return broadcast(:ok) if suspicious_content.empty?
-          return broadcast(:word_found) if contains_stop_words?
+          return broadcast(:valid) if suspicious_content.empty?
+          return broadcast(:invalid) if contains_stop_words?
 
-          broadcast(:ok)
-        end
-
-        def self.output_symbols
-          [:word_found]
+          broadcast(:valid)
         end
 
         private

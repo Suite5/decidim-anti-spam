@@ -1,0 +1,25 @@
+<div class="item_show__header">
+  <h1 class="item_show__header-title">
+    <%= I18n.t("title", scope: "decidim.spam_signal.admin.flow") %> 
+    <%= link_to I18n.t("actions.add", scope: "decidim.spam_signal.admin.flows") , new_flow_path, class: "button button__sm button__secondary" %>
+  </h1>
+</div>
+
+<% if flows.any? %>
+  <div class="table-scroll">
+    <table class="table-list">
+    <thead>
+      <tr>
+        <th><%= I18n.t("models.flow.fields.name", scope: "decidim.spam_signal") %></th>
+        <th><%= I18n.t("models.flow.fields.trigger_type", scope: "decidim.spam_signal") %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: "flow_table", locals: { flows: flows } %>
+    </tbody>
+    </table>
+  </div>
+<% else %>
+  <p><%= I18n.t("no_flows", scope: "decidim.spam_signal.admin.flows") %></p>
+<% end %>

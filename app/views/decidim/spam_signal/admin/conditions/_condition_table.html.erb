@@ -1,0 +1,15 @@
+<% conditions.each do |condition| %>
+  <tr>
+    <td>
+      <%= translated_attribute(condition.name) %>
+    </td>
+    <td>
+      <%= I18n.t("#{condition.condition_type}.title", scope: "decidim.spam_signal.admin.condition") %>
+    </td>
+    <td class="table-list__actions">
+      <%= icon_link_to "pencil-line", edit_condition_path(condition), I18n.t("actions.edit", scope: "decidim.admin"), class: "action-icon--edit", method: :get %>
+
+      <%= icon_link_to "delete-bin-line", condition, I18n.t("actions.destroy", scope: "decidim.admin"), class: "action-icon--remove", method: :delete, data: { confirm: I18n.t("actions.confirm_destroy", scope: "decidim.admin") } %>
+    </td>
+  </tr>
+<% end %>

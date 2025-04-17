@@ -15,7 +15,7 @@ services:
       - DATABASE_PASSWORD=pleaseChangeMe
       - DEV_MODULE=decidim-spam_signal
       - RAILS_ENV=development
-      - DISABLED_DOCKER_COMPOSE = true # To run tests in docker
+      - DISABLED_DOCKER_COMPOSE=true # To run tests in docker
     depends_on:
       - spam-signal-pg
     ports:
