@@ -54,7 +54,7 @@ module Decidim
             # Skip the flow if no content to test,
             # or if the user is updated to be blocked.
             def skip_antispam?
-              about.blank? || blocked_at_changed?(from: nil) || blocked_changed?(from: false)
+              (personal_url.blank? && about.blank?) || blocked_at_changed?(from: nil) || blocked_changed?(from: false)
             end
 
             def suspicious_user
