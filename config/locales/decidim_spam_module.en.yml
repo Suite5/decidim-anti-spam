@@ -38,7 +38,10 @@ en:
             description: "Allow a list of domain extension, forbid all the others."
           word: 
             title: "Forbidden Words"
-            description: "Forbin a list of words, allow all the others."           
+            description: "Forbin a list of words, allow all the others."
+          forbidden_continents:
+            title: "Forbidden Continents"
+            description: "Forbid a list of continents, detected by participant's IP address"
         conditions:
           title: Conditions
           actions:
@@ -107,6 +110,8 @@ en:
           forbidden_tlds_csv: "List of forbidden TLDs (aka extensions like '.finance'). Comma-separated"
         allowed_tlds_settings_form:
           allowed_tlds_csv: "List of allowed TLDs. Comma-separated"
+        forbidden_continents_settings_form:
+          forbidden_continents_list: "Forbidden Continents"
         forbid_save_settings_form:
           forbid_save_enabled: "Forbid save resource"
           forbid_save_message: "If enabled, the resource will not be saved if the condition is met"

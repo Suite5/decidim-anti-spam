@@ -24,6 +24,7 @@ module Decidim
       def input_field(name, type, **options)
         return hidden_field(name) if name.to_s == "handler_name"
 
+        byebug
         case type
         when :date, :datetime, :time, :"decidim/attributes/localized_date"
           date_field name

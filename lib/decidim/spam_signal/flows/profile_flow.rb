@@ -9,7 +9,8 @@ module Decidim
           [
             :forbidden_tlds,
             :allowed_tlds,
-            :word
+            :word,
+            :forbidden_continents
           ]
         end
 
