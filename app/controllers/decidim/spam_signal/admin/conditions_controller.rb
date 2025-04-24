@@ -59,6 +59,14 @@ module Decidim
           end
         end
 
+        def destroy
+
+          delete_condition_flow unless conditions_flow.empty?
+          condition.delete
+          
+          render :index
+        end
+
         private
 
         def condition
@@ -72,7 +80,14 @@ module Decidim
         def conditions
           @conditions ||= Decidim::SpamSignal::Condition.where(organization: current_organization)
         end
-                
+
+        def conditions_flow
+          @conditions_flow = Decidim::SpamSignal::FlowCondition.where(anti_spam_condition_id: condition.id)
+        end
+
+        def delete_condition_flow
+          conditions_flow.each { |cond_flow| cond_flow.delete }
+        end    
       end
     end
   end
