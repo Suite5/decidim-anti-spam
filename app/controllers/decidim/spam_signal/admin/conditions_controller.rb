@@ -61,10 +61,13 @@ module Decidim
 
         def destroy
 
-          delete_condition_flow unless conditions_flow.empty?
-          condition.delete
+          Conditions::DestroyCondition.call(condition) do 
+            on(:ok) do
+              flash[:notice] = I18n.t("delete.success", scope: "decidim.spam_signal.admin.conditions")
+              render :index
+            end
+          end
           
-          render :index
         end
 
         private
