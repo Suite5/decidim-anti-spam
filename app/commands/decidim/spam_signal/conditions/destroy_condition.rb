@@ -18,8 +18,8 @@ module Decidim
 
         private
 
-        def invalid? #TODO: check the condition to invalid
-          false
+        def invalid?
+          conditions_flow.size.positive?
         end
 
         def destroy_condition
@@ -32,7 +32,7 @@ module Decidim
         end
 
         def delete_condition_flow
-          conditions_flow.each { |cond_flow| cond_flow.delete }
+          conditions_flow.each { |cond_flow| cond_flow.destroy }
         end 
       end
     end

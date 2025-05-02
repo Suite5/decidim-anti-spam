@@ -9,6 +9,8 @@ module Decidim
         end
         
         def call
+          return broadcast(:invalid) if invalid?
+
           destroy_flow
 
           broadcast(:ok)
@@ -16,13 +18,17 @@ module Decidim
 
         private
 
+        def invalid?
+          flow_condition.size.positive?
+        end
+
         def destroy_flow
           delete_flow_condition
           @flow.delete
         end
 
         def delete_flow_condition
-          flow_condition.each { |flow_cond| flow_cond.delete }
+          flow_condition.each { |flow_cond| flow_cond.destroy }
         end
         
         def flow_condition

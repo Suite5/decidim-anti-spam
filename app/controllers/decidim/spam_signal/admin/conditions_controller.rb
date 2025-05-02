@@ -84,12 +84,12 @@ module Decidim
           @conditions ||= Decidim::SpamSignal::Condition.where(organization: current_organization)
         end
 
-        def conditions_flow
-          @conditions_flow = Decidim::SpamSignal::FlowCondition.where(anti_spam_condition_id: condition.id)
+        def condition_flows
+          @condition_flows = Decidim::SpamSignal::FlowCondition.where(anti_spam_condition_id: condition.id)
         end
 
         def delete_condition_flow
-          conditions_flow.each { |cond_flow| cond_flow.delete }
+          condition_flows.each { |cond_flow| cond_flow.delete }
         end    
       end
     end

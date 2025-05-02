@@ -16,12 +16,12 @@
   </tr>
 
   <%= decidim_modal id: "#{condition.id}", class:"flex flex-col px-4 gap-4" do %>
-    <% if flow_condition(condition).empty? %>
+    <% if flow_conditions(condition).empty? %>
       <div><h3 class="h3"> <%= I18n.t("title", scope: "decidim.spam_signal.admin.conditions.actions.delete.modal") %> </h3></div>
     <% else %>
-      <div><h3 class="h3"> Condition used in <%= flow_condition(condition).count %> Flow(s) </h3></div>
+      <div><h3 class="h3"> Condition used in <%= flow_conditions(condition).count %> Flow(s) </h3></div>
       <div>
-        <% flow_condition(condition).each do |flow| %> 
+        <% flow_conditions(condition).each do |flow| %> 
           <%= link_to "#{flow.flow.name }", edit_flow_path(flow.flow.id), class: "underline text-secondary font-semibold" %>
         <% end %> 
       </div>
