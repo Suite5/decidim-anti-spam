@@ -71,6 +71,17 @@ module Decidim
           end
         end
 
+        def destroy
+
+          Decidim::SpamSignal::Flows::DestroyFlow.call(flow) do 
+            on(:ok) do
+              flash[:notice] = I18n.t("delete.success", scope: "decidim.spam_signal.admin.flows")
+              render :index
+            end
+          end
+          
+        end
+
         private
         def clear_conditions
           Decidim::SpamSignal::FlowCondition.where(anti_spam_flow_id: flow.id).destroy_all

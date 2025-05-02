@@ -105,6 +105,8 @@ en:
           new: 
             title: New Flow
             second_title: "Choose a trigger type"
+          delete:
+            success: "Flow deleted"
       forms:
         valid_actions: 
           empty: "Action settings are empty"
