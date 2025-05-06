@@ -104,7 +104,8 @@ en:
           empty: "Conditions are empty"
           invalid: "Conditions are invalid"
         forbidden_tlds_settings_form:
-          forbidden_tlds_csv: "List of forbidden Top-Level Domains (aka extensions like '.finance'). Comma-separated"
+          forbidden_tlds_csv: "List of forbidden Top-Level Domains. Comma-separated"
+          placeholder: ".finance, .porn"
         allowed_tlds_settings_form:
           allowed_tlds_csv: "List of allowed Top-Level Domains. Comma-separated"
         forbid_save_settings_form:
