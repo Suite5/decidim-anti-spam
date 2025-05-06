@@ -31,10 +31,10 @@ en:
         condition:
           title: Condition
           forbidden_tlds: 
-            title: "Forbidden TLDs"
+            title: "Forbidden Top-Level Domains"
             description: "Forbid a list of domain extention, allow all the others."
           allowed_tlds: 
-            title: "Allowed TLDs"
+            title: "Allowed Top-Level Domains"
             description: "Allow a list of domain extension, forbid all the others."
           word: 
             title: "Forbidden Words"
@@ -104,9 +104,9 @@ en:
           empty: "Conditions are empty"
           invalid: "Conditions are invalid"
         forbidden_tlds_settings_form:
-          forbidden_tlds_csv: "List of forbidden TLDs (aka extensions like '.finance'). Comma-separated"
+          forbidden_tlds_csv: "List of forbidden Top-Level Domains (aka extensions like '.finance'). Comma-separated"
         allowed_tlds_settings_form:
-          allowed_tlds_csv: "List of allowed TLDs. Comma-separated"
+          allowed_tlds_csv: "List of allowed Top-Level Domains. Comma-separated"
         forbid_save_settings_form:
           forbid_save_enabled: "Forbid save resource"
           forbid_save_message: "If enabled, the resource will not be saved if the condition is met"
