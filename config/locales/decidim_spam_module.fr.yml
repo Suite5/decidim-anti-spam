@@ -19,6 +19,11 @@ fr:
   decidim:
     account:
       locked: Your account is locked, an email has been sent with unlock instructions
+    forms:
+      errors:
+        condition:
+          name: "This field is mandatory."
+          forbidden_tlds_csv: "This field is mandatory."
     spam_signal:
       spam_signal_justification: |
         Anti-Spam: This content has been hidden. The classification process is automatic, to fill a complaint, use our support email

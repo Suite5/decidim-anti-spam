@@ -1,5 +1,8 @@
 en:
   decidim:
+    forms:
+      errors:
+        error: "This field is mandatory."
     spam_signal:
       models:
         condition:
