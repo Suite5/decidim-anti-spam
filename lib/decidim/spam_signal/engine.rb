@@ -31,6 +31,9 @@ module Decidim
 
       initializer "decidim_spam_signal.register_icons" do
         Decidim.icons.register(name: "shield-line", icon: "shield-line", category: "system", description: "", engine: :spam_signal)
+        Decidim.icons.register(name: "information-line", icon: "information-line", category: "system", description: "", engine: :spam_signal)
+        Decidim.icons.register(name: "search-eye-line", icon: "search-eye-line", category: "system", description: "", engine: :spam_signal)
+        Decidim.icons.register(name: "guide-line", icon: "guide-line", category: "system", description: "", engine: :spam_signal)
       end
 
       initializer "decidim_spam_signal.admin_spam_signal_menu" do
@@ -38,21 +41,21 @@ module Decidim
           menu.add_item :general, 
                     I18n.t("menu.spam_signal", scope: "decidim.admin", default: "General"),
                     decidim_admin_spam_signal.generals_path,
-                    icon_name: "shield-line",
+                    icon_name: "information-line",
                     position: 1,
                     active: is_active_link?(decidim_admin_spam_signal.generals_path, :inclusive),
                     if: defined?(current_user) && current_user&.read_attribute("admin")
           menu.add_item :condition, 
                     I18n.t("menu.spam_signal", scope: "decidim.admin", default: "Conditions"),
                     decidim_admin_spam_signal.conditions_path,
-                    icon_name: "shield-line",
+                    icon_name: "search-eye-line",
                     position: 2,
                     active: is_active_link?(decidim_admin_spam_signal.conditions_path, :inclusive),
                     if: defined?(current_user) && current_user&.read_attribute("admin")
           menu.add_item :flow, 
                     I18n.t("menu.spam_signal", scope: "decidim.admin", default: "Flows"),
                     decidim_admin_spam_signal.flows_path,
-                    icon_name: "shield-line",
+                    icon_name: "guide-line",
                     position: 3,
                     active: is_active_link?(decidim_admin_spam_signal.flows_path, :inclusive),
                     if: defined?(current_user) && current_user&.read_attribute("admin")
