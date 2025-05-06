@@ -21,7 +21,7 @@ en:
             three: "Choose a detection type" 
             four: "Configure your condition" 
             five: "Save your changes" 
-          new_flow: "User your condition in a new flow"
+          new_flow: "Use your condition in a new flow"
           new_flow_item:
             one: "Navigate to the Flows tab" 
             two: "Add a new flow" 
