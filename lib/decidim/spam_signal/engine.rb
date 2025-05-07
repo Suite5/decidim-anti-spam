@@ -17,6 +17,12 @@ module Decidim
         Decidim::Comments::CommentForm.include(
           Decidim::SpamSignal::Flows::CommentFlow::CommentValidationFormOverrides
         )
+        Decidim::AccountController.prepend(
+          Decidim::AccountControllerOverrides
+        )
+        Decidim::UpdateAccount.prepend(
+          Decidim::UpdateAccountOverrides
+        )
       end
 
       initializer "decidim_spam_signal.webpacker.assets_path" do
@@ -69,6 +75,11 @@ module Decidim
             :word,
             Decidim::SpamSignal::Conditions::WordSettingsForm,
             Decidim::SpamSignal::Conditions::WordCommand
+          )
+          config.conditions_registry.register(
+            :official_account,
+            Decidim::SpamSignal::NoSettingsForm,
+            Decidim::SpamSignal::Conditions::OfficialAccountCommand
           )
           config.actions_registry.register(
             :forbid_save,

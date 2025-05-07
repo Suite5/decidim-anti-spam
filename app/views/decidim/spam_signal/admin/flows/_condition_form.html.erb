@@ -2,6 +2,7 @@
 available_conditions = Decidim::SpamSignal::Condition.all
 available_conditions = available_conditions.select { |c| flow.available_conditions.include?(c.condition_type.to_sym) }
 %>
+
 <div class=form__wrapper pb-6>
   <div id="spam-signal-conditions" data-conditions-max-length="<%= available_conditions.size %>" data-template="#spam-signal-condition-template">
     <div class="card flex justify-between py-2 px-4">

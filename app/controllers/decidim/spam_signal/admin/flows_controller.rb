@@ -67,7 +67,8 @@ module Decidim
             return redirect_to flows_path, notice: t("decidim.spam_signal.admin.flows.create.success") if was_new
               redirect_to edit_flow_path(flow), notice: t("decidim.spam_signal.admin.flows.update.success")
           else
-            render :edit, flash: { alert: t("decidim.spam_signal.admin.flows.update.error") }
+            flash.now[:alert] = I18n.t("decidim.spam_signal.admin.flows.update.error")
+            render :edit
           end
         end
 

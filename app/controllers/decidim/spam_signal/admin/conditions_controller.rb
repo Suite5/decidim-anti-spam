@@ -43,14 +43,14 @@ module Decidim
         def update
           @form = begin 
             form = ConditionForm.from_params(params)
-            form.settings = Decidim::SpamSignal.config.conditions_registry.form_for(condition.condition_type).new(params.require(:condition).require(:settings).permit!)
+            form.settings = form_settings
             form
           end
           @condition_form = form.settings
           if @form.valid?
             condition.update!(
               name: @form.name,
-              settings: @form.settings.attributes
+              settings: @form.settings&.attributes
             )
             return redirect_to edit_condition_path(condition), notice: I18n.t("decidim.spam_signal.admin.conditions.update.success")
           else
@@ -84,13 +84,11 @@ module Decidim
           @conditions ||= Decidim::SpamSignal::Condition.where(organization: current_organization)
         end
 
-        def condition_flows
-          @condition_flows = Decidim::SpamSignal::FlowCondition.where(anti_spam_condition_id: condition.id)
+        def form_settings
+          settings = params[:condition] ? params[:condition][:settings] : nil
+          Decidim::SpamSignal.config.conditions_registry.form_for(condition.condition_type).new(settings) unless settings.nil?
         end
-
-        def delete_condition_flow
-          condition_flows.each { |cond_flow| cond_flow.delete }
-        end    
+                
       end
     end
   end
