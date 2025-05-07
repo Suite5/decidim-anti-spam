@@ -14,7 +14,7 @@ module Decidim
         attribute :settings, Decidim::Form
         attribute :condition_type, String
 
-        validate :valid_condition
+        validate :valid_settings
 
         def self.conditional_display
           {}
@@ -22,7 +22,9 @@ module Decidim
       
         private
 
-        def valid_condition
+        def valid_settings
+          return if settings.nil?
+
           errors.add(:settings, I18n.t("update.invalid", scope: "decidim.spam_signal.admin.conditions")) unless settings.valid?
           errors.add(:settings, I18n.t("update.format", scope: "decidim.spam_signal.admin.conditions")) unless valid_format?(settings.attributes)
         end
