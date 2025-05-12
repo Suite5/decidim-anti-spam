@@ -49,6 +49,7 @@ en:
           title: Conditions
           actions:
             add: Add
+            create: Create
           no_conditions: "There are not conditions"
           new: 
             title: New Condition
