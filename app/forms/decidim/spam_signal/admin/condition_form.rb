@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Decidim
   module SpamSignal
     module Admin
@@ -45,11 +47,11 @@ module Decidim
         end
 
         def valid_word_format?(str)
-          !!str.match(/\A(?:[\w%.]+(?:\r\n|\r|\n))*[\w%.]+\z/)
+          !!str.match(/^(\s*[\p{L}\d[:punct:]]+(?:\s+[\p{L}\d[:punct:]]+)*\s*)(,\s*[\p{L}\d[:punct:]]+(?:\s+[\p{L}\d[:punct:]]+)*\s*)*$/)
         end
 
         def valid_tlds_format?(str)
-          !!str.match(/\.[\w-]+/)
+          !!str.match(/^(\s*\.[a-zA-Z]+\s*)(,\s*\.[a-zA-Z]+\s*)*$/)
         end
       end
     end
