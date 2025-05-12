@@ -26,7 +26,7 @@ fr:
         spam: Our anti-spam flagged this content.
       forms:
         word_settings_form:
-          stop_list_words_csv: "Suspicious Words. Add one word per line"
+          stop_list_words_csv: "Suspicious Words. Comma-separated"
         allowed_tlds_form:
           allowed_tlds_csv: "Llist of allowed tlds (aka extensions, like `.ch`). Comma seperated"
         forbidden_tlds_form:
