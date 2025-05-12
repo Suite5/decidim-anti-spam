@@ -46,6 +46,13 @@ en:
           title: Conditions
           actions:
             add: Add
+            delete:
+              modal: 
+                title: Delete Condition?
+                content: | 
+                  <p>Deleting it will remove it from the above flows.</p>
+                  <p>Are you sure you want to delete this condition?</p>
+                confirm: "Yes, delete the condition"
           no_conditions: "There are not conditions"
           new: 
             title: New Condition
@@ -61,6 +68,8 @@ en:
             error: "Error"
             format: "Condition format error"
             invalid: "Form invalid"
+          delete:
+            success: "Condition deleted"
         flow:
           title: Flows
           profile_flow:
@@ -99,6 +108,8 @@ en:
           new: 
             title: New Flow
             second_title: "Choose a trigger type"
+          delete:
+            success: "Flow deleted"
       forms:
         valid_actions: 
           empty: "Action settings are empty"

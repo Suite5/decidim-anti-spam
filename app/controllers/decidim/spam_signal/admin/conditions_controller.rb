@@ -59,6 +59,17 @@ module Decidim
           end
         end
 
+        def destroy
+
+          Conditions::DestroyCondition.call(condition) do 
+            on(:ok) do
+              flash[:notice] = I18n.t("delete.success", scope: "decidim.spam_signal.admin.conditions")
+              render :index
+            end
+          end
+          
+        end
+
         private
 
         def condition
