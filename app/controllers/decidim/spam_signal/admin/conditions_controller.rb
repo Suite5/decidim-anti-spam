@@ -75,7 +75,6 @@ module Decidim
         end
 
         def destroy
-
           Conditions::DestroyCondition.call(condition) do 
             on(:ok) do
               flash[:notice] = I18n.t("delete.success", scope: "decidim.spam_signal.admin.conditions")
@@ -103,7 +102,7 @@ module Decidim
           settings = params.dig(:condition, :settings)
           return unless settings
 
-          permitted_settings = settings.permited? ? settings : settings.permit!
+          permitted_settings = settings.permitted? ? settings : settings.permit!
           Decidim::SpamSignal.config.conditions_registry.form_for(condition_type).new(permitted_settings)
         end
                 

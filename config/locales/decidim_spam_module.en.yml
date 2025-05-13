@@ -49,6 +49,7 @@ en:
           title: Conditions
           actions:
             add: Add
+            create: Create
             delete:
               modal: 
                 title: Delete Condition?
