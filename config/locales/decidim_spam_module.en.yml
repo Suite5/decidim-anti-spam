@@ -98,6 +98,7 @@ en:
           no_flows: "There are not flows"
           actions:
             add: Add
+            create: Create
           create:
             success: "Flow created successfully"
             error: "Error creating flow"

@@ -9,18 +9,12 @@ module Decidim
         end
         
         def call
-          return broadcast(:invalid) if invalid?
-
           destroy_flow
 
           broadcast(:ok)
         end
 
         private
-
-        def invalid?
-          flow_condition.size.positive?
-        end
 
         def destroy_flow
           delete_flow_condition

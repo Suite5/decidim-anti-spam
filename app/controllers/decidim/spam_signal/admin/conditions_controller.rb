@@ -27,7 +27,7 @@ module Decidim
             alert: t("decidim.spam_signal.admin.conditions.create.error")
             ) unless available_conditions.include?(condition_type.to_sym)
           
-          @condition_form ||= Decidim::SpamSignal.config.conditions_registry.form_for(condition_type).new          
+          @condition_form ||= Decidim::SpamSignal.config.conditions_registry.form_for(condition_type).new
         end
 
         def create

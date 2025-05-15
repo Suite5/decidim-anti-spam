@@ -20,7 +20,11 @@ module Decidim
             get :pick
           end
         end
-        resources :flows
+        resources :flows do
+          collection do
+            get :pick
+          end
+        end
       end
 
       initializer "decidim_spam_signal.admin_mount_routes" do

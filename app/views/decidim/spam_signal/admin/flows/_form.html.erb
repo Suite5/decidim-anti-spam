@@ -1,9 +1,9 @@
 <div class="flex-start flex-col pb-4 border-b mb-4 gap-y-2">
   <h1 class="h4 font-bold">
-    <%= I18n.t("decidim.spam_signal.admin.flow.#{flow.trigger_type.demodulize.underscore}.title") %></h4>
+    <%= I18n.t("decidim.spam_signal.admin.flow.#{@trigger_type.demodulize.underscore}.title") %></h4>
   </h1>
   <p>
-    <%= I18n.t("decidim.spam_signal.admin.flow.#{flow.trigger_type.demodulize.underscore}.description") %>
+    <%= I18n.t("decidim.spam_signal.admin.flow.#{@trigger_type.demodulize.underscore}.description") %>
   </p>
 </div>
 
@@ -15,18 +15,14 @@
   </div>
 </div>
 
-
-<%= form.fields_for :conditions, builder: Decidim::SpamSignal::SpamSettingsFormBuilder do |condition_form| %>
-  <%= render "decidim/spam_signal/admin/flows/condition_form", flow:, f: condition_form, blank_condition: %>
-  <% if form.object.errors.any? { |error| error.attribute == :conditions } %>
-    <% form.object.errors.full_messages_for(:conditions).each do |message| %>
-      <small class="form-error is-visible">
-        <%= message %>
-      </small>
-    <% end %>
+<%= render "condition_form" %>
+<% if form.object.errors.any? { |error| error.attribute == :conditions } %>
+  <% form.object.errors.full_messages_for(:conditions).each do |message| %>
+    <small class="form-error is-visible">
+      <%= message %>
+    </small>
   <% end %>
 <% end %>
-
 
 <div class="card py-2">
   <div class="row column">
@@ -39,7 +35,7 @@
     <div class="row column">
       <% form.object.action_settings.each do |action_form| %>
         <%= form.fields_for :action_settings, action_form do |field_for_actions| %>
-          <%= render "decidim/spam_signal/admin/flows/action_form", f: field_for_actions %>
+          <%= render "action_form", f: field_for_actions %>
         <% end %>
       <% end %>
     </div>

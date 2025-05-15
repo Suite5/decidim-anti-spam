@@ -4,11 +4,11 @@
   </h1>
 </div>
 <div class="item__edit-form">
-  <%= form_with model: Decidim::SpamSignal::Condition.new, url: conditions_path, html: { class: "form form-defaults" }, method: :post, builder: Decidim::SpamSignal::SpamSettingsFormBuilder do |form| %>
-    <%= render partial: "form", object: form %>
+  <%= form_with model: @form, url: conditions_path, html: { class: "form form-defaults" }, method: :post, builder: Decidim::SpamSignal::SpamSettingsFormBuilder do |f| %>
+    <%= render partial: "form", object: f %>
     <div class="item__edit-sticky">
       <div class="item__edit-sticky-container">
-        <%= form.submit I18n.t("actions.create", scope: "decidim.spam_signal.admin.conditions"), class: "button button__sm button__secondary" %>
+        <%= f.submit I18n.t("actions.create", scope: "decidim.spam_signal.admin.conditions"), class: "button button__sm button__secondary" %>
       </div>
     </div>
   <% end %> 
