@@ -32,20 +32,21 @@ module Decidim
         end
 
         def create
+          @trigger_type = session[:trigger_type]
           actions_form = actions(session[:klass]).map do |action_name|
             Decidim::SpamSignal.config.actions_registry.form_for(action_name).from_params(params.require(:flow).require(:action_settings))
           end
           @form ||= begin
             form = FlowForm.from_params(params.require(:flow))
             form.action_settings = actions_form
-            form.conditions = params.require(:conditions).values.map { |v| ConditionForm.new(id: v["anti_spam_condition_id"]) }
+            form.conditions = conditions_from_params
             form
           end
           
           if form.valid?
             @flow = Decidim::SpamSignal::Flow.create!(
               organization: current_organization, 
-              trigger_type: session[:trigger_type],
+              trigger_type: @trigger_type,
               name: form.name,
               action_settings: form.action_settings
             )
@@ -58,7 +59,7 @@ module Decidim
             redirect_to flows_path(flow), notice: t("decidim.spam_signal.admin.flows.create.success")
           else
             flash.now[:alert] = I18n.t("decidim.spam_signal.admin.flows.create.error")
-            redirect_to action: :edit
+            render :new
           end          
         end
 
@@ -72,22 +73,25 @@ module Decidim
             form.action_settings = actions_form
             form
           end
+          
         end
 
         def update
-          actions_form = actions(session[:trigger_type].constantize).map do |action_name|
+          @flow = flow
+          @trigger_type = session[:trigger_type]
+          actions_form = actions(@trigger_type.constantize).map do |action_name|
             Decidim::SpamSignal.config.actions_registry.form_for(action_name).from_params(params.require(:flow).require(:action_settings))
           end
           @form ||= begin
             form = FlowForm.from_params(params.require(:flow))
             form.action_settings = actions_form
-            form.conditions = params.require(:conditions).values.map { |v| ConditionForm.new(id: v["anti_spam_condition_id"]) }
+            form.conditions = conditions_from_params
             form
           end
           if @form.valid?
             was_new = flow.invalid?
             clear_conditions
-            flow.update!(
+            @flow.update!(
               name: @form.name,
               action_settings: flat_action_settings(@form.action_settings),
             )
@@ -97,10 +101,10 @@ module Decidim
                 anti_spam_flow_id: @flow.id
               )
             end
-            redirect_to flows_path, notice:t("decidim.spam_signal.admin.flows.update.success") 
+            redirect_to flows_path, notice: I18n.t("decidim.spam_signal.admin.flows.update.success") 
           else
             flash.now[:alert] = I18n.t("decidim.spam_signal.admin.flows.update.error")
-            redirect_to action: :edit
+            render :edit
           end
         end
 
@@ -120,6 +124,15 @@ module Decidim
             klass.available_actions.include?(action_name)
           end
           actions_form
+        end
+
+        def conditions_from_params
+          return [] unless params[:conditions].present?
+            
+          params.fetch(:conditions, {}).values.filter_map do |v|
+            id = v["anti_spam_condition_id"]
+            ConditionForm.new(id: id) if id.present?
+          end
         end
 
         def clear_conditions

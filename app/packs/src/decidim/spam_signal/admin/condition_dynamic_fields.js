@@ -18,7 +18,10 @@ const toggleDisabledAddConditionItem = () => {
 };
 
 const autoName = (conditionItemSelector, $field) => {
-  $field.find("select").attr("name", `conditions[${$(conditionItemSelector).length}][anti_spam_condition_id]`)    
+  const $select = $field.find("select.anti-spam-condition")
+  if ($select.length) { 
+    $select.prop("name", `conditions[${$(conditionItemSelector).length}][anti_spam_condition_id]`)
+  }
 }
 
 const createDynamicFieldsForConditions = () => {

@@ -21,6 +21,13 @@
         </div>
       </div>
     </div>
+    <% if @form.errors.any? { |error| error.attribute == :conditions } %>
+      <% @form.errors[:conditions].each do |message| %>
+        <small class="form-error is-visible pl-4">
+          <%= message %>
+        </small>
+      <% end %>
+    <% end %>
     <script type="text/template" id="spam-signal-condition-template" class="decidim-template">
       <%= fields_for :conditions, Decidim::SpamSignal::Admin::FlowConditionForm.new do |field_for_conditions| %>
         <%= render "condition_fields", f: field_for_conditions, available_conditions: %>
