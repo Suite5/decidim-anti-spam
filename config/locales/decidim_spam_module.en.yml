@@ -31,6 +31,8 @@ en:
             three: "Choose a trigger type" 
             four: "Configure conditions and actions" 
             five: "Save your changes"
+        generals:
+          title: General
         condition:
           title: Condition
           forbidden_tlds: 
