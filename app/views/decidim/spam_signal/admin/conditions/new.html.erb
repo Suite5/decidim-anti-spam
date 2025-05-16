@@ -1,10 +1,15 @@
 <div class="item_show__header">
   <h1 class="item_show__header-title">
-    <%= I18n.t("new.title", scope: "decidim.spam_signal.admin.conditions") %> 
+   <%= t("new.title", scope: "decidim.spam_signal.admin.conditions") %> 
   </h1>
 </div>
-
-<div class="condition__content">
-  <h2 class="condition__header-title"><%= I18n.t("new.second_title", scope: "decidim.spam_signal.admin.conditions") %> </h2>
-  <%= render partial: "pick_condition_form", locals: { available_conditions: available_conditions } %>
+<div class="item__edit-form">
+  <%= form_with model: @form, url: conditions_path, html: { class: "form form-defaults" }, method: :post, builder: Decidim::SpamSignal::SpamSettingsFormBuilder do |f| %>
+    <%= render partial: "form", object: f %>
+    <div class="item__edit-sticky">
+      <div class="item__edit-sticky-container">
+        <%= f.submit I18n.t("actions.create", scope: "decidim.spam_signal.admin.conditions"), class: "button button__sm button__secondary" %>
+      </div>
+    </div>
+  <% end %> 
 </div>

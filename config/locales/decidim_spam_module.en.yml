@@ -1,5 +1,8 @@
 en:
   decidim:
+    forms:
+      errors:
+        error: "This field is mandatory."
     spam_signal:
       models:
         condition:
@@ -21,31 +24,41 @@ en:
             three: "Choose a detection type" 
             four: "Configure your condition" 
             five: "Save your changes" 
-          new_flow: "User your condition in a new flow"
+          new_flow: "Use your condition in a new flow"
           new_flow_item:
             one: "Navigate to the Flows tab" 
             two: "Add a new flow" 
             three: "Choose a trigger type" 
             four: "Configure conditions and actions" 
             five: "Save your changes"
+        generals:
+          title: General
         condition:
           title: Condition
           forbidden_tlds: 
-            title: "Forbidden TLDs"
+            title: "Forbidden Top-Level Domains"
             description: "Forbid a list of domain extention, allow all the others."
           allowed_tlds: 
-            title: "Allowed TLDs"
+            title: "Allowed Top-Level Domains"
             description: "Allow a list of domain extension, forbid all the others."
           word: 
             title: "Forbidden Words"
             description: "Forbin a list of words, allow all the others."
-          forbidden_continents:
-            title: "Forbidden Continents"
-            description: "Forbid a list of continents, detected by participant's IP address"
+          official_account:
+            title: "Official Account"
+            description: "Allow official accounts only, forbid all others."
         conditions:
           title: Conditions
           actions:
             add: Add
+            create: Create
+            delete:
+              modal: 
+                title: Delete Condition?
+                content: | 
+                  <p>Deleting it will remove it from the above flows.</p>
+                  <p>Are you sure you want to delete this condition?</p>
+                confirm: "Yes, delete the condition"
           no_conditions: "There are not conditions"
           new: 
             title: New Condition
@@ -61,6 +74,8 @@ en:
             error: "Error"
             format: "Condition format error"
             invalid: "Form invalid"
+          delete:
+            success: "Condition deleted"
         flow:
           title: Flows
           profile_flow:
@@ -85,6 +100,7 @@ en:
           no_flows: "There are not flows"
           actions:
             add: Add
+            create: Create
           create:
             success: "Flow created successfully"
             error: "Error creating flow"
@@ -99,6 +115,8 @@ en:
           new: 
             title: New Flow
             second_title: "Choose a trigger type"
+          delete:
+            success: "Flow deleted"
       forms:
         valid_actions: 
           empty: "Action settings are empty"
@@ -107,11 +125,10 @@ en:
           empty: "Conditions are empty"
           invalid: "Conditions are invalid"
         forbidden_tlds_settings_form:
-          forbidden_tlds_csv: "List of forbidden TLDs (aka extensions like '.finance'). Comma-separated"
+          forbidden_tlds_csv: "List of forbidden Top-Level Domains. Comma-separated"
+          placeholder: ".finance, .porn"
         allowed_tlds_settings_form:
-          allowed_tlds_csv: "List of allowed TLDs. Comma-separated"
-        forbidden_continents_settings_form:
-          forbidden_continents_list: "Forbidden Continents"
+          allowed_tlds_csv: "List of allowed Top-Level Domains. Comma-separated"
         forbid_save_settings_form:
           forbid_save_enabled: "Forbid save resource"
           forbid_save_message: "If enabled, the resource will not be saved if the condition is met"
@@ -121,4 +138,4 @@ en:
           report_user_send_emails_enabled: "Send email"
           report_user_send_email_to: "Send email to"
         word_settings_form:
-          stop_list_words_csv: "Suspicious Words. Add one word per line"
+          stop_list_words_csv: "Suspicious Words. Comma-separated"

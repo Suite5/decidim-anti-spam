@@ -1,12 +1,11 @@
-<%= form_with model: Decidim::SpamSignal::Flow.new, url: flows_path, method: :post do |form| %>
-  <% available_flows.each do |flow_name| %>
-    <button type="submit" name="flow[trigger_type]" value="<%= flow_name %>" class="pick__buttons">
-      <h4 class="pick__buttons-title">
-        <%= I18n.t("decidim.spam_signal.admin.flow.#{flow_name.demodulize.underscore}.title") %>
-      </h4>
-      <p class="pick__buttons-description">
-        <%= I18n.t("decidim.spam_signal.admin.flow.#{flow_name.demodulize.underscore}.description") %>
-      </p>
-    </button>
+<% available_flows.each do |flow_name| %>
+  <%= link_to new_flow_path(trigger_type: flow_name), class: "pick__buttons" do %> 
+    <h4 class="pick__buttons-title">
+      <%= I18n.t("decidim.spam_signal.admin.flow.#{flow_name.demodulize.underscore}.title") %>
+    </h4>
+    <p class="pick__buttons-description">
+      <%= I18n.t("decidim.spam_signal.admin.flow.#{flow_name.demodulize.underscore}.description") %>
+    </p>
+  </button>
   <% end %>
 <% end %>

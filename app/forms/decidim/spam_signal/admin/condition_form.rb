@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Decidim
   module SpamSignal
     module Admin
@@ -14,7 +16,7 @@ module Decidim
         attribute :settings, Decidim::Form
         attribute :condition_type, String
 
-        validate :valid_condition
+        validate :valid_settings
 
         def self.conditional_display
           {}
@@ -22,7 +24,9 @@ module Decidim
       
         private
 
-        def valid_condition
+        def valid_settings
+          return if settings.nil?
+
           errors.add(:settings, I18n.t("update.invalid", scope: "decidim.spam_signal.admin.conditions")) unless settings.valid?
           errors.add(:settings, I18n.t("update.format", scope: "decidim.spam_signal.admin.conditions")) unless valid_format?(settings.attributes)
         end
@@ -43,11 +47,11 @@ module Decidim
         end
 
         def valid_word_format?(str)
-          !!str.match(/\A(?:[\w%.]+(?:\r\n|\r|\n))*[\w%.]+\z/)
+          !!str.match(/^(\s*[\p{L}\d[:punct:]]+(?:\s+[\p{L}\d[:punct:]]+)*\s*)(,\s*[\p{L}\d[:punct:]]+(?:\s+[\p{L}\d[:punct:]]+)*\s*)*$/)
         end
 
         def valid_tlds_format?(str)
-          !!str.match(/\.[\w-]+/)
+          !!str.match(/^(\s*\.[a-zA-Z]+\s*)(,\s*\.[a-zA-Z]+\s*)*$/)
         end
       end
     end

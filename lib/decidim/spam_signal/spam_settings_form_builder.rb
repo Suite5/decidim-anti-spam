@@ -15,7 +15,7 @@ module Decidim
         end
 
         fields = non_localized_fields.map do |name, type|
-          @template.content_tag(:div, input_field(name, type), **field_attributes(name))
+          @template.content_tag(:div, input_field(name, type, **form_metadata), **field_attributes(name))
         end
 
         safe_join(fields)
@@ -23,8 +23,7 @@ module Decidim
 
       def input_field(name, type, **options)
         return hidden_field(name) if name.to_s == "handler_name"
-
-        byebug
+        
         case type
         when :date, :datetime, :time, :"decidim/attributes/localized_date"
           date_field name
@@ -46,8 +45,8 @@ module Decidim
         translated :text_area, name, rows: 3
       end
 
-      def plain_text_input(name, _type, **_options)
-        return text_area name, rows: 5, aria: { label: name } if name.to_s.ends_with? "_csv"
+      def plain_text_input(name, _type, **options)
+        return text_area name, { rows: 5, aria: { label: name } }.merge(options || {}) if name.to_s.ends_with? "_csv"
         return number_field name, aria: { label: name } if name.to_s.starts_with? "num_"
         return check_box name if name.to_s.starts_with?("is_") || name.to_s.ends_with?("enabled")
 
@@ -78,6 +77,10 @@ module Decidim
         object.class.attribute_types.select do |key, _|
           object.form_attributes.include?(key) || object.form_attributes.include?(key.to_sym)
         end
+      end
+
+      def form_metadata
+        object.class.const_defined?(:METADATA) ? object.class::METADATA : {}
       end
     end
   end

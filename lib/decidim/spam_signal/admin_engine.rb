@@ -15,8 +15,16 @@ module Decidim
           resources :profile_cops, only: [:update, :edit, :destroy]
         end
         resources :generals, only: [:index]
-        resources :conditions
-        resources :flows
+        resources :conditions do
+          collection do
+            get :pick
+          end
+        end
+        resources :flows do
+          collection do
+            get :pick
+          end
+        end
       end
 
       initializer "decidim_spam_signal.admin_mount_routes" do

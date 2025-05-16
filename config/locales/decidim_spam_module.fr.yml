@@ -19,6 +19,11 @@ fr:
   decidim:
     account:
       locked: Your account is locked, an email has been sent with unlock instructions
+    forms:
+      errors:
+        condition:
+          name: "This field is mandatory."
+          forbidden_tlds_csv: "This field is mandatory."
     spam_signal:
       spam_signal_justification: |
         Anti-Spam: This content has been hidden. The classification process is automatic, to fill a complaint, use our support email
@@ -26,7 +31,7 @@ fr:
         spam: Our anti-spam flagged this content.
       forms:
         word_settings_form:
-          stop_list_words_csv: "Suspicious Words. Add one word per line"
+          stop_list_words_csv: "Suspicious Words. Comma-separated"
         allowed_tlds_form:
           allowed_tlds_csv: "Llist of allowed tlds (aka extensions, like `.ch`). Comma seperated"
         forbidden_tlds_form:

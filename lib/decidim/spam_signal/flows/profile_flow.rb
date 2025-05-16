@@ -11,6 +11,7 @@ module Decidim
             :allowed_tlds,
             :word,
             :forbidden_continents
+            :official_account
           ]
         end
 
@@ -51,13 +52,6 @@ module Decidim
               self
             end
 
-            ##
-            # Skip the flow if no content to test,
-            # or if the user is updated to be blocked.
-            def skip_antispam?
-              about.blank? || blocked_at_changed?(from: nil) || blocked_changed?(from: false)
-            end
-
             def suspicious_user
               self
             end
@@ -70,6 +64,24 @@ module Decidim
               self.about = self.about_was
               self.personal_url = self.personal_url_was
             end
+
+            ##
+            # Skip the flow if no content to test,
+            # or if the user is updated to be blocked.
+            def skip_antispam?
+              !attributes_changed? || blocked_status_changed? || (personal_url.blank? && about.blank?)
+            end
+            
+            private
+            
+            def attributes_changed?
+              personal_url_changed? || about_changed?
+            end
+            
+            def blocked_status_changed?
+              blocked_at_changed?(from: nil) || blocked_changed?(from: false)
+            end
+            
           end
         end
       end
