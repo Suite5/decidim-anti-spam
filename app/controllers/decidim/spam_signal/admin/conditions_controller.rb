@@ -15,24 +15,39 @@ module Decidim
 
         def index
         end
+
+        def pick
+        end
         
         def new
           @form = form(ConditionForm).instance
-        end
-
-        def condition
-        end
-
-        def create
-          condition_type = params.require(:condition).require(:condition_type)
+          session[:condition_type] = condition_type = params.require(:condition_type)
           return redirect_to(
             new_condition_path, 
             alert: t("decidim.spam_signal.admin.conditions.create.error")
             ) unless available_conditions.include?(condition_type.to_sym)
+          
+          @condition_form ||= Decidim::SpamSignal.config.conditions_registry.form_for(condition_type).new
+        end
 
-          condition = Decidim::SpamSignal::Condition.new(organization: current_organization, condition_type:)
-          condition.save(validate: false)
-          redirect_to edit_condition_path(condition), notice: t("decidim.spam_signal.admin.conditions.create.success")
+        def create
+          @form = begin 
+            form = ConditionForm.from_params(params)
+            form.settings = form_settings(session[:condition_type])
+            form
+          end
+          if @form.valid?
+            @condition = Decidim::SpamSignal::Condition.create!(
+              organization: current_organization,
+              name: @form.name,
+              settings: @form.settings&.attributes,
+              condition_type: session[:condition_type]
+            )
+            redirect_to conditions_path, notice: t("decidim.spam_signal.admin.conditions.create.success")
+          else
+            flash.now[:alert] = form.errors.messages[:settings].first
+            redirect_to action: :edit
+          end
         end
 
         def edit
@@ -43,7 +58,7 @@ module Decidim
         def update
           @form = begin 
             form = ConditionForm.from_params(params)
-            form.settings = form_settings
+            form.settings = form_settings(condition.condition_type)
             form
           end
           @condition_form = form.settings
@@ -52,15 +67,14 @@ module Decidim
               name: @form.name,
               settings: @form.settings&.attributes
             )
-            return redirect_to edit_condition_path(condition), notice: I18n.t("decidim.spam_signal.admin.conditions.update.success")
+            redirect_to conditions_path, notice: I18n.t("decidim.spam_signal.admin.conditions.update.success")
           else
             flash.now[:alert] = form.errors.messages[:settings].first
-            render :edit
+            redirect_to action: :edit
           end
         end
 
         def destroy
-
           Conditions::DestroyCondition.call(condition) do 
             on(:ok) do
               flash[:notice] = I18n.t("delete.success", scope: "decidim.spam_signal.admin.conditions")
@@ -84,9 +98,12 @@ module Decidim
           @conditions ||= Decidim::SpamSignal::Condition.where(organization: current_organization)
         end
 
-        def form_settings
-          settings = params[:condition] ? params[:condition][:settings] : nil
-          Decidim::SpamSignal.config.conditions_registry.form_for(condition.condition_type).new(settings) unless settings.nil?
+        def form_settings(condition_type)
+          settings = params.dig(:condition, :settings)
+          return unless settings
+
+          permitted_settings = settings.permitted? ? settings : settings.permit!
+          Decidim::SpamSignal.config.conditions_registry.form_for(condition_type).new(permitted_settings)
         end
                 
       end
