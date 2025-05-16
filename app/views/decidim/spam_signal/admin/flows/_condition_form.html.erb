@@ -1,37 +1,48 @@
-<div class=form__wrapper pb-6>
-  <div id="spam-signal-conditions" data-conditions-max-length="<%= available_conditions.size %>" data-template="#spam-signal-condition-template">
-    <div class="card flex justify-between py-2 px-4">
-      <h4 class="h4"><%= I18n.t("title", scope: "decidim.spam_signal.admin.conditions") %></h4>
-      <button class="button button__sm button__secondary add-condition-item"><%= I18n.t("add_condition_item", scope: "decidim.spam_signal.admin.flows.condition_form") %></button>
-    </div>
-    <div class="form_wrapper card">
-      <div class="spam-signal-flow-conditions-items-list">
-        <div class="spam-signal-flow-conditions-childs">
-        <% if @form.conditions %>
-          <% @form.conditions.each_with_index do | flow_condition, index | %>
-            <%= fields_for :"conditions[#{index}]", flow_condition do |field_for_conditions| %>
-              <%= render "condition_fields", f: field_for_conditions, flow_condition: flow_condition, available_conditions: %>
+<div class="form__wrapper pb-6">
+  <div class="" id="spam-signal-conditions" data-conditions-max-length="<%= available_conditions.size %>" data-template="#spam-signal-condition-template">
+    <div class="card" data-component="accordion" id="accordion-condition">
+      <div class="card-divider">
+        <div class="relative flex justify-between items-center w-full">
+          <div class= "card-divider-button pb-4" data-open="true" data-controls="panel-condition" type="button">
+            <%= icon "arrow-right-s-line" %>
+            <h2 class="h2 card-title">
+              <%= I18n.t("title", scope: "decidim.spam_signal.admin.conditions") %>
+            </h2>
+          </div>
+          <button class="absolute right-0 top-0 mb-4 button button__sm button__secondary whitespace-nowrap pb-2 add-condition-item"><%= I18n.t("add_condition_item", scope: "decidim.spam_signal.admin.flows.condition_form") %></button>
+        </div>
+        <div id="panel-condition" class="card-section">
+          <div class="form_wrapper card">
+            <div class="spam-signal-flow-conditions-items-list">
+              <div class="spam-signal-flow-conditions-childs">
+              <% if @form.conditions %>
+                <% @form.conditions.each_with_index do | flow_condition, index | %>
+                  <%= fields_for :"conditions[#{index}]", flow_condition do |field_for_conditions| %>
+                    <%= render "condition_fields", f: field_for_conditions, flow_condition: flow_condition, available_conditions: %>
+                  <% end %>
+                <% end %>      
+              <% else %>
+                <%= fields_for :conditions, Decidim::SpamSignal::Admin::FlowConditionForm.new do |field_for_conditions| %>
+                  <%= render "condition_fields", f: field_for_conditions, available_conditions: %>
+                <% end %>
+              <% end %>  
+              </div>
+            </div>
+          </div>
+          <% if @form.errors.any? { |error| error.attribute == :conditions } %>
+            <% @form.errors[:conditions].each do |message| %>
+              <small class="form-error is-visible pl-4">
+                <%= message %>
+              </small>
             <% end %>
-          <% end %>      
-        <% else %>
-          <%= fields_for :conditions, Decidim::SpamSignal::Admin::FlowConditionForm.new do |field_for_conditions| %>
-            <%= render "condition_fields", f: field_for_conditions, available_conditions: %>
           <% end %>
-        <% end %>  
+          <script type="text/template" id="spam-signal-condition-template" class="decidim-template">
+            <%= fields_for :conditions, Decidim::SpamSignal::Admin::FlowConditionForm.new do |field_for_conditions| %>
+              <%= render "condition_fields", f: field_for_conditions, available_conditions: %>
+            <% end %>
+          </script>
         </div>
       </div>
     </div>
-    <% if @form.errors.any? { |error| error.attribute == :conditions } %>
-      <% @form.errors[:conditions].each do |message| %>
-        <small class="form-error is-visible pl-4">
-          <%= message %>
-        </small>
-      <% end %>
-    <% end %>
-    <script type="text/template" id="spam-signal-condition-template" class="decidim-template">
-      <%= fields_for :conditions, Decidim::SpamSignal::Admin::FlowConditionForm.new do |field_for_conditions| %>
-        <%= render "condition_fields", f: field_for_conditions, available_conditions: %>
-      <% end %>
-    </script>
   </div>
 </div>
