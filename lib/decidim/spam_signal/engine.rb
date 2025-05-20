@@ -23,6 +23,9 @@ module Decidim
         Decidim::UpdateAccount.prepend(
           Decidim::UpdateAccountOverrides
         )
+        Decidim::ApplicationController.include(
+          Decidim::ApplicationControllerOverrides
+        )
       end
 
       initializer "decidim_spam_signal.webpacker.assets_path" do
