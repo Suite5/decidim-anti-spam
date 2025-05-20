@@ -1,4 +1,11 @@
 en:
+  activemodel:
+    errors:
+      models:
+        report_user_settings:
+          attributes:
+            report_user_send_email_to:
+              must_be_admin: "Must be an existing admin email"
   decidim:
     forms:
       errors:

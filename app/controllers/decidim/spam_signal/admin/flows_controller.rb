@@ -22,7 +22,9 @@ module Decidim
           @trigger_type = params.require(:trigger_type)
           klass = @trigger_type.constantize
           actions_form = actions(klass).map do |action_name|
-            Decidim::SpamSignal.config.actions_registry.form_for(action_name).new
+            Decidim::SpamSignal.config.actions_registry.form_for(action_name).with_context(
+              handler_name: @trigger_type
+            ).new
           end
           @form ||= begin
             form = form(FlowForm).instance
@@ -36,6 +38,8 @@ module Decidim
           actions_form = actions(@trigger_type.constantize).map do |action_name|
             Decidim::SpamSignal.config.actions_registry.form_for(action_name).from_params(
               {}.merge(*flow.action_settings)
+            ).with_context(
+              handler_name: @trigger_type
             )
           end
           @form ||= begin
@@ -49,7 +53,9 @@ module Decidim
           @trigger_type = params.require(:trigger_type)
           klass = @trigger_type.constantize
           actions_form = actions(klass).map do |action_name|
-            Decidim::SpamSignal.config.actions_registry.form_for(action_name).from_params(params.require(:flow).require(:action_settings))
+            Decidim::SpamSignal.config.actions_registry.form_for(action_name).from_params(params.require(:flow).require(:action_settings)).with_context(
+              handler_name: @trigger_type
+            )
           end
           @form ||= begin
             form = FlowForm.from_params(params.require(:flow))
@@ -82,7 +88,9 @@ module Decidim
           @flow = flow
           @trigger_type = params.require(:trigger_type)
           actions_form = actions(@trigger_type.constantize).map do |action_name|
-            Decidim::SpamSignal.config.actions_registry.form_for(action_name).from_params(params.require(:flow).require(:action_settings))
+            Decidim::SpamSignal.config.actions_registry.form_for(action_name).from_params(params.require(:flow).require(:action_settings)).with_context(
+              handler_name: @trigger_type
+            )
           end
           @form ||= begin
             form = FlowForm.from_params(params.require(:flow))
