@@ -26,7 +26,9 @@ module Decidim
           context.handler_name
         end
 
+        # if the there's OPTIONS defined, they will be the label
         def self.human_attribute_name(attr)
+          return super if self.class.const_defined?(:OPTIONS)
           I18n.t("decidim.spam_signal.forms.#{name.demodulize.underscore}.#{attr}")
         end
 

@@ -84,6 +84,11 @@ module Decidim
             Decidim::SpamSignal::NoSettingsForm,
             Decidim::SpamSignal::Conditions::OfficialAccountCommand
           )
+          config.conditions_registry.register(
+            :forbidden_continents,
+            Decidim::SpamSignal::Conditions::ForbiddenContinentsSettingsForm,
+            Decidim::SpamSignal::Conditions::ForbiddenContinentsCommand
+          )
           config.actions_registry.register(
             :forbid_save,
             Decidim::SpamSignal::Actions::ForbidSaveSettingsForm,

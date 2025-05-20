@@ -5,17 +5,20 @@ module Decidim
     module Conditions
       class ForbiddenContinentsSettingsForm < Decidim::Form
         include Decidim::SpamSignal::SettingsForm
-        attribute :is_forbidden_continents_list, Array[String]
-        validates :is_forbidden_continents_list, presence: true
 
-        validate :validate_forbidden_continents
+        attr_reader :forbidden_continents_list
 
-        def validate_forbidden_continents
-          allowed_continents = %w[europe north_america south_america asia africa oceania antarctica]
-          invalid_values = is_forbidden_continents_list - allowed_continents
-          if invalid_values.any?
-            errors.add(:is_forbidden_continents_list, "contains invalid continents: #{invalid_values.join(', ')}")
-          end
+        OPTIONS = %w[europe north_america south_america asia africa oceania antarctica].freeze
+
+        attribute :forbidden_continents_list, Array[String], default: []
+
+        def forbidden_continents_list=(value)
+          cleaned = Array(value).map(&:to_s).reject(&:blank?)
+          super(cleaned)
+        end
+
+        def continents
+          self.class::OPTIONS
         end
         
       end

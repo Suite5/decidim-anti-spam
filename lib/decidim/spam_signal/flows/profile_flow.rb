@@ -10,8 +10,8 @@ module Decidim
             :forbidden_tlds,
             :allowed_tlds,
             :word,
+            :official_account,
             :forbidden_continents
-            :official_account
           ]
         end
 

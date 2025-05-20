@@ -5,15 +5,14 @@ module Decidim
     module Conditions
       class ForbiddenContinentsCommand < ConditionHandler
         def call
-          return broadcast(:invalid) if continent?
+          return broadcast(:invalid) if forbidden_continent?(continent)
 
           broadcast(:valid)
         end
 
         private
 
-        def continent?
-          byebug
+        def forbidden_continent?(continent)
           true
         end
 

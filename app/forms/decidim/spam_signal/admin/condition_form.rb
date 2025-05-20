@@ -26,7 +26,6 @@ module Decidim
 
         def valid_settings
           return if settings.nil?
-
           errors.add(:settings, I18n.t("update.invalid", scope: "decidim.spam_signal.admin.conditions")) unless settings.valid?
           errors.add(:settings, I18n.t("update.format", scope: "decidim.spam_signal.admin.conditions")) unless valid_format?(settings.attributes)
         end
@@ -36,14 +35,15 @@ module Decidim
           str = settings_attributes.values.last
 
           case settings_attributes.keys.last
-          when  "stop_list_words_csv"
+          when "stop_list_words_csv"
             valid_word_format?(str)
           when "forbidden_tlds_csv"
             valid_tlds_format?(str)
           when "allowed_tlds_csv"
             valid_tlds_format?(str)
+          else
+            true
           end
-
         end
 
         def valid_word_format?(str)
