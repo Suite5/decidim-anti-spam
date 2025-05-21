@@ -8,19 +8,18 @@ module Decidim
 
         attr_reader :forbidden_continents_list
 
-        OPTIONS = %w[europe north_america south_america asia africa oceania antarctica].freeze
+        OPTIONS = %w(europe north_america south_america asia africa oceania antarctica).freeze
 
-        attribute :forbidden_continents_list, Array[String], default: []
+        attribute :forbidden_continents_list, [String], default: []
 
         def forbidden_continents_list=(value)
-          cleaned = Array(value).map(&:to_s).reject(&:blank?)
+          cleaned = Array(value).map(&:to_s).compact_blank
           super(cleaned)
         end
 
         def continents
           self.class::OPTIONS
         end
-        
       end
     end
   end
