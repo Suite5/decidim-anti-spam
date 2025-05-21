@@ -5,7 +5,6 @@ module Decidim
     module Conditions
       class ForbiddenContinentsCommand < ConditionHandler
         def call
-          byebug
           return broadcast(:invalid) if forbidden_continent?
 
           broadcast(:valid)
@@ -20,7 +19,7 @@ module Decidim
         def forbidden_continents_list
           @config["forbidden_continents_list"]
         end
-      end
+      end 
     end
   end
 end
