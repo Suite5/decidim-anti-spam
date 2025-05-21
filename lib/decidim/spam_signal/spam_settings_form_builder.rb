@@ -3,9 +3,9 @@
 module Decidim
   module SpamSignal
     class SpamSettingsFormBuilder < Decidim::FormBuilder
+
       def all_fields
         available_locales = Decidim.available_locales
-
         non_localized_fields = public_attributes.reject do |key, _|
           localized_ref_present = available_locales.any? do |locale|
             key_without_locale = key.sub("_#{locale}", "")
@@ -23,7 +23,6 @@ module Decidim
 
       def input_field(name, type, **options)
         return hidden_field(name) if name.to_s == "handler_name"
-
         case type
         when :date, :datetime, :time, :"decidim/attributes/localized_date"
           date_field name
@@ -31,6 +30,8 @@ module Decidim
           number_field name
         when :hash
           translated_input(name, type, **options)
+        when :array
+          collection_check_boxes_input(name, type, **options)
         else
           plain_text_input(name, type, **options)
         end
@@ -44,12 +45,29 @@ module Decidim
         translated :text_area, name, rows: 3
       end
 
-      def plain_text_input(name, _type, **options)
+      def plain_text_input(name, type, **options)
         return text_area name, { rows: 5, aria: { label: name } }.merge(options || {}) if name.to_s.ends_with? "_csv"
         return number_field name, aria: { label: name } if name.to_s.starts_with? "num_"
         return check_box name if name.to_s.starts_with?("is_") || name.to_s.ends_with?("enabled")
 
         text_field name
+      end
+
+      def collection_check_boxes_input(name, _type, **_options)
+        value_method, text_method =
+          if form_options.all? { |el| el.is_a?(String) }
+            [:to_s, :humanize]
+          else
+            [:first, :last]
+          end
+
+        collection_check_boxes name, form_options, value_method, text_method do |b|
+          content_tag(:div, b.check_box(checked: attribute_included?(name, b.value)) + b.text)
+        end
+      end
+
+      def attribute_included?(name, value)
+        @object.attributes[name].include?(value)
       end
 
       def public_attributes
@@ -81,6 +99,10 @@ module Decidim
 
       def form_metadata
         object.class.const_defined?(:METADATA) ? object.class::METADATA : {}
+      end
+
+      def form_options
+        object.class.const_defined?(:OPTIONS) ? object.class::OPTIONS : []
       end
     end
   end

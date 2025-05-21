@@ -19,15 +19,15 @@ module Decidim
 
         def new
           @form = form(ConditionForm).instance
-          session[:condition_type] = condition_type = params.require(:condition_type)
-          unless available_conditions.include?(condition_type.to_sym)
+          @condition_type = params.require(:condition_type)
+          unless available_conditions.include?(@condition_type.to_sym)
             return redirect_to(
               new_condition_path,
               alert: t("decidim.spam_signal.admin.conditions.create.error")
             )
           end
 
-          @condition_form ||= Decidim::SpamSignal.config.conditions_registry.form_for(condition_type).new
+          @condition_form ||= Decidim::SpamSignal.config.conditions_registry.form_for(@condition_type).new
         end
 
         def edit
@@ -36,9 +36,10 @@ module Decidim
         end
 
         def create
+          @condition_type = params.require(:condition_type)
           @form = begin
             form = ConditionForm.from_params(params)
-            form.settings = form_settings(session[:condition_type])
+            form.settings = form_settings(@condition_type)
             form
           end
           if @form.valid?
@@ -46,12 +47,12 @@ module Decidim
               organization: current_organization,
               name: @form.name,
               settings: @form.settings&.attributes,
-              condition_type: session[:condition_type]
+              condition_type: @condition_type
             )
             redirect_to conditions_path, notice: t(".success")
           else
-            flash.now[:alert] = form.errors.messages[:settings].first
-            redirect_to action: :edit
+            flash.now[:alert] = I18n.t("decidim.spam_signal.admin.conditions.create.error")
+            render :new
           end
         end
 

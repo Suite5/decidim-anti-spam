@@ -23,6 +23,9 @@ module Decidim
         Decidim::Comments::CommentsController.include(
           Decidim::SpamSignal::Overrides::CommentControllerOverrides
         )
+        Decidim::ApplicationController.include(
+          Decidim::ApplicationControllerOverrides
+        )
       end
 
       initializer "decidim_spam_signal.webpacker.assets_path" do
@@ -83,6 +86,11 @@ module Decidim
             :official_account,
             Decidim::SpamSignal::NoSettingsForm,
             Decidim::SpamSignal::Conditions::OfficialAccountCommand
+          )
+          config.conditions_registry.register(
+            :forbidden_continents,
+            Decidim::SpamSignal::Conditions::ForbiddenContinentsSettingsForm,
+            Decidim::SpamSignal::Conditions::ForbiddenContinentsCommand
           )
           config.actions_registry.register(
             :forbid_save,

@@ -54,6 +54,9 @@ en:
           official_account:
             title: "Official Account"
             description: "Allow official accounts only, forbid all others."
+          forbidden_continents:
+            title: "Forbidden Continents"
+            description: "Forbid a list of continents, detected by participant's IP address"
         conditions:
           title: Conditions
           actions:

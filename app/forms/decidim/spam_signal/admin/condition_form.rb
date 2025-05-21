@@ -26,7 +26,6 @@ module Decidim
 
         def valid_settings
           return if settings.nil?
-
           errors.add(:settings, I18n.t("update.invalid", scope: "decidim.spam_signal.admin.conditions")) unless settings.valid?
           errors.add(:settings, I18n.t("update.format", scope: "decidim.spam_signal.admin.conditions")) unless valid_format?(settings.attributes)
         end
@@ -39,6 +38,8 @@ module Decidim
             valid_word_format?(str)
           when "forbidden_tlds_csv", "allowed_tlds_csv"
             valid_tlds_format?(str)
+          else
+            true
           end
         end
 
