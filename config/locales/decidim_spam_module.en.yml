@@ -60,6 +60,9 @@ en:
           forbidden_countries:
             title: "Forbidden Countries"
             description: "Forbid a list of countries, detected by participant's IP address"
+          allowed_countries:
+            title: "Allowed Countries"
+            description: "Allow a list of countries, detected by participant's IP address"
         conditions:
           title: Conditions
           actions:
