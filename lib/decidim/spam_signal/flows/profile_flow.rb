@@ -11,7 +11,8 @@ module Decidim
             :allowed_tlds,
             :word,
             :official_account,
-            :forbidden_continents
+            :forbidden_continents,
+            :forbidden_countries
           ]
         end
 
