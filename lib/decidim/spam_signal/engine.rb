@@ -17,6 +17,9 @@ module Decidim
         Decidim::Comments::CommentForm.include(
           Decidim::SpamSignal::Flows::CommentFlow::CommentValidationFormOverrides
         )
+        Decidim::Meetings::MeetingForm.include(
+          Decidim::SpamSignal::Flows::MeetingFlow::MeetingValidationFormOverrides
+        )
         Decidim::Comments::CommentsController.include(
           Decidim::SpamSignal::Overrides::CommentControllerOverrides
         )
