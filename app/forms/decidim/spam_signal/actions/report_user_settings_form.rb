@@ -13,6 +13,7 @@ module Decidim
         attribute :report_user_send_email_to, String
         validate :email_present_if_enabled
         validate :email_must_be_admin
+        validate :user_justification_present_if_enabled
 
         add_conditional_display(:report_user_justification, :report_user_enabled)
         add_conditional_display(:report_user_send_email_to, :report_user_send_emails_enabled)
@@ -27,6 +28,14 @@ module Decidim
           return if !report_user_send_emails_enabled || report_user_send_email_to.blank?
 
           errors.add(:report_user_send_email_to, :must_be_admin) unless Decidim::User.find_by(admin: true, email: report_user_send_email_to)
+        end
+
+        def user_justification_present_if_enabled
+          return unless report_user_enabled
+
+          report_user_justification.each do |key, val|
+            errors.add(:"report_user_justification_#{key}", :blank) if val.blank?
+          end
         end
       end
     end
