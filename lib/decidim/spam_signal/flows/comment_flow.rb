@@ -23,7 +23,6 @@ module Decidim
         config_accessor(:available_actions) do
           [
             :report,
-            :block,
             :forbid_save
           ]
         end
@@ -43,11 +42,11 @@ module Decidim
             delegate :current_organization, to: :context
 
             def suspicious_user
-              context.author
+              context.current_user
             end
 
-            def spam_error_key
-              :body
+            def spam_error_keys
+              [:body]
             end
 
             def reportable_content
@@ -55,15 +54,11 @@ module Decidim
             end
 
             def content_for_antispam
-              @content_for_antispam ||= Extractors::CommentExtractor.extract(self, spam_config)
+              @content_for_antispam ||= Extractors::CommentExtractor.extract(self)
             end
 
             def skip_antispam?
               body.empty?
-            end
-
-            def resource_spam_config
-              @resource_spam_config ||= spam_config.comments
             end
           end
         end

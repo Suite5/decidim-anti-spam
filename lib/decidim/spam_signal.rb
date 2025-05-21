@@ -19,9 +19,7 @@ require_relative "spam_signal/extractors/comment_extractor"
 require_relative "spam_signal/extractors/profile_extractor"
 
 require_relative "spam_signal/configuration"
-
-require_relative "overrides/account_controller_overrides"
-require_relative "overrides/update_account_overrides"
+require_relative "spam_signal/overrides/comment_controller_overrides"
 
 require_relative "overrides/application_controller_overrides"
 
