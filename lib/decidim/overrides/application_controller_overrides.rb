@@ -11,11 +11,11 @@ module Decidim
       private
 
       def set_current_continent
-        Current.continent = request.headers["X-Continent"]
+        Current.continent = request.headers["x-continent"]
       end
 
       def set_current_country
-        Current.country = request.headers["X-COUNTRY"]
+        Current.country = request.headers["x-country"]
       end
     end
   end
