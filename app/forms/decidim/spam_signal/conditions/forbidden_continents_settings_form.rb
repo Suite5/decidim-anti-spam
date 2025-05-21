@@ -8,7 +8,15 @@ module Decidim
 
         attr_reader :forbidden_continents_list
 
-        OPTIONS = %w(europe north_america south_america asia africa oceania antarctica).freeze
+        OPTIONS = [
+          ["AF", "Africa"],
+          ["AN", "Antarctica"],
+          ["AS", "Asia"],
+          ["EU", "Europe"],
+          ["NA", "North America"],
+          ["OC", "Oceania"],
+          ["SA", "South America"]
+        ].freeze
 
         attribute :forbidden_continents_list, [String], default: []
 
