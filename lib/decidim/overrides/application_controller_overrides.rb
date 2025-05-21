@@ -5,7 +5,7 @@ module Decidim
   module ApplicationControllerOverrides
     extend ActiveSupport::Concern
 
-    included do 
+    included do
       before_action :set_current_continent, :set_current_country
 
       private

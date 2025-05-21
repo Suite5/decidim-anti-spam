@@ -7,7 +7,6 @@ module Decidim
         def call
           unless suspicious_user.access_locked?
             hide_comment! if config["hide_comments_enabled"]
-            report_user! if config["report_user_user_enabled"]
             lock!
           end
           broadcast(config["forbid_creation_enabled"] ? :restore_value : :save)

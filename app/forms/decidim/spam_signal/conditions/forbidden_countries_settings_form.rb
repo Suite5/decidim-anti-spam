@@ -8,10 +8,10 @@ module Decidim
 
         attr_reader :forbidden_countries_list
 
-        attribute :forbidden_countries_list, Array[String], default: []
+        attribute :forbidden_countries_list, [String], default: []
 
         def forbidden_countries_list=(value)
-          cleaned = Array(value).map(&:to_s).reject(&:blank?)
+          cleaned = Array(value).map(&:to_s).compact_blank
           super(cleaned)
         end
 
@@ -270,7 +270,6 @@ module Decidim
           ["zm", "Zambia"],
           ["zw", "Zimbabwe"]
         ].freeze
-        
       end
     end
   end

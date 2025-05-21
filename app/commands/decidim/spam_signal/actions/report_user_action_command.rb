@@ -18,7 +18,10 @@ module Decidim
         end
 
         def justification
-          @justification ||= config["report_user_justification_#{current_locale}"]
+          @justification ||= begin
+            user_defined = config["report_user_justification_#{current_locale}"]
+            (user_defined.presence || I18n.t("decidim.spam_signal.report.default_justification"))
+          end
         end
 
         def report_user!
@@ -34,12 +37,14 @@ module Decidim
                        end
           is_new = moderation.report_count.zero?
           moderation.update(report_count: moderation.report_count + 1)
+          return if Decidim::UserReport.exists?(moderation:, reason: "spam")
+
           user_report = if is_user_reported
                           Decidim::UserReport.find_or_create_by!(moderation:) do |new_report|
                             new_report.moderation = moderation
                             new_report.user = admin_reporter
                             new_report.reason = "spam"
-                            new_report.details = "#{now_tag}#{justification}"
+                            new_report.details = "#{now_tag} #{justification}"
                           end
                         else
                           Decidim::Report.find_or_create_by!(moderation:) do |new_report|
