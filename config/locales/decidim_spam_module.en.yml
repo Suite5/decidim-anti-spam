@@ -162,6 +162,7 @@ en:
           placeholder: ".finance, .porn"
         allowed_tlds_settings_form:
           allowed_tlds_csv: "List of allowed Top-Level Domains. Comma-separated"
+          placeholder: ".com, .eu"
         forbid_save_settings_form:
           forbid_save_enabled: "Forbid save resource"
           forbid_save_message: "If enabled, the resource will not be saved if the condition is met"
