@@ -81,7 +81,7 @@ module Decidim
       end
 
       def field_attributes(attribute_name)
-        return { class: "field field--antispam field--#{attribute_name}" } unless conditional_display.has_key?(attribute_name.to_s)
+        return { class: "field field--antispam field--#{attribute_name} overflow-auto max-h-64" } unless conditional_display.has_key?(attribute_name.to_s)
 
         {
           data: {

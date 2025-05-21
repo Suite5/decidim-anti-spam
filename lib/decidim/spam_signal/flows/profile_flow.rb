@@ -12,7 +12,8 @@ module Decidim
             :word,
             :official_account,
             :forbidden_continents,
-            :forbidden_countries
+            :forbidden_countries,
+            :allowed_countries
           ]
         end
 
