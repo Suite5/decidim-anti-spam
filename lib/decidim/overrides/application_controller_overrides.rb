@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This module 
+# This module
 module Decidim
   module ApplicationControllerOverrides
     extend ActiveSupport::Concern

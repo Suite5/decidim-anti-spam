@@ -19,7 +19,7 @@ module Decidim
         def forbidden_continents_list
           @config["forbidden_continents_list"]
         end
-      end 
+      end
     end
   end
 end

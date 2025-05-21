@@ -14,11 +14,13 @@ require_relative "spam_signal/flows/flow_validator"
 require_relative "spam_signal/flows/comment_flow"
 require_relative "spam_signal/flows/profile_flow"
 require_relative "spam_signal/flows/meeting_flow"
+require_relative "spam_signal/flows/proposal_flow"
 
 require_relative "spam_signal/extractors/extractor"
 require_relative "spam_signal/extractors/comment_extractor"
 require_relative "spam_signal/extractors/profile_extractor"
 require_relative "spam_signal/extractors/meeting_extractor"
+require_relative "spam_signal/extractors/proposal_extractor"
 
 require_relative "spam_signal/configuration"
 require_relative "spam_signal/overrides/comment_controller_overrides"
