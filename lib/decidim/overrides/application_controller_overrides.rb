@@ -11,7 +11,7 @@ module Decidim
       private
 
       def set_current_continent
-        Current.continent = request.headers["X-Continent"] = "europe"
+        Current.continent = request.headers["X-Continent"]
       end  
     end
   end

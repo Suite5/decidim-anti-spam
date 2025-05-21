@@ -54,7 +54,14 @@ module Decidim
       end
 
       def collection_check_boxes_input(name, _type, **_options)
-        collection_check_boxes name, form_options, :to_s, :humanize do |b|
+        value_method, text_method =
+          if form_options.all? { |el| el.is_a?(String) }
+            [:to_s, :humanize]
+          else
+            [:first, :last]
+          end
+
+        collection_check_boxes name, form_options, value_method, text_method do |b|
           content_tag(:div, b.check_box(checked: attribute_included?(name, b.value)) + b.text)
         end
       end
