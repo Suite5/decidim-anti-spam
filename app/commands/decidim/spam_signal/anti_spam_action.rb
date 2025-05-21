@@ -3,7 +3,7 @@
 module Decidim
   module SpamSignal
     class AntiSpamAction < Decidim::Command
-      attr_reader :flow, :active_conditions, :errors, :suspicious_user, :suspicious_content, :error_keys
+      attr_reader :flow, :active_conditions, :errors, :current_organization, :suspicious_user, :suspicious_content, :error_keys
 
       def initialize(flow, options)
         @flow = flow
@@ -12,6 +12,7 @@ module Decidim
         @suspicious_content = options[:suspicious_content]
         @active_conditions = options[:active_conditions]
         @error_keys = options[:error_keys]
+        @current_organization = options[:current_organization]
       end
 
       def call
@@ -24,6 +25,7 @@ module Decidim
             errors:,
             suspicious_user:,
             error_keys:,
+            current_organization:,
             # Merge all the actions settings in one hash
             **{}.merge(*flow.action_settings)
           )

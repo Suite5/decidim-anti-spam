@@ -11,7 +11,8 @@ module Decidim
           Decidim::SpamSignal::Flows::CommentFlow,
           Decidim::SpamSignal::Flows::ProfileFlow,
           Decidim::SpamSignal::Flows::MeetingFlow,
-          Decidim::SpamSignal::Flows::ProposalFlow
+          Decidim::SpamSignal::Flows::ProposalFlow,
+          Decidim::SpamSignal::Flows::AuthenticationFlow
         ]
       end
     end

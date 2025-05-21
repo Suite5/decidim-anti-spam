@@ -15,10 +15,10 @@ module Decidim
           @error_keys = options[:error_keys]
           @reportable = options[:reportable] || suspicious_user
           @suspicious_user = suspicious_user
-          @current_organization = suspicious_user.organization
+          @current_organization = options[:current_organization] || suspicious_user.organization
 
           @justification = options[:justification]
-          @admin_reporter = options[:admin_reporter] || AntiSpamUser.get(suspicious_user.organization)
+          @admin_reporter = options[:admin_reporter] || AntiSpamUser.get(@current_organization)
           @config = options
         end
 

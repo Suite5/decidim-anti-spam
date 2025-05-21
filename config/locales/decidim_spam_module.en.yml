@@ -106,9 +106,9 @@ en:
           comment_flow:
             title: "Creating or updating a Comment"
             description: "Triggers when a Comment gets created or updated"
-          sign_up_flow:
-            title: "Sign up"
-            description: "Sign up description"
+          authentication_flow:
+            title: "Signup and Signin"
+            description: "Triggers when a visitor access the plateform"
         flows:
           form:
             conditions: "Conditions"
@@ -146,6 +146,9 @@ en:
         valid_conditions: 
           empty: "Conditions are empty"
           invalid: "Conditions are invalid"
+        hide_settings_form:
+          hide_enabled: "Replace login and signup by a message"
+          hide_message: "If enabled, login and signup will be replaced by a message"
         forbidden_tlds_settings_form:
           forbidden_tlds_csv: "List of forbidden Top-Level Domains. Comma-separated"
           placeholder: ".finance, .porn"
