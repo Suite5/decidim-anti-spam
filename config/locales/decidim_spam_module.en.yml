@@ -20,6 +20,11 @@ en:
           fields:
             name: Name
             trigger_type: "Trigger"
+      devise:
+        forbidden_page:
+          title: "Forbidden"
+          default_message: "You are not allowed to access this platform"
+          back_home: "Go home"
       admin:
         general:
           title: General
