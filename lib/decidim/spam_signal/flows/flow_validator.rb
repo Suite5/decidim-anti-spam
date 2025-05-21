@@ -28,6 +28,7 @@ module Decidim
                 active_conditions:,
                 errors:,
                 suspicious_user:,
+                current_organization:,
                 suspicious_content: content_for_antispam,
                 error_keys: spam_error_keys
               )

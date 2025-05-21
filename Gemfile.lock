@@ -6,7 +6,7 @@ PATH
       decidim-comments (>= 0.26, < 0.30)
       decidim-core (>= 0.26, < 0.30)
       decidim-forms (>= 0.26, < 0.30)
-      deface (~> 1.8)
+      deface (~> 1.9)
 
 GEM
   remote: https://rubygems.org/

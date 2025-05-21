@@ -1,5 +1,5 @@
 (function() {
-  const errorLabel = $("#new_comment_for_Comment_<%= @form.commentable.id %> .form-error")
+  const errorLabel = $("#new_comment_for_<%= @form.commentable.class.name.demodulize %>_<%= @form.commentable.id %> .form-error")
   errorLabel.html("<%= @form.errors.messages.values.join(", ") %>");
   errorLabel.addClass("is-visible");
 })();

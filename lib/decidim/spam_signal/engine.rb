@@ -120,6 +120,11 @@ module Decidim
             Decidim::SpamSignal::Actions::ReportUserSettingsForm,
             Decidim::SpamSignal::Actions::ReportUserActionCommand
           )
+          config.actions_registry.register(
+            :hide,
+            Decidim::SpamSignal::Actions::HideSettingsForm,
+            Decidim::SpamSignal::Actions::HideActionCommand
+          )
         end
       end
     end
