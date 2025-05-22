@@ -10,13 +10,12 @@
       <%= f.select :anti_spam_condition_id, 
                    available_conditions.collect { |c| ["#{c.name} (#{c.condition_type})", c.id] }, 
                    { selected: flow_condition.id },
-                   { class: "anti-spam-condition" }, 
-                   required: true %>
+                   { class: "anti-spam-condition", required: true }
+                    %>
     <% else %>
       <%= f.select :anti_spam_condition_id, 
                    available_conditions.collect { |c| ["#{c.name} (#{c.condition_type})", c.id] },
                    { prompt: "Select a condition" },
-                   { class: "anti-spam-condition" },
-                   required: true %>
+                   { class: "anti-spam-condition", required: true } %>
     <% end %>
 </div>
