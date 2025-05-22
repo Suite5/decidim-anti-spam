@@ -13,7 +13,7 @@ module Decidim
         private
 
         def forbidden_continent?
-          forbidden_continents_list.include?(Current.continent.to_s.upcase)
+          forbidden_continents_list.include?(::Decidim::SpamSignal.current_continent.to_s.upcase)
         end
 
         def forbidden_continents_list

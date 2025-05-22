@@ -13,7 +13,7 @@ module Decidim
         private
 
         def forbidden_countries?
-          forbidden_countries_list.include?(Current.country.to_s.upcase)
+          forbidden_countries_list.include?(::Decidim::SpamSignal.current_country.to_s.upcase)
         end
 
         def forbidden_countries_list

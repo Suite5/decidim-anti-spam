@@ -13,7 +13,7 @@ module Decidim
         private
 
         def allowed_countries?
-          allowed_countries_list.include?(Current.country.to_s.upcase)
+          allowed_countries_list.include?(::Decidim::SpamSignal.current_country.to_s.upcase)
         end
 
         def allowed_countries_list
