@@ -13,11 +13,11 @@ module Decidim
         private
 
         def forbidden_countries?
-          forbidden_countries_list.include?(Current.country)
+          forbidden_countries_list.include?(Current.country.to_s.upcase)
         end
 
         def forbidden_countries_list
-          @config["forbidden_countries_list"]
+          @forbidden_countries_list ||= config["forbidden_countries_list"].map(&:upcase)
         end
       end
     end
