@@ -26,10 +26,10 @@ module Decidim
         Decidim::Comments::CommentsController.include(
           Decidim::SpamSignal::Overrides::CommentControllerOverrides
         )
-        Decidim::ApplicationController.include(
+        ::ApplicationController.include(
           Decidim::ApplicationControllerOverrides
         )
-        Decidim::ApplicationHelper.include(
+        ::ApplicationHelper.include(
           Decidim::SpamSignal::ApplicationHelperOverrides
         )
       end
