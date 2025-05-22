@@ -62,7 +62,7 @@ module Decidim
           end
 
         collection_check_boxes name, form_options, value_method, text_method do |b|
-          content_tag(:div, b.check_box(checked: attribute_included?(name, b.value)) + b.text)
+          content_tag(:div, b.check_box(checked: attribute_included?(name, b.value)) + b.label { b.text })
         end
       end
 
