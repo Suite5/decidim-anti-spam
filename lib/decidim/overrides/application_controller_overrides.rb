@@ -11,11 +11,11 @@ module Decidim
       private
 
       def set_current_continent
-        ::Decidim::SpamSignal.current_continent = request.headers["x-continent"]
+        ::Decidim::SpamSignal.current_continent = request.headers["X-CONTINENT"]
       end
 
       def set_current_country
-        ::Decidim::SpamSignal.current_country = request.headers["x-country"]
+        ::Decidim::SpamSignal.current_country = request.headers["X-COUNTRY"]
       end
     end
   end
