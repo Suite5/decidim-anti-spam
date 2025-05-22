@@ -168,7 +168,10 @@ module Decidim
         end
 
         def available_conditions
-          Decidim::SpamSignal::Condition.all
+          condition_class = @trigger_type.constantize
+          condition_types = condition_class.available_conditions.map(&:to_s)
+
+          Decidim::SpamSignal::Condition.where(condition_type: condition_types)
         end
       end
     end
