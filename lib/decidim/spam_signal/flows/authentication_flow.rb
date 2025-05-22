@@ -7,7 +7,9 @@ module Decidim
         include ActiveSupport::Configurable
         config_accessor(:available_conditions) do
           [
-            :forbidden_continents
+            :forbidden_continents,
+            :forbidden_countries,
+            :allowed_countries
           ]
         end
 
