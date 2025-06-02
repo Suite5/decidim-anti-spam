@@ -11,7 +11,7 @@ module Decidim
       private
 
       def set_current_continent
-        ::Decidim::SpamSignal.current_continent = request.headers.fetch("CONTINENT",  request.headers.fetch("X-Continent", ""))
+        ::Decidim::SpamSignal.current_continent = request.headers.fetch("CONTINENT", request.headers.fetch("X-Continent", ""))
       end
 
       def set_current_country
