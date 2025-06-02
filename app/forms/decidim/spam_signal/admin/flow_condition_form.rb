@@ -11,7 +11,6 @@ module Decidim
 
         attribute :anti_spam_condition_id, Integer
         attribute :anti_spam_flow_id, Integer
-        validates :anti_spam_condition_id, presence: true
         validates :anti_spam_flow_id, presence: true
 
         validate :validate_condition_exists
