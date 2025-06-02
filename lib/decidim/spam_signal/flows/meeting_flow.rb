@@ -10,14 +10,18 @@ module Decidim
             :forbidden_tlds,
             :allowed_tlds,
             :word,
-            :official_account
+            :official_account,
+            :forbidden_continents,
+            :forbidden_countries,
+            :allowed_countries
           ]
         end
 
         config_accessor(:available_actions) do
           [
             :report,
-            :forbid_save
+            :forbid_save,
+            :lock
           ]
         end
 
