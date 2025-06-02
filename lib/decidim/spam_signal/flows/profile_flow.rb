@@ -20,7 +20,8 @@ module Decidim
         config_accessor(:available_actions) do
           [
             :report,
-            :forbid_save
+            :forbid_save,
+            :lock
           ]
         end
 
