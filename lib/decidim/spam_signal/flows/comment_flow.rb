@@ -28,7 +28,7 @@ module Decidim
           [
             :report,
             :forbid_save,
-            :lock          
+            :lock
           ]
         end
 

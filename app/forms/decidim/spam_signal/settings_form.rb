@@ -4,10 +4,9 @@ module Decidim
   module SpamSignal
     module SettingsForm
       extend ActiveSupport::Concern
+      include Decidim::TranslatableAttributes
 
       included do
-        include Decidim::TranslatableAttributes
-
         class_attribute :conditional_display, default: {}
 
         def self.add_conditional_display(attribute_to_display, attribute_to_check)
