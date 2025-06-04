@@ -5,7 +5,7 @@ module Decidim
     module Flows
       module AuthenticationFlow
         include ActiveSupport::Configurable
-        
+
         config_accessor(:available_conditions) do
           [
             :forbidden_continents,
@@ -27,7 +27,7 @@ module Decidim
 
           attr_reader :current_organization, :current_user
 
-          def initialize(current_organization, current_user=nil)
+          def initialize(current_organization, current_user = nil)
             @current_organization = current_organization
             @current_user = current_user
           end

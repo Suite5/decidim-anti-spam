@@ -5,7 +5,7 @@ module Decidim
     module ApplicationHelperOverrides
       extend ActiveSupport::Concern
       included do
-        def spam_reported?(symbol=nil)
+        def spam_reported?(symbol = nil)
           if symbol.present?
             ::Decidim::SpamSignal.spam_actions_performed.include?(symbol)
           else
