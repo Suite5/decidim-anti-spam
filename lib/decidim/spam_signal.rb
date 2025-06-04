@@ -4,6 +4,7 @@ require_relative "spam_signal/admin"
 require_relative "spam_signal/engine"
 require_relative "spam_signal/admin_engine"
 
+require_relative "spam_signal/midleware/authentication_validation"
 require_relative "spam_signal/manifest_registry/spam_manifest_registry"
 require_relative "spam_signal/manifest_registry/spam_manifest"
 
@@ -38,6 +39,7 @@ module Decidim
     autoload :SpamManifest, "decidim/spam_signal/manifest_registry/spam_manifest"
     autoload :Configuration, "decidim/spam_signal/configuration"
 
+    
     def self.config
       @config ||= Decidim::SpamSignal::Configuration.new
     end
@@ -46,9 +48,18 @@ module Decidim
       yield config
     end
 
+
     def self.spam_actions_performed
       Current.spam_actions_performed ||= []
       Current.spam_actions_performed
+    end
+    
+    def self.spam_errors
+      Current.spam_errors
+    end  
+
+    def self.spam_errors=(errors)
+      Current.spam_errors = errors
     end
 
     def self.current_continent

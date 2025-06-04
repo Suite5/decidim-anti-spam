@@ -157,8 +157,9 @@ en:
           empty: "Conditions are empty"
           invalid: "Conditions are invalid"
         hide_settings_form:
-          hide_enabled: "Replace login and signup by a message"
-          hide_message: "If enabled, login and signup will be replaced by a message"
+          hide_enabled: "Replace login and signup links by a message"
+          hide_message: "Message to display"
+          hide_forbiden_page_message: "Forbidden page message"
         forbidden_tlds_settings_form:
           forbidden_tlds_csv: "List of forbidden Top-Level Domains. Comma-separated"
           placeholder: ".finance, .porn"

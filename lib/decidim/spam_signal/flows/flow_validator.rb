@@ -16,7 +16,7 @@ module Decidim
             return if skip_antispam?
 
             return if flows.empty?
-
+            
             flows.each do |flow|
               active_conditions = run_conditions(flow.conditions, content_for_antispam)
 
@@ -34,6 +34,7 @@ module Decidim
               )
               after_antispam
             end
+            ::Decidim::SpamSignal.spam_errors = errors
           end
 
           ##

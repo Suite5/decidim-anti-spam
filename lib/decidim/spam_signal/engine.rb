@@ -9,7 +9,7 @@ module Decidim
     # This is the engine that runs on the public interface of spam_signal.
     class Engine < ::Rails::Engine
       isolate_namespace Decidim::SpamSignal
-
+      
       config.to_prepare do
         Decidim::AccountForm.include(
           Decidim::SpamSignal::Flows::ProfileFlow::ProfileValidationFormOverrides
@@ -32,6 +32,9 @@ module Decidim
         ::ApplicationHelper.include(
           Decidim::SpamSignal::ApplicationHelperOverrides
         )
+      end
+      initializer "decidim_spam_signal.middleware" do |app|
+        app.config.middleware.insert_after Decidim::Middleware::CurrentOrganization, Decidim::SpamSignal::Middleware::AuthenticationValidation
       end
 
       initializer "decidim_spam_signal.webpacker.assets_path" do
@@ -124,7 +127,7 @@ module Decidim
             Decidim::SpamSignal::Actions::ReportUserActionCommand
           )
           config.actions_registry.register(
-            :hide,
+            :hide_authentication,
             Decidim::SpamSignal::Actions::HideSettingsForm,
             Decidim::SpamSignal::Actions::HideActionCommand
           )
