@@ -12,5 +12,6 @@ module Decidim
     attribute :continent
     attribute :country
     attribute :spam_actions_performed
+    attribute :spam_errors
   end
 end
