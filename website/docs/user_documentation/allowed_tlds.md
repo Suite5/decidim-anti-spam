@@ -1,9 +1,9 @@
 ---
 sidebar_position: 3
-title: Allowed TLDs Detection
+title: Allowed Top-Level Domains Detection
 description: Configure the detection "Allowed TLDs"
 ---
-# Allowed TLDs Detection
+# Allowed Top-Level Domains (TLDs) Detection
 From a list of domains, the TLDs detection will find all the domains that are __NOT__ in the list and raise a `Forbidden TLDs found`.
 
 **When to use**  
