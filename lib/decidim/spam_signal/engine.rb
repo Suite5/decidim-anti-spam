@@ -33,6 +33,9 @@ module Decidim
           Decidim::SpamSignal::ApplicationHelperOverrides
         )
       end
+      initializer "decidim_spam_signal.middleware" do |app|
+        app.config.middleware.insert_after Decidim::Middleware::CurrentOrganization, Decidim::SpamSignal::Middleware::AuthenticationValidation
+      end
 
       initializer "decidim_spam_signal.webpacker.assets_path" do
         Decidim.register_assets_path File.expand_path("#{Decidim::SpamSignal::Engine.root}/app/packs")
@@ -124,7 +127,7 @@ module Decidim
             Decidim::SpamSignal::Actions::ReportUserActionCommand
           )
           config.actions_registry.register(
-            :hide,
+            :hide_authentication,
             Decidim::SpamSignal::Actions::HideSettingsForm,
             Decidim::SpamSignal::Actions::HideActionCommand
           )

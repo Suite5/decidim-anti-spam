@@ -34,6 +34,7 @@ module Decidim
               )
               after_antispam
             end
+            ::Decidim::SpamSignal.spam_errors = errors
           end
 
           ##
