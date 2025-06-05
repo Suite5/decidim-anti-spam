@@ -12,17 +12,19 @@ Behind the scenes, Decidim works with `Ruby on Rails`, which has a really nice w
 - Rails runs all validators
 - If it's valid, it saves. If not, it shows an error
 
-This module will __add dynamic and configurable validators__ for some of the most critical resources of Decidim: 
+This module will __add dynamic and configurable validators through flows__, which will check a user’s action and validate the conditions for that action. The flow will then be able to trigger reactions for some of Decidim’s most critical resources.
 
 - The user's profiles
 - The user's personal URL
 - The writing of comments
+- The creating or updating a meeting
+- The creating or updating a proposal
+- Ability to login and register
 
-With this anti-spam module, validators will always follow the same flow:
+With this anti-spam module, the flows will always perform like this:
 
-- Take the content to be saved
-- Execute the rules you have configured
-- If your rules classify the content as `spam` -> execute a `spam` procedure (agent)
-- If your rules classify the content as `suspicious` -> execute a `suspicious` procedure
+- Check the user action
+- Validates the conditions you have configured
+- If your condition classify the action as `spam`, then executes the actions you have configured
 
-This will allow you to add as few rules as possible at the beginning of the installation and change your rules according to spammers' pressure.
+This will allow you to add few conditions rules at the beginning of the installation and change your conditions according to spammers' pressure.
