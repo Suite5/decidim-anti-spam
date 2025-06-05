@@ -18,7 +18,7 @@ description: How to install the module
 
 **Add the gem to your Gemfile**<br />
 ```ruby
-gem "decidim-spam_signal", "~> 0.2.0"
+gem "decidim-spam_signal", "~> 0.4.0"
 ```
 
 **Install the module**<br />
@@ -39,9 +39,14 @@ bundle exec rails db:migrate
 
 # Configure Nginx GeoIP
 
-The 0.29 version introduces country and continent verification to prevent certain actions from locations where spam could originate.
+The 0.4.0 version introduces country and continent verification to prevent certain actions from locations where spam could originate.
 
 To do this, the module requires additional headers, which can be configured through Nginx.
+
+First of all, install the GeoIP module for Nginx. Use the reference manual to do this.
+ - https://docs.nginx.com/nginx/admin-guide/dynamic-modules/geoip2/
+
+Next, configure the configuration files as shown below: 
 
 In the file `#/etc/nginx/nginx.conf`<br />
 Insert in the section `server/location`

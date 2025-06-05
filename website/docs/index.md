@@ -19,12 +19,12 @@ This module will __add dynamic and configurable validators through flows__, whic
 - The writing of comments
 - The creating or updating a meeting
 - The creating or updating a proposal
-- Signup and Signin
+- Ability to login and register
 
 With this anti-spam module, the flows will always perform like this:
 
 - Check the user action
 - Validates the conditions you have configured
-- If your condition classify the action as `spam` -> execute the `spam` action you have configured
+- If your condition classify the action as `spam`, then executes the actions you have configured
 
-This will allow you to add as conditions rules as possible at the beginning of the installation and change your conditions according to spammers' pressure.
+This will allow you to add few conditions rules at the beginning of the installation and change your conditions according to spammers' pressure.
