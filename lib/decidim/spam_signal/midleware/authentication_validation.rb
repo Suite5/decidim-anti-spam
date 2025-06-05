@@ -26,7 +26,6 @@ module Decidim
           # If a lock has been performed, redirect to the terms of service page and display a flash message
           # to the user.
           if Decidim::SpamSignal.spam_actions_performed.include?(:lock)
-            env["warden"]&.user("user")
             location = root_path(env, current_organization.host)
             [301, { "Location" => location, "Content-Type" => "text/html", "Content-Length" => "0" }, []]  
           else 
