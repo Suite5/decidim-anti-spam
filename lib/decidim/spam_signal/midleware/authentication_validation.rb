@@ -28,21 +28,20 @@ module Decidim
           if Decidim::SpamSignal.spam_actions_performed.include?(:lock)
             env["warden"]&.user("user")
             location = root_path(env, current_organization.host)
-            [301, { "Location" => location, "Content-Type" => "text/html", "Content-Length" => "0" }, []]  
-          else 
+            [301, { "Location" => location, "Content-Type" => "text/html", "Content-Length" => "0" }, []]
+          else
             response
           end
         end
 
-
         private
 
         def root_path(env, host)
-          request = Rack::Request.new(env)
+          Rack::Request.new(env)
           url = URI("/pages/terms-of-service")
           url.host = host
           url.to_s
-        end  
+        end
       end
     end
   end
