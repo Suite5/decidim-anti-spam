@@ -156,6 +156,9 @@ en:
         valid_conditions: 
           empty: "Conditions are empty"
           invalid: "Conditions are invalid"
+        lock_settings_form:
+          lock_enabled: "Lock user"
+          hide_comments_enabled: "Hide all user comments on lock"
         hide_settings_form:
           hide_enabled: "Replace login and signup links by a message"
           hide_message: "Message to display"

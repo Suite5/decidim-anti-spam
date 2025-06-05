@@ -5,11 +5,13 @@ module Decidim
     module Actions
       class LockActionCommand < ActionCommand
         def call
+          return unless config["lock_enabled"]
+
           unless suspicious_user.access_locked?
             hide_comment! if config["hide_comments_enabled"]
             lock!
           end
-          broadcast(config["forbid_creation_enabled"] ? :restore_value : :save)
+          broadcast(:done)
         end
 
         private
