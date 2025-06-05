@@ -26,22 +26,19 @@ module Decidim
           # If a lock has been performed, redirect to the terms of service page and display a flash message
           # to the user.
           if Decidim::SpamSignal.spam_actions_performed.include?(:lock)
-            location = root_path(env, current_organization.host)
-            [301, { "Location" => location, "Content-Type" => "text/html", "Content-Length" => "0" }, []]  
-          else 
-            response
+            location = terms_of_service_path(current_organization.host)
+            [301, { "Location" => location, "Content-Type" => "text/html", "Content-Length" => "0" }, []]
           end
+          response
         end
-
 
         private
 
-        def root_path(env, host)
-          request = Rack::Request.new(env)
+        def terms_of_service_path(host)
           url = URI("/pages/terms-of-service")
           url.host = host
           url.to_s
-        end  
+        end
       end
     end
   end
