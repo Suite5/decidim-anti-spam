@@ -16,7 +16,7 @@ module Decidim
         # env - A Hash.
         def call(env)
           current_organization = env["decidim.current_organization"]
-          raise NotFoundError if current_organization.blank?
+          return [404, {}, []] if current_organization.blank?
 
           current_user = env["warden"]&.user("user") || Decidim::User.new
           # Fire authentication with a dummy active model, to keep the same logic
