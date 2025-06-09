@@ -4,7 +4,7 @@ require_relative "spam_signal/admin"
 require_relative "spam_signal/engine"
 require_relative "spam_signal/admin_engine"
 
-require_relative "spam_signal/midleware/authentication_validation"
+require_relative "spam_signal/middleware/authentication_validation"
 require_relative "spam_signal/manifest_registry/spam_manifest_registry"
 require_relative "spam_signal/manifest_registry/spam_manifest"
 
