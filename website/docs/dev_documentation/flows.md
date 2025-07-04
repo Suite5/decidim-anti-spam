@@ -15,7 +15,7 @@ From the administration side, you can define for a flow what to actions to take 
   - A condition result can be `invalid` if the tested content is invalid, and `valid` otherwise.
 - If one or more condition is `invalid`, the flow run actions
 
-<iframe style="border:none" width="800" height="450" src="https://whimsical.com/embed/NQdNLkdBRD542bQinuhJVi@or4CdLRbgroa49wxU6JqtA38yckqDjveTkauaxjKV"></iframe>
+<iframe style={{ border: "none" }} width="800" height="450" src="https://whimsical.com/embed/NQdNLkdBRD542bQinuhJVi@or4CdLRbgroa49wxU6JqtA38yckqDjveTkauaxjKV"></iframe>
 
 
 ## Triggers
