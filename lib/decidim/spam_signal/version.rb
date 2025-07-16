@@ -4,7 +4,7 @@ module Decidim
   # This holds the decidim-meetings version.
   module SpamSignal
     def self.version
-      "1.0.1"
+      "1.0.2"
     end
 
     def self.decidim_version
