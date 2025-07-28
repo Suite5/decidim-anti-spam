@@ -94,8 +94,8 @@ crowdin::upload:
     - crowdin upload -T $CROWDIN_PERSONAL_TOKEN -i $CROWDIN_PROJECT_ID --no-progress
     - crowdin status -T $CROWDIN_PERSONAL_TOKEN -i $CROWDIN_PROJECT_ID --no-progress
   rules:
-    - if: '$CI_COMMIT_BRANCH == "main" && $GITLAB_USER_ID == $TRANSLATIONBOT_ID'
-      when: always
+    - if: '$CI_COMMIT_BRANCH == "main"'
+      when: manual
 ##
 # Create a Merge request in the project with updated 
 # crowndin translations.
