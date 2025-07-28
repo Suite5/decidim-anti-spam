@@ -32,11 +32,11 @@ module Decidim
           # Remove locales prefix if it is present
           Decidim.available_locales.each do |locale|
             normalized_locale = locale.to_s.gsub("-", "__")
-            if attribute_without_locales.end_with?("_#{normalized_locale}")
-              matching_locale = locale
-              attribute_without_locales =  attribute_without_locales.sub("_#{normalized_locale}", "")
-              break
-            end
+            next unless attribute_without_locales.end_with?("_#{normalized_locale}")
+
+            matching_locale = locale
+            attribute_without_locales = attribute_without_locales.sub("_#{normalized_locale}", "")
+            break
           end
           # Return the human name in the matching locale for the attribute
           I18n.with_locale(matching_locale) do

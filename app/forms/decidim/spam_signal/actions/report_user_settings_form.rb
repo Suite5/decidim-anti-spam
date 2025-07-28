@@ -4,7 +4,6 @@ module Decidim
   module SpamSignal
     module Actions
       class ReportUserSettingsForm < ActionSettingsForm
-
         attribute :report_user_enabled, Boolean, default: true
         translatable_attribute :report_user_justification, String
 

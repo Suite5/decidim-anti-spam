@@ -4,7 +4,6 @@ module Decidim
   module SpamSignal
     module Actions
       class HideSettingsForm < ActionSettingsForm
-
         translatable_attribute :hide_forbiden_page_message, String
         attribute :hide_enabled, Boolean, default: true
         translatable_attribute :hide_message, String
