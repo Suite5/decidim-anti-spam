@@ -3,8 +3,8 @@
 #
 base_path: .
 base_url: https://api.crowdin.com
-api_token: "insecure_api_token"
-project_id: "project_id"
+api_token: "CROWDIN_PERSONAL_TOKEN"
+project_id: CROWDIN_PROJECT_ID
 
 #
 # Choose file structure in Crowdin
