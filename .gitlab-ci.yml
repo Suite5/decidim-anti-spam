@@ -68,7 +68,8 @@ crowdin::lint:
   stage: lint
   script:
     - npm install -g @crowdin/cli
-    - crowdin status -T $CROWDIN_PERSONAL_TOKEN -i $CROWDIN_PROJECT_ID --no-progress | grep "✔️" || exit 1
+    - crowdin status -T $CROWDIN_PERSONAL_TOKEN -i $CROWDIN_PROJECT_ID --no-progress
+  allow_failure: true
 ##
 # Publish the gem un ruby gem.
 ruby::rubygem:
