@@ -18,6 +18,8 @@ module Decidim
       def call
         # Check available_actions of the flow,
         # and call them with the action_settings
+        return if suspicious_user.admin == true || participatory_space_admin?
+
         return if flow.available_actions.empty?
 
         flow.available_actions.each do |action_name|
@@ -32,6 +34,15 @@ module Decidim
           )
         end
         ::Decidim::SpamSignal.spam_actions_performed.push(*flow.available_actions)
+      end
+
+      def participatory_space_admin?
+        Decidim.participatory_space_manifests.any? do |participatory_space|
+          "Decidim::#{participatory_space.name.to_s.camelize}::Admin::AdminUsers"
+            .constantize
+            .for_organization(current_organization)
+            .exists?(suspicious_user.id)
+        end
       end
     end
   end
