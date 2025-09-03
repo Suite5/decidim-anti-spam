@@ -15,6 +15,11 @@ module Decidim
         #
         # env - A Hash.
         def call(env)
+          @request = ActionDispatch::Request.new(env)
+
+          ::Decidim::SpamSignal.current_country = fetch_header("COUNTRY", "X-Country")
+          ::Decidim::SpamSignal.current_continent = fetch_header("CONTINENT", "X-Continent")
+
           current_organization = env["decidim.current_organization"]
           return [404, {}, []] if current_organization.blank?
 
@@ -23,6 +28,14 @@ module Decidim
           # as other flows
           ::Decidim::SpamSignal::Flows::AuthenticationFlow::DummyUser.new(current_organization, current_user).validate
           @app.call(env)
+        end
+
+        def fetch_header(*keys)
+          keys.each do |key|
+            value = @request.headers[key]
+            return value if value.present?
+          end
+          ""
         end
       end
     end
