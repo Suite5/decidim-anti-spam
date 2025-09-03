@@ -2,177 +2,177 @@
 fr:
   decidim:
     account:
-      locked: Your account is locked, an email has been sent with unlock instructions
+      locked: Votre compte est verrouillé, un e-mail a été envoyé avec les instructions de déverrouillage
     spam_signal:
       admin:
         actions:
-          confirm_destroy: Confirm destroy
-          destroy: Destroy
-          edit: Edit
+          confirm_destroy: Confirmer la suppression
+          destroy: Supprimer
+          edit: Éditer
         condition:
           allowed_countries:
-            description: Allow a list of countries, detected by participant's IP address
-            title: Allowed Countries
+            description: Autoriser une liste de pays, détectée par l'adresse IP du participant
+            title: Pays autorisés
           allowed_tlds:
-            description: Allow a list of domain extension, forbid all the others.
-            title: Allowed Top-Level Domains
+            description: Permettre une liste d'extensions de domaine, interdire toutes les autres.
+            title: Extensions de domaine autorisées
           forbidden_continents:
-            description: Forbid a list of continents, detected by participant's IP address
-            title: Forbidden Continents
+            description: Interdire une liste de continents, détectée par l'adresse IP du participant
+            title: Continents interdits
           forbidden_countries:
-            description: Forbid a list of countries, detected by participant's IP address
-            title: Forbidden Countries
+            description: Interdire une liste de pays, détectée par l'adresse IP du participant
+            title: Pays Interdits
           forbidden_tlds:
-            description: Forbid a list of domain extention, allow all the others.
-            title: Forbidden Top-Level Domains
+            description: Interdire une liste d'extension de domaine, autoriser tous les autres.
+            title: Extensions de domaine interdites
           official_account:
-            description: Allow official accounts only, forbid all others.
-            title: Official Account
+            description: Autoriser uniquement les comptes officiels, interdire tous les autres.
+            title: Compte officiel
           title: Condition
           word:
-            description: Forbin a list of words, allow all the others.
-            title: Forbidden Words
+            description: Interdire une liste de mots, autoriser tous les autres.
+            title: Mots interdits
         conditions:
           actions:
-            add: Add
-            create: Create
+            add: Ajouter
+            create: Créer
             delete:
               modal:
                 condition_used_in:
-                  one: Condition used in one Flow
-                  other: Condition used in %{count} Flows
-                confirm: Yes, delete the condition
+                  one: Condition utilisée dans un flux
+                  other: Condition utilisée dans %{count} flux
+                confirm: Oui, supprimer la condition
                 content_html: |
-                  <p>Deleting it will remove it from the above flows.</p>
-                  <p>Are you sure you want to delete this condition?</p>
-                title: Delete Condition?
+                  <p>Cette condition sera supprimée des flux ci-dessus.</p>
+                  <p>Êtes-vous sûr de vouloir supprimer cette condition ?</p>
+                title: Supprimer la condition ?
           create:
-            error: Error creating condition
-            success: Conditions created successfully
+            error: Erreur lors de la création de la condition
+            success: Condition créée avec succès
           delete:
-            success: Condition deleted
+            success: Condition supprimée
           edit:
-            title: Edit Condition
-            update: Update
+            title: Éditer la condition
+            update: Mettre à jour
           new:
-            second_title: Choose a detection type
-            title: New Condition
-          no_conditions: There are not conditions
+            second_title: Choisir un type de détection
+            title: Nouvelle condition
+          no_conditions: Il n'y a pas de conditions
           title: Conditions
           update:
-            format: Condition format error
-            invalid: Form invalid
-            success: Success
+            format: Erreur de format pour la condition
+            invalid: Formulaire invalide
+            success: Succès
         confirm_modal:
-          cancel: Cancel
+          cancel: Annuler
         flow:
           authentication_flow:
-            description: Triggers when a visitor access the plateform
-            title: Signup and Signin
+            description: Se déclenche lorsqu'un visiteur accède à la plateforme
+            title: Inscription et Connexion
           comment_flow:
-            description: Triggers when a Comment gets created or updated
-            title: Creating or updating a Comment
+            description: Se déclenche lorsqu'un commentaire est créé ou mis à jour
+            title: Créer ou mettre à jour un commentaire
           meeting_flow:
-            description: Triggers when a meeting gets created or updated
-            title: Creating or updating a meeting
+            description: Se déclenche lorsqu'une réunion est créé ou mise à jour
+            title: Créer ou mettre à jour une réunion
           profile_flow:
-            description: Update profile description
-            title: Update profile
+            description: Modification de la description du profil
+            title: Modifications du profil
           proposal_flow:
-            description: Triggers when a proposal gets created or updated
-            title: Creating or updating a proposal
-          title: Flows
-          triggered_by: Triggered by
+            description: Se déclenche lorsqu'une proposition est créé ou mise à jour
+            title: Création ou mise à jour d'une proposition
+          title: Flux
+          triggered_by: Déclenchée par
         flows:
           actions:
-            add: Add
-            create: Create
+            add: Ajouter
+            create: Créer
           condition_fields:
-            remove: Remove
+            remove: Supprimer
           condition_form:
-            add_condition_item: Add condition item
+            add_condition_item: Ajouter une condition
           create:
-            error: Error creating flow
-            success: Flow created successfully
+            error: Erreur lors de la création du flux
+            success: Flux créé avec succès
           delete:
-            success: Flow deleted
+            success: Flux supprimé
           edit:
-            title: Edit Flow
-            update: Update
+            title: Editer le flux
+            update: Mettre à jour
           form:
             actions: Actions
           new:
-            title: New Flow
-          no_flows: There are not flows
+            title: Nouveau Flux
+          no_flows: Il n'y a pas de flux
           update:
-            error: Error updating flow
-            success: Flow updated successfully
+            error: Erreur lors de la mise à jour du flux
+            success: Flux mis à jour avec succès
         general:
-          new_condition: Start by creating a new condition
+          new_condition: Commencez par créer une nouvelle condition
           new_condition_item:
-            five: Save your changes
-            four: Configure your condition
-            one: Navigate to the Conditions tab
-            three: Choose a detection type
-            two: Add a new condition
-          new_flow: Use your condition in a new flow
+            five: Enregistrez vos modifications
+            four: Configurez votre condition
+            one: Accédez à l'onglet Conditions
+            three: Choisir un type de détection
+            two: Ajouter une nouvelle condition
+          new_flow: Utilisez votre condition dans un nouveau flux
           new_flow_item:
-            five: Save your changes
-            four: Configure conditions and actions
-            one: Navigate to the Flows tab
-            three: Choose a trigger type
-            two: Add a new flow
-          title: General
+            five: Enregistrez vos modifications
+            four: Configurer les conditions et les actions
+            one: Accéder à l'onglet flux
+            three: Choisir un type de déclencheur
+            two: Ajouter un nouveau flux
+          title: Général
         generals:
-          title: General
+          title: Général
       forms:
         allowed_tlds_form:
-          allowed_tlds_csv: Llist of allowed tlds (aka extensions, like `.ch`). Comma seperated
+          allowed_tlds_csv: Liste des extensions de domaines autorisées (extensions, comme `.ch`). Comma séparés
         allowed_tlds_settings_form:
-          allowed_tlds_csv: List of allowed Top-Level Domains. Comma-separated
+          allowed_tlds_csv: Liste des domaines de premier niveau autorisés. Séparés par des virgules
           placeholder: ".com, .eu"
         forbid_save_settings_form:
-          forbid_save_enabled: Forbid save resource
-          forbid_save_message: If enabled, the resource will not be saved if the condition is met
+          forbid_save_enabled: Interdire de sauvegarder la ressource
+          forbid_save_message: Si activé, la ressource ne sera pas enregistrée si la condition est remplie
         forbidden_tlds_form:
-          forbidden_tlds_csv: List of forbidden TLDs (aka extensions, like `.finance`). Comma-separated
+          forbidden_tlds_csv: Liste des extensions de domaines autorisées (extensions, comme `.ch`). Comma séparés
         forbidden_tlds_settings_form:
-          forbidden_tlds_csv: List of forbidden Top-Level Domains. Comma-separated
+          forbidden_tlds_csv: Liste des extensions de domaines interdits. Séparés par des virgules
           placeholder: ".finance, .porn"
         hide_settings_form:
-          hide_enabled: Replace login and signup links by a message
-          hide_forbiden_page_message: Forbidden page message
-          hide_message: Message to display
+          hide_enabled: Remplacer les liens de connexion et d'inscription par un message
+          hide_forbiden_page_message: Message de page d'interdiction
+          hide_message: Message à afficher
         lock_settings_form:
-          forbid_creation_enabled: Avoid user to save this data
-          hide_comments_enabled: After locking the user, hide all its comments
-          lock_enabled: Lock user
-          report_user_user_enabled: After locking the account, report it. The report won't send any email to admins
+          forbid_creation_enabled: Empêcher que l'utilisateur sauve
+          hide_comments_enabled: Masquer tous les commentaires de l'utilisateur lors du verouillage
+          lock_enabled: Verrouiller l’utilisateur
+          report_user_user_enabled: Après avoir verrouillé le compte, signalez-le. Le rapport n'enverra pas d'e-mail aux administrateurs
         report_user_settings_form:
-          forbid_creation_enabled: Avoid the user to save this data
-          report_user_enabled: Report user
+          forbid_creation_enabled: Empêcher que l'utilisateur sauve
+          report_user_enabled: Signaler l'utilisateur
           report_user_justification: Justification
-          report_user_send_email_to: Send email to
-          report_user_send_emails_enabled: Send email
-          send_emails_enabled: Send email to admin after reports?
+          report_user_send_email_to: Envoyer l'e-mail de rapport à
+          report_user_send_emails_enabled: Envoyer un e-mail
+          send_emails_enabled: Envoyer un e-mail à un administrateur après signalement ?
         valid_actions:
-          empty: Action settings are empty
-          invalid: Action settings are invalid
+          empty: Les paramètres de l'action sont vides
+          invalid: Les paramètres d'action ne sont pas valides
         valid_conditions:
-          empty: Conditions are empty
-          invalid: Conditions are invalid
+          empty: Les conditions sont vides
+          invalid: Les conditions sont invalides
         word_settings_form:
-          stop_list_words_csv: Suspicious Words. Comma-separated
+          stop_list_words_csv: Mots suspects. Un mot par ligne
       models:
         condition:
           fields:
-            condition_type: Detection Type
-            name: Name
+            condition_type: Type de détection
+            name: Nom
         flow:
           fields:
             conditions:
-              empty: Error
-            name: Name
-            trigger_type: Trigger
+              empty: Erreur
+            name: Nom
+            trigger_type: Déclencheur
       report:
-        default_justification: This is user did something bad
+        default_justification: L'utilisateur a fait quelque chose de mal
