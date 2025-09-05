@@ -58,17 +58,17 @@ Deface::Override.new(virtual_path: "layouts/decidim/header/_main_links_desktop",
                      name: "replace_authentication_log_in",
                      replace: "div:has(erb[loud]:contains('decidim.new_user_session_path'))",
                      text: <<~ERB
-                      <div>
-                        <% if spam_reported?(:hide_authentication) %>
-                          <span class="form-error is-visible">
-                            <%= spam_errors.messages[:topbar].join(",") if spam_errors.any? %>
-                          </span>
-                        <% else %>
-                          <%= link_to decidim.new_user_session_path, class: "main-bar__links-desktop__item", "aria-label": t("layouts.decidim.header.log_in") do %>
-                            <%= icon "user-line" %><span><%= t("layouts.decidim.header.log_in") %></span>
-                          <% end %>
-                        <% end %>
-                      </div>
+                       <div>
+                         <% if spam_reported?(:hide_authentication) %>
+                           <span class="form-error is-visible">
+                             <%= spam_errors.messages[:topbar].join(",") if spam_errors.any? %>
+                           </span>
+                         <% else %>
+                           <%= link_to decidim.new_user_session_path, class: "main-bar__links-desktop__item", "aria-label": t("layouts.decidim.header.log_in") do %>
+                             <%= icon "user-line" %><span><%= t("layouts.decidim.header.log_in") %></span>
+                           <% end %>
+                         <% end %>
+                       </div>
                      ERB
                     )
 
