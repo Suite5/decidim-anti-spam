@@ -125,11 +125,6 @@ en:
           title: General
         generals:
           title: General
-      devise:
-        forbidden_page:
-          title: Forbidden Page
-          default_message: Forbidden Page
-          back_home: Back Home
       forms:
         allowed_tlds_form:
           allowed_tlds_csv: Llist of allowed tlds (aka extensions, like `.ch`). Comma seperated
