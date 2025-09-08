@@ -39,8 +39,8 @@ fr:
             delete:
               modal:
                 condition_used_in:
-                  one: Condition utilisée dans un flux
-                  other: Condition utilisée dans %{count} flux
+                  one: Condition used in flow
+                  other: Condition used in %{count} flows
                 confirm: Oui, supprimer la condition
                 content_html: |
                   <p>Cette condition sera supprimée des flux ci-dessus.</p>
@@ -117,7 +117,7 @@ fr:
             two: Ajouter une nouvelle condition
           new_flow: Utilisez votre condition dans un nouveau flux
           new_flow_item:
-            five: Enregistrez vos modifications
+            five: Use your condition in a new flow
             four: Configurer les conditions et les actions
             one: Accéder à l'onglet flux
             three: Choisir un type de déclencheur
