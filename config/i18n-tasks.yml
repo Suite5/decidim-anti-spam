@@ -154,17 +154,17 @@ search:
 #   #   Keep in mind the context of all the strings for a more accurate translation.
 
 ## Do not consider these keys missing:
-# ignore_missing:
-# - 'errors.messages.{accepted,blank,invalid,too_short,too_long}'
-# - '{devise,simple_form}.*'
+ignore_missing:
+  - 'decidim.spam_signal.devise.forbidden_page.back_home'
+  - 'decidim.spam_signal.devise.forbidden_page.default_message'
+  - 'decidim.spam_signal.devise.forbidden_page.title'
+  - 'decidim.account.blocked'
 
 ## Consider these keys used:
-# ignore_unused:
-# - 'activerecord.attributes.*'
-# - '{devise,kaminari,will_paginate}.*'
-# - 'simple_form.{yes,no}'
-# - 'simple_form.{placeholders,hints,labels}.*'
-# - 'simple_form.{error_notification,required}.:'
+ignore_unused:
+  - 'decidim.spam_signal.devise.forbidden_page.back_home'
+  - 'decidim.spam_signal.devise.forbidden_page.default_message'
+  - 'decidim.spam_signal.devise.forbidden_page.title'
 
 ## Exclude these keys from the `i18n-tasks eq-base' report:
 # ignore_eq_base:
