@@ -20,7 +20,7 @@ fr:
             description: Interdire une liste de continents, détectée par l'adresse IP du participant
             title: Continents interdits
           forbidden_countries:
-            description: Interdire une liste de pays, détectée par l'adresse IP du participant
+            description: Interdire une liste de pays, détectée par l'adresse IP des participant·exs
             title: Pays Interdits
           forbidden_tlds:
             description: Interdire une liste d'extension de domaine, autoriser tous les autres.
@@ -39,8 +39,8 @@ fr:
             delete:
               modal:
                 condition_used_in:
-                  one: Condition used in flow
-                  other: Condition used in %{count} flows
+                  one: Condition utilisée dans un flux
+                  other: Condition utilisée dans %{count} flux
                 confirm: Oui, supprimer la condition
                 content_html: |
                   <p>Cette condition sera supprimée des flux ci-dessus.</p>
@@ -73,13 +73,13 @@ fr:
             description: Se déclenche lorsqu'un commentaire est créé ou mis à jour
             title: Créer ou mettre à jour un commentaire
           meeting_flow:
-            description: Se déclenche lorsqu'une réunion est créé ou mise à jour
+            description: Se déclenche lorsqu'une réunion est créée ou mise à jour
             title: Créer ou mettre à jour une réunion
           profile_flow:
             description: Modification de la description du profil
             title: Modifications du profil
           proposal_flow:
-            description: Se déclenche lorsqu'une proposition est créé ou mise à jour
+            description: Se déclenche lorsqu'une proposition est créée ou mise à jour
             title: Création ou mise à jour d'une proposition
           title: Flux
           triggered_by: Déclenchée par
@@ -117,7 +117,7 @@ fr:
             two: Ajouter une nouvelle condition
           new_flow: Utilisez votre condition dans un nouveau flux
           new_flow_item:
-            five: Use your condition in a new flow
+            five: Utilisez votre condition dans un nouveau flux
             four: Configurer les conditions et les actions
             one: Accéder à l'onglet flux
             three: Choisir un type de déclencheur
