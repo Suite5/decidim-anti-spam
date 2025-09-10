@@ -2,6 +2,7 @@
 fr:
   decidim:
     account:
+      blocked: Blocked
       locked: Votre compte est verrouillé, un e-mail a été envoyé avec les instructions de déverrouillage
     spam_signal:
       admin:
@@ -125,6 +126,11 @@ fr:
           title: Général
         generals:
           title: Général
+      devise:
+        forbidden_page:
+          back_home: Back Home
+          default_message: Forbidden Page
+          title: Forbidden Page
       forms:
         allowed_tlds_form:
           allowed_tlds_csv: Liste des extensions de domaines autorisées (extensions, comme `.ch`). Comma séparés
