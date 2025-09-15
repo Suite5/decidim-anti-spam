@@ -2,7 +2,7 @@
 fr:
   decidim:
     account:
-      blocked: Blocked
+      blocked: Bloqué
       locked: Votre compte est verrouillé, un e-mail a été envoyé avec les instructions de déverrouillage
     spam_signal:
       admin:
@@ -12,13 +12,13 @@ fr:
           edit: Éditer
         condition:
           allowed_countries:
-            description: Autoriser une liste de pays, détectée par l'adresse IP du participant
+            description: Autoriser une liste de pays, détectée par l'adresse IP des participant·exs
             title: Pays autorisés
           allowed_tlds:
             description: Permettre une liste d'extensions de domaine, interdire toutes les autres.
             title: Extensions de domaine autorisées
           forbidden_continents:
-            description: Interdire une liste de continents, détectée par l'adresse IP du participant
+            description: Interdire une liste de continents, détectée par l'adresse IP des participant·exs
             title: Continents interdits
           forbidden_countries:
             description: Interdire une liste de pays, détectée par l'adresse IP des participant·exs
@@ -128,9 +128,9 @@ fr:
           title: Général
       devise:
         forbidden_page:
-          back_home: Back Home
-          default_message: Forbidden Page
-          title: Forbidden Page
+          back_home: Retour
+          default_message: Page inaccessible
+          title: Page inaccessible
       forms:
         allowed_tlds_form:
           allowed_tlds_csv: Liste des extensions de domaines autorisées (extensions, comme `.ch`). Comma séparés
