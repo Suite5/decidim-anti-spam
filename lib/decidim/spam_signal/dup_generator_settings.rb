@@ -3,7 +3,7 @@
 module Decidim
   module SpamSignal
     # Class to copy settings from one organization to a new organization.
-    # Used with the Space Page module, where the organization generator 
+    # Used with the Space Page module, where the organization generator
     # copies its settings to the new single page.
     class DupGeneratorSettings
       def initialize(gen_organization, new_organization)
