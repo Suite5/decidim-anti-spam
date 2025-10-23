@@ -22,7 +22,7 @@ module Decidim
         end
 
         def spam_signal_space_enabled?
-          current_organization.anti_spam_mode.present? && current_organization.anti_spam_mode != "disable"
+          current_organization.anti_spam_mode.present? && current_organization.anti_spam_mode != "disabled"
         end
 
         def current_organization
