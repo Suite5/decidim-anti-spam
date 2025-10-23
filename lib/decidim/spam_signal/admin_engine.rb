@@ -33,7 +33,7 @@ module Decidim
                         icon_name: "shield-line",
                         position: 1.8,
                         active: is_active_link?(decidim_admin_spam_signal.generals_path, :inclusive),
-                        if: defined?(current_user) && current_user&.read_attribute("admin")
+                        if: defined?(current_user) && current_user&.read_attribute("admin") && current_organization.spam_signal_enabled?
         end
       end
 
