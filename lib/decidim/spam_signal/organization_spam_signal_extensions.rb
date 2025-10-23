@@ -21,8 +21,6 @@ module Decidim
           spam_signal_space_enabled?
         end
 
-        private
-
         def spam_signal_space_enabled?
           current_organization.anti_spam_mode.present? && current_organization.anti_spam_mode != "disable"
         end
