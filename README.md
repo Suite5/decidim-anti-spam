@@ -44,9 +44,9 @@ This engine is distributed under the [GNU AFFERO GENERAL PUBLIC LICENSE](LICENSE
 
 <br /><br />
 
-<h3 align="center">With the support of</h3>
-<p align="center">
+<h3>With the support of</h3>
+<p>
         <img
-            src="https://git.octree.ch/decidim/vocacity/decidim-modules/decidim-module-spam_signal/-/raw/main/partners.png?raw=true"
-            alt="Lausanne Participe — Une plateforme de participation pour imaginer et réaliser ensemble" />
+            src="https://git.octree.ch/decidim/vocacity/decidim-modules/decidim-module-spam_signal/-/raw/main/website/static/decidim_anti_spam_supports.png?raw=true"
+            alt="City of Lausanne and State of Geneva" />
 </p>

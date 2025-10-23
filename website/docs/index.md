@@ -28,3 +28,8 @@ With this anti-spam module, the flows will always perform like this:
 - If your condition classify the action as `spam`, then executes the actions you have configured
 
 This will allow you to add few conditions rules at the beginning of the installation and change your conditions according to spammers' pressure.
+
+
+## With the support of
+
+![City of Lausanne and State of Geneva](/decidim_anti_spam_supports.png)
