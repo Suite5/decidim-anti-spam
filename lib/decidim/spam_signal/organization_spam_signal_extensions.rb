@@ -15,7 +15,7 @@ module Decidim
         delegate :anti_spam_mode, to: :anti_spam_settings, allow_nil: true
 
         def spam_signal_enabled?
-          return true unless space_page_defined?
+          return true unless Decidim.const_defined?("SpacePage")
           return true if current_organization.space_page_generator?
 
           spam_signal_space_enabled?
@@ -27,10 +27,6 @@ module Decidim
 
         def current_organization
           self
-        end
-
-        def space_page_defined?
-          Decidim.const_defined?("SpacePage")
         end
 
         def anti_spam_mode=(value)
