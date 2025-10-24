@@ -11,6 +11,7 @@ module Decidim
       class ApplicationController < Decidim::Admin::ApplicationController
         before_action do
           raise ActiveRecord::RecordNotFound unless current_organization.spam_signal_enabled?
+
           enforce_permission_to :update, :organization, organization: current_organization
         end
       end
