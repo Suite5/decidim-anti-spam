@@ -31,6 +31,7 @@ require_relative "overrides/application_controller_overrides"
 require_relative "overrides/application_helper_overrides"
 
 require_relative "spam_signal/dup_generator_settings"
+require_relative "spam_signal/organization_spam_signal_extensions"
 
 module Decidim
   # This namespace holds the logic of the `SpamSignal` component. This component
