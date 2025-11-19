@@ -4,6 +4,12 @@ en:
     account:
       blocked: Blocked
       locked: Your account is locked, an email has been sent with unlock instructions
+    admin:
+      moderated_users:
+        index:
+          flow: Flow
+          reason: Type
+          reports: Reports
     spam_signal:
       admin:
         actions:
