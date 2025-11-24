@@ -7,6 +7,7 @@ fr:
     admin:
       menu:
         spam_signal:
+          title: Spam Signal
           conditions: Conditions
           flows: Flux
           general: General

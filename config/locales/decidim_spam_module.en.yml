@@ -5,6 +5,12 @@ en:
       blocked: Blocked
       locked: Your account is locked, an email has been sent with unlock instructions
     admin:
+      menu:
+          spam_signal:
+            title: Spam Signal
+            conditions: Conditions
+            flows: Flows
+            general: General
       moderated_users:
         index:
           flow: Flow
