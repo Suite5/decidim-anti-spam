@@ -96,6 +96,7 @@ en:
             title: Creating or updating a proposal
           title: Flows
           triggered_by: Triggered by
+          trigger_label: Trigger
         flows:
           actions:
             add: Add
@@ -138,6 +139,12 @@ en:
           title: General
         generals:
           title: General
+        actions:
+          forbid_save_enabled: Forbid save resource
+          lock_enabled: Lock user
+          hide_comments_enabled: Hide all user comments on lock
+          report_user_enabled: Report user
+          report_user_send_emails_enabled: Send email
       devise:
         forbidden_page:
           back_home: Back Home
