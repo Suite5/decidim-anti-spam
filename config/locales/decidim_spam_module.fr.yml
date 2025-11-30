@@ -7,10 +7,10 @@ fr:
     admin:
       menu:
         spam_signal:
-          title: Spam Signal
           conditions: Conditions
           flows: Flux
           general: General
+          title: Spam Signal
       moderated_users:
         index:
           flow: Flux
@@ -21,7 +21,12 @@ fr:
         actions:
           confirm_destroy: Confirmer la suppression
           destroy: Supprimer
-          edit: Éditer
+          edit: Modifier
+          forbid_save_enabled: Interdire de sauvegarder la ressource
+          hide_comments_enabled: Masquer tous les commentaires de l'utilisateur lors du verouillage
+          lock_enabled: Verrouiller l’utilisateur
+          report_user_enabled: Signaler l'utilisateur
+          report_user_send_emails_enabled: Envoyer un e-mail
         condition:
           allowed_countries:
             description: Autoriser une liste de pays, détectée par l'adresse IP des participant·exs
@@ -95,8 +100,8 @@ fr:
             description: Se déclenche lorsqu'une proposition est créée ou mise à jour
             title: Création ou mise à jour d'une proposition
           title: Flux
-          triggered_by: Déclenchée par
           trigger_label: Déclencheur
+          triggered_by: Déclenchée par
         flows:
           actions:
             add: Ajouter
@@ -139,12 +144,6 @@ fr:
           title: Général
         generals:
           title: Général
-        actions:
-          forbid_save_enabled: Interdire de sauvegarder la ressource
-          lock_enabled: Verrouiller l’utilisateur
-          hide_comments_enabled: Masquer tous les commentaires de l'utilisateur lors du verouillage
-          report_user_enabled: Signaler l'utilisateur
-          report_user_send_emails_enabled: Envoyer un e-mail
       devise:
         forbidden_page:
           back_home: Retour

@@ -6,11 +6,11 @@ en:
       locked: Your account is locked, an email has been sent with unlock instructions
     admin:
       menu:
-          spam_signal:
-            title: Spam Signal
-            conditions: Conditions
-            flows: Flows
-            general: General
+        spam_signal:
+          conditions: Conditions
+          flows: Flows
+          general: General
+          title: Spam Signal
       moderated_users:
         index:
           flow: Flow
@@ -22,6 +22,11 @@ en:
           confirm_destroy: Confirm destroy
           destroy: Destroy
           edit: Edit
+          forbid_save_enabled: Forbid save resource
+          hide_comments_enabled: Hide all user comments on lock
+          lock_enabled: Lock user
+          report_user_enabled: Report user
+          report_user_send_emails_enabled: Send email
         condition:
           allowed_countries:
             description: Allow a list of countries, detected by participant's IP address
@@ -95,8 +100,8 @@ en:
             description: Triggers when a proposal gets created or updated
             title: Creating or updating a proposal
           title: Flows
-          triggered_by: Triggered by
           trigger_label: Trigger
+          triggered_by: Triggered by
         flows:
           actions:
             add: Add
@@ -139,12 +144,6 @@ en:
           title: General
         generals:
           title: General
-        actions:
-          forbid_save_enabled: Forbid save resource
-          lock_enabled: Lock user
-          hide_comments_enabled: Hide all user comments on lock
-          report_user_enabled: Report user
-          report_user_send_emails_enabled: Send email
       devise:
         forbidden_page:
           back_home: Back Home
