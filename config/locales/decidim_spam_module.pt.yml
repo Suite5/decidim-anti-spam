@@ -4,12 +4,24 @@ pt:
     account:
       blocked: Blocked
       locked: Your account is locked, an email has been sent with unlock instructions
+    admin:
+      menu:
+        spam_signal:
+          conditions: Conditions
+          flows: Flows
+          general: General
+          title: Spam Signal
     spam_signal:
       admin:
         actions:
           confirm_destroy: Confirm destroy
           destroy: Destroy
           edit: Edit
+          forbid_save_enabled: Forbid save resource
+          hide_comments_enabled: Hide all user comments on lock
+          lock_enabled: Lock user
+          report_user_enabled: Report user
+          report_user_send_emails_enabled: Send email
         condition:
           allowed_countries:
             description: Allow a list of countries, detected by participant's IP address
@@ -83,6 +95,7 @@ pt:
             description: Triggers when a proposal gets created or updated
             title: Creating or updating a proposal
           title: Flows
+          trigger_label: Trigger
           triggered_by: Triggered by
         flows:
           actions:

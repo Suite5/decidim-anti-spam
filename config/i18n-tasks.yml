@@ -177,6 +177,7 @@ ignore_unused:
   - 'decidim.admin.menu.spam_signal.conditions'
   - 'decidim.admin.menu.spam_signal.flows'
   - 'decidim.admin.menu.spam_signal.general'
+  - 'decidim.admin.menu.spam_signal.title'
   
 ## Exclude these keys from the `i18n-tasks eq-base' report:
 # ignore_eq_base:
